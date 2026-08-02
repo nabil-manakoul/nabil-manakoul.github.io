@@ -531,8 +531,9 @@ body.lb-active .header{display:none}
 @media (max-width:1260px){
   .navbar{border:0;background:transparent}
   .navbar .container{padding:0;width:100%;display:block}
-  .menu{position:absolute;top:100%;left:0;right:0;flex-direction:column;flex-wrap:nowrap;justify-content:flex-start;align-items:stretch;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px 0;gap:0;display:none;box-shadow:var(--shadow);max-height:82vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
-  .menu.open{display:flex}
+  .menu{position:absolute;top:100%;right:0;left:auto;width:min(330px,86%);flex-direction:column;flex-wrap:nowrap;justify-content:flex-start;align-items:stretch;background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 0 16px;padding:6px 0;gap:0;display:none;box-shadow:-8px 12px 30px rgba(18,58,74,.18);max-height:82vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .menu.open{display:flex;animation:menuIn .26s ease}
+  @keyframes menuIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
   .menu li{width:100%;list-style:none}
   .menu a{width:100%;display:flex;align-items:center;gap:14px;justify-content:flex-start;font-size:1.02rem;font-weight:700;padding:14px 22px;border-radius:0;border-bottom:1px solid #eef2f5;transition:background .18s}
   .menu li:last-child a{border-bottom:0}
