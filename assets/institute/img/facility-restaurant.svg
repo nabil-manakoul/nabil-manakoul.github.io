@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="المطعم">
+  <defs><linearGradient id="rs1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbf3ea"/><stop offset="1" stop-color="#f3e2cf"/></linearGradient></defs>
+  <rect width="400" height="260" fill="url(#rs1)"/>
+  <rect x="0" y="200" width="400" height="60" fill="#e7cfb0"/>
+  <!-- plate -->
+  <circle cx="200" cy="140" r="70" fill="#ffffff" stroke="#e2d3c0" stroke-width="3"/>
+  <circle cx="200" cy="140" r="48" fill="#f4f8fa" stroke="#e2d3c0"/>
+  <!-- food -->
+  <path d="M175 132 q25 -22 50 0 q-8 26 -25 26 q-17 0 -25 -26z" fill="#2f7d49"/>
+  <circle cx="186" cy="150" r="8" fill="#c96a54"/><circle cx="212" cy="148" r="7" fill="#f6a821"/>
+  <!-- fork -->
+  <g fill="#8a97a3">
+    <rect x="96" y="92" width="6" height="96" rx="3"/>
+    <rect x="88" y="88" width="4" height="26" rx="2"/><rect x="96" y="88" width="4" height="26" rx="2"/><rect x="104" y="88" width="4" height="26" rx="2"/>
+    <rect x="88" y="110" width="22" height="8" rx="4"/>
+  </g>
+  <!-- knife -->
+  <g fill="#8a97a3">
+    <rect x="300" y="92" width="6" height="96" rx="3"/>
+    <path d="M298 90 q14 4 12 40 l-12 0z"/>
+  </g>
+  <!-- steam -->
+  <g stroke="#cbb79e" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.8">
+    <path d="M185 60 q8 -10 0 -20 q-8 -10 0 -20"/>
+    <path d="M215 60 q8 -10 0 -20 q-8 -10 0 -20"/>
+  </g>
+</svg>

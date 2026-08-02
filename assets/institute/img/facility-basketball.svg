@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="ملعب كرة السلة">
+  <defs><linearGradient id="bb1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dff1f6"/><stop offset="1" stop-color="#bfe0ea"/></linearGradient></defs>
+  <rect width="400" height="260" fill="url(#bb1)"/>
+  <!-- court -->
+  <path d="M0 200 L400 200 L400 260 L0 260 Z" fill="#e0a86a"/>
+  <path d="M0 200 L400 200" stroke="#fff" stroke-width="3"/>
+  <path d="M150 260 q50 -60 100 0" fill="none" stroke="#fff" stroke-width="3"/>
+  <line x1="200" y1="200" x2="200" y2="230" stroke="#fff" stroke-width="3"/>
+  <!-- hoop pole -->
+  <rect x="300" y="70" width="8" height="140" fill="#5a6b78"/>
+  <rect x="250" y="60" width="64" height="44" rx="4" fill="#ffffff" stroke="#5a6b78" stroke-width="3"/>
+  <rect x="270" y="80" width="24" height="18" fill="none" stroke="#c96a54" stroke-width="3"/>
+  <!-- rim + net -->
+  <path d="M262 104 h34" stroke="#e2683f" stroke-width="4"/>
+  <path d="M264 106 l6 16 M296 106 l-6 16 M272 106 l2 18 M288 106 l-2 18 M280 106 v20" stroke="#ffffff" stroke-width="2" fill="none"/>
+  <!-- basketball -->
+  <g transform="translate(120 150)">
+    <circle r="34" fill="#e2683f"/>
+    <path d="M-34 0 H34 M0 -34 V34 M-30 -18 Q0 0 30 -18 M-30 18 Q0 0 30 18" stroke="#7a3320" stroke-width="2.5" fill="none"/>
+  </g>
+</svg>

@@ -56,20 +56,20 @@
   var y = document.getElementById('year');
   if(y) y.textContent = new Date().getFullYear();
 
-  // Results tabs
-  var tabs = document.querySelectorAll('.results-tabs .tab');
-  if(tabs.length){
+  // Tab sets (scoped per container)
+  document.querySelectorAll('.tabset').forEach(function(set){
+    var tabs = set.querySelectorAll('.tab');
     tabs.forEach(function(tab){
       tab.addEventListener('click', function(){
         var panelId = tab.getAttribute('data-panel');
         tabs.forEach(function(t){ t.classList.remove('is-active'); t.setAttribute('aria-selected','false'); });
         tab.classList.add('is-active'); tab.setAttribute('aria-selected','true');
-        document.querySelectorAll('.results-tabs .tab-panel').forEach(function(p){
+        set.querySelectorAll('.tab-panel').forEach(function(p){
           p.classList.toggle('is-active', p.id === panelId);
         });
       });
     });
-  }
+  });
 
   // Back to top
   var toTop = document.getElementById('toTop');
@@ -101,6 +101,65 @@
       window.location.href = mail;
     });
   }
+
+  // ===== Reviews (localStorage persistence) =====
+  (function initReviews(){
+    var list = document.getElementById('reviewsList');
+    if(!list) return;
+    var KEY = 'ista_reviews_v1';
+    var seed = [
+      {name:'أميمة', role:'متدرّبة — تسيير المقاولات', rating:5, text:'تكوين عملي وأساتذة متعاونون، استفدت كثيرًا من التداريب بالمقاولات.'},
+      {name:'يوسف', role:'متدرّب — مصلح مركبات السيارات', rating:4, text:'ورشات مجهّزة وجوّ دراسي محفّز على التعلّم.'},
+      {name:'سعاد', role:'متدرّبة — مساعد إداري', rating:5, text:'الداخلية والمطعم سهّلا عليّ الدراسة كوني قادمة من منطقة بعيدة.'}
+    ];
+    var stored = [];
+    try{ stored = JSON.parse(localStorage.getItem(KEY)) || []; }catch(e){}
+    var reviews = seed.concat(stored);
+
+    function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+    function starHtml(n){ var s=''; for(var i=1;i<=5;i++){ s+='<span class="'+(i<=n?'':'off')+'">★</span>'; } return s; }
+    function render(){
+      list.innerHTML = reviews.map(function(r){
+        return '<div class="review-card"><div class="rc-head"><span class="rc-avatar">'+esc((r.name||'?').charAt(0))+
+          '</span><span class="rc-who"><b>'+esc(r.name)+'</b><span>'+esc(r.role||'')+'</span></span>'+
+          '<span class="rc-stars">'+starHtml(r.rating)+'</span></div><p>'+esc(r.text)+'</p></div>';
+      }).join('');
+      var avg = reviews.reduce(function(a,r){return a+r.rating;},0)/reviews.length;
+      document.getElementById('avgScore').textContent = avg.toFixed(1);
+      document.getElementById('avgStars').innerHTML = starHtml(Math.round(avg));
+      document.getElementById('revCount').textContent = reviews.length;
+    }
+
+    var rating = 0;
+    var starWrap = document.getElementById('starInput');
+    var stars = starWrap ? Array.prototype.slice.call(starWrap.querySelectorAll('.star')) : [];
+    function paint(v){ stars.forEach(function(s){ s.classList.toggle('on', parseInt(s.getAttribute('data-v'),10)<=v); }); }
+    stars.forEach(function(s){
+      s.addEventListener('mouseenter', function(){ paint(parseInt(s.getAttribute('data-v'),10)); });
+      s.addEventListener('click', function(){ rating = parseInt(s.getAttribute('data-v'),10); paint(rating); });
+    });
+    if(starWrap) starWrap.addEventListener('mouseleave', function(){ paint(rating); });
+
+    var rForm = document.getElementById('reviewForm');
+    if(rForm) rForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var name = document.getElementById('rv-name').value.trim();
+      var role = document.getElementById('rv-role').value.trim();
+      var text = document.getElementById('rv-msg').value.trim();
+      if(!rating){ alert('يرجى اختيار عدد النجوم لتقييمك.'); return; }
+      if(!name || !text){ rForm.reportValidity(); return; }
+      var rev = {name:name, role:role, rating:rating, text:text};
+      reviews.push(rev); stored.push(rev);
+      try{ localStorage.setItem(KEY, JSON.stringify(stored)); }catch(e){}
+      render();
+      rForm.reset(); rating=0; paint(0);
+      var st = document.getElementById('revStatus');
+      if(st){ st.classList.add('show'); setTimeout(function(){ st.classList.remove('show'); }, 4000); }
+      document.getElementById('reviewsList').lastElementChild.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+
+    render();
+  })();
 
   // ===== Interactive lightbox for galleries =====
   var galleryEls = Array.prototype.slice.call(document.querySelectorAll('.gallery, .mosaic'));

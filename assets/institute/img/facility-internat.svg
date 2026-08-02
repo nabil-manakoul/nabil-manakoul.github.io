@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="الداخلية">
+  <defs><linearGradient id="in1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaf1f6"/><stop offset="1" stop-color="#d6e3ec"/></linearGradient>
+  <linearGradient id="in2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b8fb3"/><stop offset="1" stop-color="#1f6f8b"/></linearGradient></defs>
+  <rect width="400" height="260" fill="url(#in1)"/>
+  <rect x="0" y="196" width="400" height="64" fill="#cddbe6"/>
+  <!-- bunk bed -->
+  <g>
+    <rect x="60" y="70" width="150" height="14" rx="4" fill="#7a4a2b"/>
+    <rect x="60" y="150" width="150" height="14" rx="4" fill="#7a4a2b"/>
+    <rect x="56" y="60" width="10" height="140" rx="4" fill="#5a3721"/>
+    <rect x="204" y="60" width="10" height="140" rx="4" fill="#5a3721"/>
+    <!-- mattresses & pillows -->
+    <rect x="66" y="56" width="140" height="16" rx="6" fill="#ffffff" stroke="#cdd9e2"/>
+    <rect x="70" y="50" width="40" height="12" rx="6" fill="url(#in2)"/>
+    <rect x="66" y="136" width="140" height="16" rx="6" fill="#ffffff" stroke="#cdd9e2"/>
+    <rect x="70" y="130" width="40" height="12" rx="6" fill="#c96a54"/>
+    <!-- ladder -->
+    <rect x="196" y="72" width="6" height="92" fill="#8a5a34"/>
+    <rect x="176" y="90" width="26" height="5" fill="#8a5a34"/>
+    <rect x="176" y="120" width="26" height="5" fill="#8a5a34"/>
+  </g>
+  <!-- side cabinet + window -->
+  <rect x="250" y="120" width="90" height="80" rx="6" fill="#ffffff" stroke="#cdd9e2"/>
+  <line x1="295" y1="120" x2="295" y2="200" stroke="#cdd9e2" stroke-width="3"/>
+  <circle cx="285" cy="160" r="4" fill="#1f6f8b"/><circle cx="305" cy="160" r="4" fill="#1f6f8b"/>
+  <rect x="262" y="40" width="76" height="56" rx="6" fill="#9fd6e6"/>
+  <rect x="262" y="40" width="76" height="56" rx="6" fill="none" stroke="#ffffff" stroke-width="4"/>
+  <line x1="300" y1="40" x2="300" y2="96" stroke="#ffffff" stroke-width="4"/>
+</svg>
