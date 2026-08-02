@@ -178,10 +178,8 @@
     });
   })();
 
-  // ===== Activities carousel (auto every 5s) =====
-  (function actCarousel(){
-    var root = document.getElementById('actCarousel');
-    if(!root) return;
+  // ===== Carousels (auto every 5s) =====
+  document.querySelectorAll('.carousel').forEach(function(root){
     var viewport = root.querySelector('.car-viewport');
     var track = root.querySelector('.car-track');
     var slides = Array.prototype.slice.call(track.children);
@@ -226,7 +224,7 @@
     window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ index = Math.min(index, maxIndex()); buildDots(); apply(); }, 160); });
 
     buildDots(); apply(); start();
-  })();
+  });
 
   // ===== Reviews (localStorage persistence) =====
   (function initReviews(){
