@@ -68,6 +68,8 @@
     if(!box) return;
     var el = box.querySelector('.trot-current');
     var dotsWrap = box.querySelector('.trot-dots');
+    var bar = box.querySelector('.trot-bar i');
+    function restartBar(){ if(!bar) return; bar.classList.remove('filling'); void bar.offsetWidth; bar.classList.add('filling'); }
     var items = [
       {t:'🔒 انتهت آجال التسجيل الأولي لموسم 2026/2027 — بعض الشعب قد تُفتح عبر دراسة الملفات', href:'#dates'},
       {t:'🌐 التسجيل الأولي يتم إلكترونيًا عبر بوابة MyWay — myway.ac.ma', href:'#registration'},
@@ -87,6 +89,7 @@
     function paint(){ dots.forEach(function(d, n){ d.classList.toggle('on', n === i); }); }
     function show(n){
       i = (n + items.length) % items.length;
+      restartBar();
       el.style.opacity = 0;
       setTimeout(function(){
         el.textContent = items[i].t;
@@ -102,9 +105,9 @@
     box.querySelector('.trot-next').addEventListener('click', function(){ next(); reset(); });
     box.querySelector('.trot-prev').addEventListener('click', function(){ prev(); reset(); });
     box.addEventListener('mouseenter', function(){ clearInterval(timer); });
-    box.addEventListener('mouseleave', start);
+    box.addEventListener('mouseleave', function(){ start(); restartBar(); });
     el.textContent = items[0].t; el.setAttribute('href', items[0].href); el.style.opacity = 1; paint();
-    start();
+    start(); restartBar();
   })();
 
   // Tab sets (scoped per container)
