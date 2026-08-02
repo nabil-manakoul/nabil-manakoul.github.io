@@ -74,46 +74,58 @@
   <path d="M244 474 C 300 442 262 408 322 388 C 384 366 344 330 384 306 C 420 286 404 234 416 196 C 420 180 426 164 430 150"
         fill="none" stroke="#c99a72" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 9" opacity=".7"/>
 
-  <!-- ===== summit reward: diploma + graduation cap ===== -->
+  <!-- ===== summit: institute flag + diploma reward ===== -->
   <!-- radiant rays -->
   <g opacity=".55">
     <g fill="#f6a821" opacity=".5">
-      <animateTransform attributeName="transform" type="rotate" from="0 430 84" to="360 430 84" dur="90s" repeatCount="indefinite"/>
-      <path d="M430 84 L423 8 L437 8 Z"/>
-      <path d="M430 84 L506 77 L506 91 Z"/>
-      <path d="M430 84 L354 77 L354 91 Z"/>
-      <path d="M430 84 L482 30 L492 40 Z"/>
-      <path d="M430 84 L378 30 L368 40 Z"/>
-      <path d="M430 84 L484 128 L494 118 Z"/>
-      <path d="M430 84 L376 128 L366 118 Z"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 430 66" to="360 430 66" dur="90s" repeatCount="indefinite"/>
+      <path d="M430 66 L424 2 L436 2 Z"/>
+      <path d="M430 66 L502 59 L502 73 Z"/>
+      <path d="M430 66 L358 59 L358 73 Z"/>
+      <path d="M430 66 L480 18 L490 28 Z"/>
+      <path d="M430 66 L380 18 L370 28 Z"/>
+      <path d="M430 66 L480 114 L490 104 Z"/>
+      <path d="M430 66 L380 114 L370 104 Z"/>
     </g>
   </g>
-  <!-- pole -->
-  <rect x="427" y="92" width="5" height="40" rx="2" fill="#7c4a2b"/>
-  <!-- diploma scroll -->
-  <g transform="translate(430 96) rotate(-4)">
-    <rect x="-23" y="-8" width="46" height="17" rx="2.5" fill="#fff8ea" stroke="#eeca8a" stroke-width="1.4"/>
-    <line x1="-14" y1="-3" x2="14" y2="-3" stroke="#c9b48a" stroke-width="1.4"/>
-    <line x1="-14" y1="2" x2="8" y2="2" stroke="#c9b48a" stroke-width="1.4"/>
-    <rect x="-26" y="-9" width="6" height="19" rx="3" fill="#f2d391"/>
-    <rect x="20" y="-9" width="6" height="19" rx="3" fill="#f2d391"/>
-    <!-- ribbon -->
+  <!-- flagpole planted at the summit -->
+  <rect x="428" y="30" width="4" height="98" rx="2" fill="#6f4327"/>
+  <circle cx="430" cy="29" r="4.2" fill="#f6a821" stroke="#fff3d6" stroke-width="1.2"/>
+  <!-- waving banner with the institute emblem -->
+  <g>
+    <path d="M432 40 L478 40 L471 49 L478 58 L471 67 L478 76 L432 76 Z" fill="#fff9ef" stroke="#e7d4b1" stroke-width="1.2"/>
+    <rect x="432" y="40" width="7" height="36" fill="#123a4a"/>
+    <path d="M471 49 L478 58 L471 67 Z" fill="#000000" opacity=".05"/>
+    <!-- OFPPT-style overlapping emblem (green + blue) -->
+    <g transform="translate(455 55)">
+      <path d="M-7 3 L0 -4 L7 3 L0 10 Z" fill="#2f7d49"/>
+      <path d="M0 3 L7 -4 L14 3 L7 10 Z" fill="#1f6f8b" opacity=".92"/>
+    </g>
+    <rect x="443" y="69" width="30" height="3" rx="1.5" fill="#1f6f8b" opacity=".85"/>
+  </g>
+  <!-- diploma scroll leaning at the peak (the reward) -->
+  <g transform="translate(430 116) rotate(-3)">
+    <rect x="-21" y="-8" width="42" height="17" rx="2.5" fill="#fff8ea" stroke="#eeca8a" stroke-width="1.4"/>
+    <line x1="-12" y1="-3" x2="13" y2="-3" stroke="#c9b48a" stroke-width="1.4"/>
+    <line x1="-12" y1="2" x2="7" y2="2" stroke="#c9b48a" stroke-width="1.4"/>
+    <rect x="-24" y="-9" width="6" height="19" rx="3" fill="#f2d391"/>
+    <rect x="18" y="-9" width="6" height="19" rx="3" fill="#f2d391"/>
     <path d="M4 9 l-6 12 5 -3 4 5 3 -14 Z" fill="#c96a54"/>
     <circle cx="4" cy="8" r="4.5" fill="#e0846a" stroke="#fff8ea" stroke-width="1.2"/>
   </g>
-  <!-- graduation cap on top -->
-  <g transform="translate(430 60)">
+  <!-- graduation cap resting beside the diploma -->
+  <g transform="translate(408 108) scale(.82)">
     <path d="M-22 4 L0 -6 L22 4 L0 14 Z" fill="#123a4a"/>
     <path d="M-12 8 L-12 18 C-12 24 12 24 12 18 L12 8 L0 13 Z" fill="#1c4d60"/>
-    <path d="M22 4 L22 20" stroke="#f6a821" stroke-width="2"/>
-    <circle cx="22" cy="22" r="3.2" fill="#f6a821"/>
+    <path d="M22 4 L22 19" stroke="#f6a821" stroke-width="2"/>
+    <circle cx="22" cy="21" r="3" fill="#f6a821"/>
   </g>
   <!-- sparkles -->
   <g fill="#fff3cf">
-    <path class="hs-spark" d="M486 60 l2.2 5.4 5.4 2.2 -5.4 2.2 -2.2 5.4 -2.2 -5.4 -5.4 -2.2 5.4 -2.2 Z"/>
-    <path class="hs-spark hs-s2" d="M372 66 l1.8 4.4 4.4 1.8 -4.4 1.8 -1.8 4.4 -1.8 -4.4 -4.4 -1.8 4.4 -1.8 Z"/>
-    <path class="hs-spark hs-s3" d="M470 118 l1.6 4 4 1.6 -4 1.6 -1.6 4 -1.6 -4 -4 -1.6 4 -1.6 Z"/>
-    <path class="hs-spark hs-s4" d="M392 116 l1.4 3.6 3.6 1.4 -3.6 1.4 -1.4 3.6 -1.4 -3.6 -3.6 -1.4 3.6 -1.4 Z"/>
+    <path class="hs-spark" d="M486 44 l2.2 5.4 5.4 2.2 -5.4 2.2 -2.2 5.4 -2.2 -5.4 -5.4 -2.2 5.4 -2.2 Z"/>
+    <path class="hs-spark hs-s2" d="M372 52 l1.8 4.4 4.4 1.8 -4.4 1.8 -1.8 4.4 -1.8 -4.4 -4.4 -1.8 4.4 -1.8 Z"/>
+    <path class="hs-spark hs-s3" d="M484 92 l1.6 4 4 1.6 -4 1.6 -1.6 4 -1.6 -4 -4 -1.6 4 -1.6 Z"/>
+    <path class="hs-spark hs-s4" d="M456 100 l1.4 3.6 3.6 1.4 -3.6 1.4 -1.4 3.6 -1.4 -3.6 -3.6 -1.4 3.6 -1.4 Z"/>
   </g>
 
   <!-- ===== climbers ===== -->
