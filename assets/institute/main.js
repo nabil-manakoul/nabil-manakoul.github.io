@@ -287,6 +287,59 @@
     render();
   })();
 
+  // ===== Program details modal =====
+  (function progDetails(){
+    var modal = document.getElementById('progModal');
+    if(!modal) return;
+    var pmTitle = document.getElementById('pmTitle');
+    var pmLevel = document.getElementById('pmLevel');
+    var pmSector = document.getElementById('pmSector');
+    var pmBody = document.getElementById('pmBody');
+    function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+    var data = {
+      'assistant-admin': {
+        title:'مساعد إداري', level:'تقني', sector:'قطاع التدبير والتجارة',
+        def:'يمنح الجذع المشترك لشعبة مساعد إداري للمتدرّب الكفايات اللازمة لاكتشاف مهن التدبير والتجارة، وضمان تعدّد مهاراته وتيسير اختياره للتخصّص المهني الأنسب لملفه.',
+        options:['تخصص تجارة','تخصص تدبير','تخصص محاسبة'],
+        access:[
+          'السن: ألّا يتجاوز 30 سنة في فاتح شتنبر من السنة الجارية (أو 33 سنة للمستفيدين من نظام الجسور).',
+          'المستوى الدراسي: إتمام السنة الثانية من سلك البكالوريا، أو التوفّر على دبلوم من مستوى التأهيل حسب جدول المعادلة.',
+          'شُعب البكالوريا: جميع الشعب.',
+          'القدرات والمؤهلات: مهارات ممتازة في التواصل الكتابي والشفهي؛ القدرة على التنظيم وتدبير الأولويات واحترام الآجال؛ المرونة العملية وحلّ المشكلات؛ الصبر والموثوقية.'
+        ],
+        prospects:'يزاول مساعد إداري مهامه داخل المقاولات الصغرى والمتوسطة (PME/PMI) والمقاولات الكبرى العمومية أو الخاصة، في مجالات التجارة والتدبير والمحاسبة حسب التخصّص المختار في السنة الثانية.'
+      },
+      'gestion-entreprises': {title:'تسيير المقاولات', level:'تقني متخصص', sector:'قطاع التدبير والتجارة', soon:true},
+      'elec-installations': {title:'كهرباء الإنشاءات', level:'التأهيل', sector:'قطاع الكهرباء', soon:true},
+      'reparateur-auto': {title:'مصلح مركبات السيارات', level:'التأهيل', sector:'قطاع الميكانيك', soon:true},
+      'elec-batiment': {title:'كهرباء البناء', level:'التخصص', sector:'قطاع الكهرباء', soon:true}
+    };
+    function sec(icon, title, body, bg){
+      return '<div class="pm-sec"><div class="pm-sec-title"><span class="ic" style="background:'+bg+'">'+icon+'</span>'+title+'</div>'+body+'</div>';
+    }
+    function build(d){
+      if(d.soon){ return '<div class="pm-soon">📝 تفاصيل هذه الشعبة (التعريف · شروط الولوج · الآفاق) قيد الإعداد وستُضاف قريبًا.</div>'; }
+      var opts = d.options ? '<div class="pm-options">'+d.options.map(function(o){ return '<span>'+esc(o)+'</span>'; }).join('')+'</div>' : '';
+      return sec('📋','التعريف بالشعبة','<p>'+esc(d.def)+'</p>'+opts,'#eef5f8')
+           + sec('✅','شروط الولوج','<ul class="pm-list">'+d.access.map(function(a){ return '<li>'+esc(a)+'</li>'; }).join('')+'</ul>','#e8f5ec')
+           + sec('🚀','آفاق الشعبة','<p>'+esc(d.prospects)+'</p>','#fdeee9');
+    }
+    function open(key){
+      var d = data[key]; if(!d) return;
+      pmTitle.textContent = d.title; pmLevel.textContent = d.level; pmSector.textContent = d.sector;
+      pmBody.innerHTML = build(d);
+      modal.classList.add('open'); document.body.classList.add('pm-active'); document.body.style.overflow = 'hidden';
+      var box = modal.querySelector('.pm-box'); if(box) box.scrollTop = 0;
+    }
+    function close(){ modal.classList.remove('open'); document.body.classList.remove('pm-active'); document.body.style.overflow = ''; }
+    document.querySelectorAll('.prog-more').forEach(function(b){
+      b.addEventListener('click', function(){ open(b.getAttribute('data-prog')); });
+    });
+    modal.querySelector('.pm-close').addEventListener('click', close);
+    modal.addEventListener('click', function(e){ if(e.target === modal) close(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('open')) close(); });
+  })();
+
   // ===== Interactive lightbox for galleries =====
   var galleryEls = Array.prototype.slice.call(document.querySelectorAll('.gallery, .car-track'));
   var allFigures = [];
