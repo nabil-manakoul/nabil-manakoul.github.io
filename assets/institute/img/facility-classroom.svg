@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="قاعة الدروس">
+  <defs><linearGradient id="cr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaf4ee"/><stop offset="1" stop-color="#d5eadd"/></linearGradient></defs>
+  <rect width="400" height="260" fill="url(#cr)"/>
+  <rect x="0" y="195" width="400" height="65" fill="#c7ddd0"/>
+  <!-- Board -->
+  <rect x="40" y="40" width="180" height="90" rx="6" fill="#2f5d4a" stroke="#234739"/>
+  <g stroke="#cfe6d9" stroke-width="4" stroke-linecap="round" opacity="0.8"><path d="M58 66 h120"/><path d="M58 82 h90"/><path d="M58 98 h110"/></g>
+  <!-- Teacher -->
+  <g transform="translate(280 90)"><circle cx="0" cy="0" r="18" fill="#3a2a1e"/><rect x="-20" y="18" width="40" height="60" rx="16" fill="#1f6f8b"/></g>
+  <!-- Desks -->
+  <g fill="#e0a06a">
+    <rect x="60" y="170" width="70" height="12" rx="3"/>
+    <rect x="170" y="170" width="70" height="12" rx="3"/>
+    <rect x="280" y="170" width="70" height="12" rx="3"/>
+  </g>
+  <g fill="#3a2a1e">
+    <circle cx="95" cy="150" r="12"/><circle cx="205" cy="150" r="12"/><circle cx="315" cy="150" r="12"/>
+  </g>
+  <g fill="#c96a54">
+    <rect x="80" y="160" width="30" height="12" rx="6"/><rect x="190" y="160" width="30" height="12" rx="6"/><rect x="300" y="160" width="30" height="12" rx="6"/>
+  </g>
+</svg>

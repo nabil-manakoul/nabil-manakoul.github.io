@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="الخزانة الوسائطية">
+  <defs><linearGradient id="lib" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbeee6"/><stop offset="1" stop-color="#f3ddd0"/></linearGradient></defs>
+  <rect width="400" height="260" fill="url(#lib)"/>
+  <rect x="0" y="200" width="400" height="60" fill="#e8c9b6"/>
+  <g>
+    <rect x="40" y="60" width="150" height="140" rx="4" fill="#ffffff" stroke="#d8bca8"/>
+    <g fill="#1f6f8b"><rect x="50" y="72" width="20" height="40"/><rect x="74" y="66" width="18" height="46"/></g>
+    <g fill="#c96a54"><rect x="96" y="70" width="20" height="42"/><rect x="120" y="76" width="18" height="36"/></g>
+    <g fill="#2f7d49"><rect x="142" y="68" width="18" height="44"/><rect x="164" y="74" width="18" height="38"/></g>
+    <line x1="46" y1="118" x2="184" y2="118" stroke="#d8bca8" stroke-width="4"/>
+    <g fill="#f6a821"><rect x="52" y="126" width="18" height="42"/><rect x="74" y="130" width="18" height="38"/></g>
+    <g fill="#1f6f8b"><rect x="98" y="124" width="20" height="44"/><rect x="122" y="130" width="18" height="38"/></g>
+    <g fill="#c96a54"><rect x="146" y="126" width="18" height="42"/><rect x="168" y="132" width="16" height="36"/></g>
+    <line x1="46" y1="174" x2="184" y2="174" stroke="#d8bca8" stroke-width="4"/>
+  </g>
+  <g transform="translate(250 120)">
+    <rect x="0" y="20" width="110" height="14" rx="3" fill="#a84e39"/>
+    <rect x="8" y="34" width="94" height="46" rx="4" fill="#c96a54"/>
+    <circle cx="55" cy="-2" r="18" fill="#3a2a1e"/>
+    <rect x="34" y="14" width="42" height="24" rx="10" fill="#1f6f8b"/>
+    <rect x="46" y="-14" width="70" height="44" rx="4" fill="#ffffff" transform="rotate(12 80 10)" stroke="#d8bca8"/>
+  </g>
+</svg>

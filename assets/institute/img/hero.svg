@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="المعهد المتخصص للتكنولوجيا التطبيقية تفراوت وسط جبال الأطلس الصغير الوردية">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fef3f0"/>
+      <stop offset="0.55" stop-color="#fde4dd"/>
+      <stop offset="1" stop-color="#fbd0c6"/>
+    </linearGradient>
+    <linearGradient id="rockFar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6a89a"/>
+      <stop offset="1" stop-color="#d98b7c"/>
+    </linearGradient>
+    <linearGradient id="rockMid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e08a72"/>
+      <stop offset="1" stop-color="#c96a54"/>
+    </linearGradient>
+    <linearGradient id="rockNear" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c76a52"/>
+      <stop offset="1" stop-color="#a84e39"/>
+    </linearGradient>
+    <linearGradient id="bldg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eaf1f6"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6cc4d6"/>
+      <stop offset="1" stop-color="#2b8fb3"/>
+    </linearGradient>
+    <linearGradient id="palm" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5aa06a"/>
+      <stop offset="1" stop-color="#2f7d49"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="760" fill="url(#sky)"/>
+  <circle cx="960" cy="150" r="70" fill="#ffe6b0" opacity="0.9"/>
+  <circle cx="960" cy="150" r="100" fill="#ffe6b0" opacity="0.35"/>
+
+  <!-- Far rocks -->
+  <path d="M0 300 L120 250 L240 320 L360 240 L520 330 L680 250 L840 330 L1000 260 L1200 320 L1200 500 L0 500 Z" fill="url(#rockFar)" opacity="0.85"/>
+  <!-- Mid rocks (Tafraout rounded boulders) -->
+  <path d="M0 380 C120 300 220 300 320 380 C420 460 520 300 640 360 C760 420 860 300 980 370 C1080 430 1160 360 1200 380 L1200 560 L0 560 Z" fill="url(#rockMid)"/>
+  <ellipse cx="250" cy="360" rx="95" ry="70" fill="url(#rockMid)"/>
+  <ellipse cx="880" cy="370" rx="110" ry="80" fill="url(#rockMid)"/>
+
+  <!-- Near ground -->
+  <path d="M0 560 C200 520 400 540 600 555 C800 570 1000 545 1200 560 L1200 760 L0 760 Z" fill="url(#rockNear)"/>
+
+  <!-- Palms -->
+  <g transform="translate(120 470)">
+    <rect x="-6" y="0" width="12" height="110" rx="5" fill="#7a4a2b"/>
+    <g fill="url(#palm)">
+      <path d="M0 0 C-40 -20 -70 -10 -90 10 C-60 -2 -30 4 0 8 Z"/>
+      <path d="M0 0 C40 -20 70 -10 90 10 C60 -2 30 4 0 8 Z"/>
+      <path d="M0 -4 C-20 -46 -6 -74 8 -92 C4 -60 6 -30 6 0 Z"/>
+      <path d="M0 -2 C24 -40 60 -46 82 -40 C50 -30 22 -14 4 4 Z"/>
+      <path d="M0 -2 C-24 -40 -60 -46 -82 -40 C-50 -30 -22 -14 -4 4 Z"/>
+    </g>
+  </g>
+  <g transform="translate(1060 500) scale(0.85)">
+    <rect x="-6" y="0" width="12" height="110" rx="5" fill="#7a4a2b"/>
+    <g fill="url(#palm)">
+      <path d="M0 0 C-40 -20 -70 -10 -90 10 C-60 -2 -30 4 0 8 Z"/>
+      <path d="M0 0 C40 -20 70 -10 90 10 C60 -2 30 4 0 8 Z"/>
+      <path d="M0 -4 C-20 -46 -6 -74 8 -92 C4 -60 6 -30 6 0 Z"/>
+      <path d="M0 -2 C24 -40 60 -46 82 -40 C50 -30 22 -14 4 4 Z"/>
+      <path d="M0 -2 C-24 -40 -60 -46 -82 -40 C-50 -30 -22 -14 -4 4 Z"/>
+    </g>
+  </g>
+
+  <!-- Institute building -->
+  <g transform="translate(430 300)">
+    <rect x="0" y="60" width="340" height="240" rx="10" fill="url(#bldg)" stroke="#d7e2ea" stroke-width="2"/>
+    <rect x="-20" y="40" width="380" height="34" rx="8" fill="#ffffff" stroke="#d7e2ea"/>
+    <rect x="120" y="0" width="100" height="52" rx="6" fill="#1f6f8b"/>
+    <rect x="150" y="-34" width="40" height="40" rx="4" fill="#1f6f8b"/>
+    <!-- Glass facade -->
+    <g fill="url(#glass)" opacity="0.92">
+      <rect x="24" y="96" width="60" height="56" rx="4"/>
+      <rect x="100" y="96" width="60" height="56" rx="4"/>
+      <rect x="176" y="96" width="60" height="56" rx="4"/>
+      <rect x="252" y="96" width="60" height="56" rx="4"/>
+      <rect x="24" y="170" width="60" height="56" rx="4"/>
+      <rect x="100" y="170" width="60" height="56" rx="4"/>
+      <rect x="252" y="170" width="60" height="56" rx="4"/>
+    </g>
+    <!-- Entrance -->
+    <rect x="150" y="196" width="40" height="104" rx="6" fill="#1f6f8b"/>
+    <rect x="164" y="196" width="4" height="104" fill="#9fd0dd"/>
+    <!-- Flag -->
+    <line x1="200" y1="-34" x2="200" y2="-70" stroke="#7a4a2b" stroke-width="3"/>
+    <path d="M200 -70 L232 -62 L200 -54 Z" fill="#c1272d"/>
+  </g>
+
+  <!-- Foreground stylized students -->
+  <g transform="translate(300 640)">
+    <circle cx="0" cy="0" r="16" fill="#2f4858"/>
+    <rect x="-18" y="16" width="36" height="46" rx="14" fill="#1f6f8b"/>
+  </g>
+  <g transform="translate(360 655)">
+    <circle cx="0" cy="0" r="15" fill="#5a3d2b"/>
+    <rect x="-16" y="15" width="32" height="42" rx="13" fill="#e08a72"/>
+  </g>
+  <g transform="translate(830 650)">
+    <circle cx="0" cy="0" r="16" fill="#3a2a1e"/>
+    <rect x="-17" y="16" width="34" height="44" rx="14" fill="#2f7d49"/>
+  </g>
+</svg>

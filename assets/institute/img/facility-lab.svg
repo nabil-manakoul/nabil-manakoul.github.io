@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="قاعة المعلوميات">
+  <defs>
+    <linearGradient id="l1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaf4f8"/><stop offset="1" stop-color="#cfe6ef"/></linearGradient>
+    <linearGradient id="l2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b8fb3"/><stop offset="1" stop-color="#1f6f8b"/></linearGradient>
+  </defs>
+  <rect width="400" height="260" fill="url(#l1)"/>
+  <rect x="0" y="180" width="400" height="80" fill="#dfeef4"/>
+  <g fill="url(#l2)">
+    <rect x="40" y="120" width="70" height="46" rx="4"/>
+    <rect x="165" y="120" width="70" height="46" rx="4"/>
+    <rect x="290" y="120" width="70" height="46" rx="4"/>
+  </g>
+  <g fill="#9fd6e6">
+    <rect x="46" y="126" width="58" height="34" rx="2"/>
+    <rect x="171" y="126" width="58" height="34" rx="2"/>
+    <rect x="296" y="126" width="58" height="34" rx="2"/>
+  </g>
+  <g fill="#123a4a"><rect x="70" y="166" width="10" height="14"/><rect x="195" y="166" width="10" height="14"/><rect x="320" y="166" width="10" height="14"/></g>
+  <g fill="#f6a821"><circle cx="75" cy="100" r="10"/><circle cx="200" cy="100" r="10"/><circle cx="325" cy="100" r="10"/></g>
+  <rect x="30" y="30" width="150" height="50" rx="6" fill="#ffffff" stroke="#bcd8e2"/>
+  <path d="M42 55 h126 M42 65 h90" stroke="#8fb9c7" stroke-width="4" stroke-linecap="round"/>
+</svg>

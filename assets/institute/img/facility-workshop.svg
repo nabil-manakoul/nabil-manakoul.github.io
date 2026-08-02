@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="ورشة تقنية">
+  <defs><linearGradient id="ws" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef1f4"/><stop offset="1" stop-color="#dce3ea"/></linearGradient></defs>
+  <rect width="400" height="260" fill="url(#ws)"/>
+  <rect x="0" y="190" width="400" height="70" fill="#c9d3dc"/>
+  <!-- Workbench -->
+  <rect x="60" y="150" width="280" height="16" rx="3" fill="#7a4a2b"/>
+  <rect x="80" y="166" width="12" height="40" fill="#5a3721"/>
+  <rect x="308" y="166" width="12" height="40" fill="#5a3721"/>
+  <!-- Gear -->
+  <g transform="translate(150 110)" fill="#1f6f8b">
+    <circle cx="0" cy="0" r="30"/>
+    <g><rect x="-6" y="-42" width="12" height="16"/><rect x="-6" y="26" width="12" height="16"/><rect x="-42" y="-6" width="16" height="12"/><rect x="26" y="-6" width="16" height="12"/></g>
+    <g transform="rotate(45)"><rect x="-6" y="-42" width="12" height="16"/><rect x="-6" y="26" width="12" height="16"/><rect x="-42" y="-6" width="16" height="12"/><rect x="26" y="-6" width="16" height="12"/></g>
+    <circle cx="0" cy="0" r="12" fill="#eef1f4"/>
+  </g>
+  <!-- Wrench -->
+  <g transform="translate(250 120) rotate(35)" fill="#c96a54">
+    <rect x="0" y="0" width="70" height="14" rx="7"/>
+    <path d="M-6 -6 a16 16 0 1 0 0 26 l0 -8 a9 9 0 1 1 0 -10 Z"/>
+  </g>
+  <!-- Tool board -->
+  <rect x="40" y="30" width="120" height="60" rx="6" fill="#ffffff" stroke="#c2ccd6"/>
+  <g stroke="#8fa3b3" stroke-width="4" stroke-linecap="round"><path d="M56 46 h40"/><path d="M56 60 l30 0"/><path d="M56 74 h50"/></g>
+  <g fill="#f6a821"><circle cx="130" cy="50" r="8"/><circle cx="130" cy="72" r="8"/></g>
+</svg>
