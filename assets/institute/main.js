@@ -8,7 +8,13 @@
       menu.classList.toggle('open');
     });
     menu.addEventListener('click', function(e){
-      if(e.target.tagName === 'A') menu.classList.remove('open');
+      if(e.target.closest('a')) menu.classList.remove('open');
+    });
+    // Close the dropdown when tapping/clicking outside it
+    document.addEventListener('click', function(e){
+      if(menu.classList.contains('open') && !menu.contains(e.target) && !burger.contains(e.target)){
+        menu.classList.remove('open');
+      }
     });
   }
 

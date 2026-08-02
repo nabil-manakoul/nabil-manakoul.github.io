@@ -28,6 +28,8 @@ a{color:var(--brand);text-decoration:none}
 img,svg{max-width:100%;display:block}
 .container{width:min(1180px,92%);margin-inline:auto}
 .section{padding:74px 0}
+section[id]{scroll-margin-top:118px}
+@media (max-width:1260px){section[id]{scroll-margin-top:76px}}
 .section-alt{background:linear-gradient(180deg,#ffffff, #f2f7fa)}
 .eyebrow{
   display:inline-block;color:var(--accent);font-weight:800;letter-spacing:.5px;
