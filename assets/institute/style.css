@@ -193,15 +193,21 @@ h1,h2,h3{line-height:1.3;margin:0 0 .5em}
 .gallery figcaption{position:absolute;inset:auto 0 0 0;background:linear-gradient(0deg,rgba(18,58,74,.88),rgba(18,58,74,0));color:#fff;padding:22px 14px 10px;font-size:.86rem;font-weight:700;opacity:0;transform:translateY(8px);transition:.28s}
 .gallery figure:hover figcaption{opacity:1;transform:none}
 
-/* ===== Activities mosaic ===== */
-.mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;grid-auto-flow:dense;gap:14px}
-.mosaic figure{margin:0;position:relative;overflow:hidden;border-radius:14px;box-shadow:var(--shadow-sm);cursor:pointer}
-.mosaic figure.big{grid-column:span 2;grid-row:span 2}
-.mosaic figure.wide{grid-column:span 2}
-.mosaic img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
-.mosaic figure:hover img{transform:scale(1.07)}
-.mosaic figcaption{position:absolute;inset:auto 0 0 0;background:linear-gradient(0deg,rgba(18,58,74,.9),rgba(18,58,74,0));color:#fff;padding:26px 14px 12px;font-size:.85rem;font-weight:700;opacity:0;transform:translateY(8px);transition:.28s}
-.mosaic figure:hover figcaption{opacity:1;transform:none}
+/* ===== Activities carousel ===== */
+.carousel{position:relative;padding:0 6px}
+.car-viewport{overflow:hidden;border-radius:16px}
+.car-track{display:flex;direction:ltr;transition:transform .55s cubic-bezier(.4,0,.2,1);will-change:transform}
+.car-slide{flex:0 0 33.333%;box-sizing:border-box;padding:8px;margin:0;position:relative}
+.car-slide img{width:100%;height:250px;object-fit:cover;border-radius:14px;display:block;cursor:zoom-in;box-shadow:var(--shadow-sm);transition:transform .4s ease}
+.car-slide:hover img{transform:scale(1.03)}
+.car-slide figcaption{position:absolute;inset:auto 8px 8px 8px;background:linear-gradient(0deg,rgba(18,58,74,.92),rgba(18,58,74,0));color:#fff;padding:26px 14px 12px;font-size:.9rem;font-weight:700;border-radius:0 0 14px 14px;pointer-events:none}
+.car-arrow{position:absolute;top:42%;transform:translateY(-50%);z-index:5;width:46px;height:46px;border-radius:50%;border:0;background:var(--brand);color:#fff;font-size:1.7rem;line-height:1;cursor:pointer;box-shadow:var(--shadow);display:grid;place-items:center;transition:.2s}
+.car-arrow:hover{background:var(--accent);transform:translateY(-50%) scale(1.08)}
+.car-prev{left:0}
+.car-next{right:0}
+.car-dots{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:20px}
+.car-dots button{width:9px;height:9px;border-radius:50%;background:#c3d3db;border:0;padding:0;cursor:pointer;transition:.25s}
+.car-dots button.on{background:var(--accent);width:26px;border-radius:5px}
 
 /* ===== Level groups ===== */
 .level-group{margin-top:30px}
@@ -402,7 +408,7 @@ h1,h2,h3{line-height:1.3;margin:0 0 .5em}
 .footer .bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:34px;padding-top:18px;text-align:center;font-size:.85rem;color:#8fa8b3}
 
 /* ===== Lightbox (interactive gallery) ===== */
-.gallery figure,.mosaic figure{cursor:zoom-in}
+.gallery figure,.car-slide{cursor:zoom-in}
 .lb{position:fixed;inset:0;z-index:200;background:rgba(9,25,33,.93);display:none;align-items:center;justify-content:center;padding:30px;opacity:0;transition:opacity .25s}
 .lb.open{display:flex;opacity:1}
 body.lb-active .header{display:none}
@@ -476,7 +482,7 @@ body.lb-active .header{display:none}
   .grid-3,.grid-4,.fac,.dates,.stats,.cap-grid{grid-template-columns:repeat(2,1fr)}
   .about-intro,.reg,.footer .cols,.contact-grid,.result-highlight,.reviews-wrap{grid-template-columns:1fr}
   .gallery{grid-template-columns:repeat(3,1fr)}
-  .mosaic{grid-template-columns:repeat(3,1fr);grid-auto-rows:150px}
+  .car-slide{flex-basis:50%}
   .footer .cols{gap:26px}
 }
 /* Collapse nav to hamburger early — 10 icon items need the room */
@@ -499,9 +505,9 @@ body.lb-active .header{display:none}
   .nav .cta{display:none}
   .grid-3,.grid-4,.fac,.dates,.stats,.grid-2,.cap-grid{grid-template-columns:1fr}
   .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:120px}
-  .mosaic{grid-template-columns:repeat(2,1fr);grid-auto-rows:130px}
-  .mosaic figure.big{grid-column:span 2;grid-row:span 2}
-  .mosaic figure.wide{grid-column:span 2}
+  .car-slide{flex-basis:100%}
+  .car-slide img{height:230px}
+  .car-arrow{width:40px;height:40px;font-size:1.4rem}
   .about-facts,.field-row,.docs-grid{grid-template-columns:1fr}
   .wa-float{bottom:16px;right:16px;padding:12px}
   .to-top{bottom:16px;left:16px}

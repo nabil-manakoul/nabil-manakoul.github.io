@@ -178,6 +178,56 @@
     });
   })();
 
+  // ===== Activities carousel (auto every 5s) =====
+  (function actCarousel(){
+    var root = document.getElementById('actCarousel');
+    if(!root) return;
+    var viewport = root.querySelector('.car-viewport');
+    var track = root.querySelector('.car-track');
+    var slides = Array.prototype.slice.call(track.children);
+    var dotsWrap = root.querySelector('.car-dots');
+    var index = 0, timer, dots = [];
+
+    function slideW(){ return slides[0].getBoundingClientRect().width || 1; }
+    function perView(){ return Math.max(1, Math.round(viewport.clientWidth / slideW())); }
+    function maxIndex(){ return Math.max(0, slides.length - perView()); }
+    function apply(){ track.style.transform = 'translateX(' + (-index * slideW()) + 'px)'; paintDots(); }
+    function goIndex(i){ index = Math.min(Math.max(i, 0), maxIndex()); apply(); }
+    function nextPage(){ var p = perView(); goIndex(index >= maxIndex() ? 0 : index + p); }
+    function prevPage(){ var p = perView(); goIndex(index <= 0 ? maxIndex() : index - p); }
+
+    function buildDots(){
+      var p = perView();
+      var pages = Math.max(1, maxIndex() === 0 ? 1 : Math.ceil((maxIndex() + 1) / p));
+      dotsWrap.innerHTML = ''; dots = [];
+      for(var k = 0; k < pages; k++){
+        (function(k){
+          var btn = document.createElement('button');
+          btn.type = 'button'; btn.setAttribute('aria-label', 'مجموعة ' + (k + 1));
+          btn.addEventListener('click', function(){ goIndex(Math.min(k * p, maxIndex())); reset(); });
+          dotsWrap.appendChild(btn); dots.push(btn);
+        })(k);
+      }
+      paintDots();
+    }
+    function paintDots(){
+      var p = perView();
+      var active = Math.min(dots.length - 1, Math.round(index / p));
+      dots.forEach(function(d, n){ d.classList.toggle('on', n === active); });
+    }
+    function start(){ clearInterval(timer); timer = setInterval(nextPage, 5000); }
+    function reset(){ start(); }
+
+    root.querySelector('.car-next').addEventListener('click', function(){ nextPage(); reset(); });
+    root.querySelector('.car-prev').addEventListener('click', function(){ prevPage(); reset(); });
+    root.addEventListener('mouseenter', function(){ clearInterval(timer); });
+    root.addEventListener('mouseleave', start);
+    var rt;
+    window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ index = Math.min(index, maxIndex()); buildDots(); apply(); }, 160); });
+
+    buildDots(); apply(); start();
+  })();
+
   // ===== Reviews (localStorage persistence) =====
   (function initReviews(){
     var list = document.getElementById('reviewsList');
@@ -238,7 +288,7 @@
   })();
 
   // ===== Interactive lightbox for galleries =====
-  var galleryEls = Array.prototype.slice.call(document.querySelectorAll('.gallery, .mosaic'));
+  var galleryEls = Array.prototype.slice.call(document.querySelectorAll('.gallery, .car-track'));
   var allFigures = [];
   galleryEls.forEach(function(g){
     Array.prototype.slice.call(g.querySelectorAll('figure')).forEach(function(f){
