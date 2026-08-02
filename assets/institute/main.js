@@ -56,6 +56,32 @@
   var y = document.getElementById('year');
   if(y) y.textContent = new Date().getFullYear();
 
+  // Results tabs
+  var tabs = document.querySelectorAll('.results-tabs .tab');
+  if(tabs.length){
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        var panelId = tab.getAttribute('data-panel');
+        tabs.forEach(function(t){ t.classList.remove('is-active'); t.setAttribute('aria-selected','false'); });
+        tab.classList.add('is-active'); tab.setAttribute('aria-selected','true');
+        document.querySelectorAll('.results-tabs .tab-panel').forEach(function(p){
+          p.classList.toggle('is-active', p.id === panelId);
+        });
+      });
+    });
+  }
+
+  // Back to top
+  var toTop = document.getElementById('toTop');
+  if(toTop){
+    window.addEventListener('scroll', function(){
+      toTop.classList.toggle('show', window.scrollY > 600);
+    }, {passive:true});
+    toTop.addEventListener('click', function(){
+      window.scrollTo({ top:0, behavior:'smooth' });
+    });
+  }
+
   // Contact form -> compose email
   var form = document.getElementById('contactForm');
   if(form){

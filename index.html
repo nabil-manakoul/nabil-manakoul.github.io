@@ -40,25 +40,50 @@
           <span>تفراوت — التكوين المهني</span>
         </span>
       </a>
-      <nav>
-        <ul class="menu" id="menu">
-          <li><a href="#accueil">الرئيسية</a></li>
-          <li><a href="#about">نبذة عن المعهد</a></li>
-          <li><a href="#programs">الشعب</a></li>
-          <li><a href="#registration">شروط التسجيل</a></li>
-          <li><a href="#dates">التواريخ</a></li>
-          <li><a href="#news">آخر الأخبار</a></li>
-          <li><a href="#activities">الأنشطة</a></li>
-          <li><a href="#facilities">فضاءات المعهد</a></li>
-          <li><a href="#contact">اتصل بنا</a></li>
-        </ul>
-      </nav>
-      <a href="#registration" class="cta">سجّل الآن</a>
-      <button class="burger" aria-label="القائمة" aria-controls="menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-actions">
+        <a href="#registration" class="cta">سجّل الآن</a>
+        <button class="burger" aria-label="القائمة" aria-controls="menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
+    <nav class="navbar">
+      <div class="container">
+        <ul class="menu" id="menu">
+          <li><a href="#accueil"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span>الرئيسية</span></a></li>
+          <li><a href="#about"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg><span>نبذة عن المعهد</span></a></li>
+          <li><a href="#programs"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg><span>الشعب</span></a></li>
+          <li><a href="#registration"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><span>شروط التسجيل</span></a></li>
+          <li><a href="#dates"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>التواريخ</span></a></li>
+          <li><a href="#results"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17V9M15 17v-4M3 3v18h18"/></svg><span>النتائج</span></a></li>
+          <li><a href="#news"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4H6a2 2 0 00-2 2v13l3-2 3 2 3-2 3 2 3-2V6a2 2 0 00-2-2z"/><path d="M8 8h8M8 12h5"/></svg><span>آخر الأخبار</span></a></li>
+          <li><a href="#activities"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7l1.5 3 3.3.3-2.5 2.2.8 3.2L12 14l-3.1 1.9.8-3.2L7.2 10.3 10.5 10z"/></svg><span>الأنشطة</span></a></li>
+          <li><a href="#facilities"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-4 7 4v13"/><path d="M9 21v-5h6v5"/></svg><span>فضاءات المعهد</span></a></li>
+          <li><a href="#contact"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.5-1.1a2 2 0 012.1-.5c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z"/></svg><span>اتصل بنا</span></a></li>
+        </ul>
+      </div>
+    </nav>
   </header>
+
+  <!-- News ticker -->
+  <div class="ticker" role="region" aria-label="آخر المستجدات">
+    <span class="ticker-label">📢 آخر المستجدات</span>
+    <div class="ticker-view">
+      <div class="ticker-track">
+        <a href="#dates" class="ti">انطلاق التسجيل الإلكتروني يوم الأربعاء 06 ماي 2026</a>
+        <a href="#dates" class="ti">آخر أجل للتسجيل في شعبة التقني المتخصص: 27 يوليوز 2026</a>
+        <a href="#results" class="ti">نتائج الانتقاء ستُنشر بعد انتهاء آجال التسجيل</a>
+        <a href="#results" class="ti">نتائج نهاية السنة التكوينية تُعلن بالمعهد وعبر الموقع</a>
+        <a href="#registration" class="ti">أبواب مفتوحة للتعريف بالشعب والتخصصات</a>
+        <!-- تكرار للتمرير المتواصل -->
+        <a href="#dates" class="ti" aria-hidden="true">انطلاق التسجيل الإلكتروني يوم الأربعاء 06 ماي 2026</a>
+        <a href="#dates" class="ti" aria-hidden="true">آخر أجل للتسجيل في شعبة التقني المتخصص: 27 يوليوز 2026</a>
+        <a href="#results" class="ti" aria-hidden="true">نتائج الانتقاء ستُنشر بعد انتهاء آجال التسجيل</a>
+        <a href="#results" class="ti" aria-hidden="true">نتائج نهاية السنة التكوينية تُعلن بالمعهد وعبر الموقع</a>
+        <a href="#registration" class="ti" aria-hidden="true">أبواب مفتوحة للتعريف بالشعب والتخصصات</a>
+      </div>
+    </div>
+  </div>
 
   <!-- Hero -->
   <section class="hero" id="accueil">
@@ -158,7 +183,7 @@
 
       <!-- Level: Technicien Spécialisé -->
       <div class="level-group reveal">
-        <div class="level-head"><span class="level-badge ts">تقني متخصص</span><span class="level-note">مستوى الدخول: البكالوريا · مدة التكوين: سنتان</span></div>
+        <div class="level-head"><span class="level-badge ts">تقني متخصص</span><span class="level-note">مستوى الدخول: البكالوريا · مدة التكوين: سنتان ونصف</span></div>
         <div class="grid grid-3">
           <article class="card">
             <div class="prog-ico" style="background:linear-gradient(135deg,#1f6f8b,#2b8fb3)">
@@ -166,14 +191,14 @@
             </div>
             <h3>تسيير المقاولات</h3>
             <p>تدبير المقاولات، المحاسبة والتسيير المالي، الموارد البشرية والتواصل المهني لتأطير وتنمية المقاولات.</p>
-            <div class="meta"><span class="chip dip">تقني متخصص</span><span class="chip">مستوى البكالوريا</span><span class="chip">سنتان</span></div>
+            <div class="meta"><span class="chip dip">تقني متخصص</span><span class="chip">مستوى البكالوريا</span><span class="chip">سنتان ونصف</span></div>
           </article>
         </div>
       </div>
 
       <!-- Level: Technicien -->
       <div class="level-group reveal">
-        <div class="level-head"><span class="level-badge tc">تقني</span><span class="level-note">مستوى الدخول: الجذع المشترك / السنة الأولى بكالوريا · مدة التكوين: سنتان</span></div>
+        <div class="level-head"><span class="level-badge tc">تقني</span><span class="level-note">مستوى الدخول: الجذع المشترك / السنة الأولى بكالوريا · مدة التكوين: سنتان ونصف</span></div>
         <div class="grid grid-3">
           <article class="card">
             <div class="prog-ico" style="background:linear-gradient(135deg,#2f7d49,#1f5a34)">
@@ -181,7 +206,7 @@
             </div>
             <h3>مساعد إداري</h3>
             <p>تقنيات التدبير الإداري، تحرير الوثائق والمراسلات، الأرشفة واستعمال الأدوات المكتبية والرقمية.</p>
-            <div class="meta"><span class="chip dip">تقني</span><span class="chip">الجذع المشترك</span><span class="chip">سنتان</span></div>
+            <div class="meta"><span class="chip dip">تقني</span><span class="chip">الجذع المشترك</span><span class="chip">سنتان ونصف</span></div>
           </article>
         </div>
       </div>
@@ -295,8 +320,62 @@
     </div>
   </section>
 
+  <!-- Results -->
+  <section class="section section-alt" id="results">
+    <div class="container">
+      <div class="center reveal" style="margin-bottom:40px">
+        <span class="eyebrow">النتائج</span>
+        <h2 class="section-title">نتائج الانتقاء ونهاية السنة التكوينية</h2>
+        <p class="section-lead">تُنشر هنا لوائح الانتقاء ونتائج نهاية السنة التكوينية فور صدورها رسميًا. تابع هذا القسم بانتظام.</p>
+      </div>
+
+      <!-- Selection results — Technicien Spécialisé -->
+      <div class="result-highlight reveal">
+        <div class="rh-left">
+          <span class="rh-badge">التقني المتخصص</span>
+          <h3>نتائج الانتقاء — شعبة تسيير المقاولات</h3>
+          <p>تُنشر لائحة المترشحين المقبولين في شعبة التقني المتخصص بعد انتهاء آجال التسجيل، مع تحديد تواريخ ومقرّات إيداع ملفات التسجيل النهائي.</p>
+          <div class="rh-status"><span class="dot"></span> الحالة: <b>منتظرة — ستُعلن قريبًا</b></div>
+        </div>
+        <div class="rh-right">
+          <span class="btn btn-primary is-disabled" role="button" aria-disabled="true">📄 لائحة المقبولين (قريبًا)</span>
+          <span class="rh-note">ستتوفّر للتحميل هنا فور صدورها</span>
+        </div>
+      </div>
+
+      <!-- End-of-year results — tabs per program -->
+      <div class="results-tabs reveal">
+        <h3 class="rt-title">نتائج نهاية السنة التكوينية — حسب الشعبة</h3>
+        <div class="tabs" role="tablist" aria-label="الشعب">
+          <button class="tab is-active" role="tab" aria-selected="true" data-panel="rp1">تسيير المقاولات</button>
+          <button class="tab" role="tab" aria-selected="false" data-panel="rp2">مساعد إداري</button>
+          <button class="tab" role="tab" aria-selected="false" data-panel="rp3">كهرباء الإنشاءات</button>
+          <button class="tab" role="tab" aria-selected="false" data-panel="rp4">مصلح مركبات السيارات</button>
+          <button class="tab" role="tab" aria-selected="false" data-panel="rp5">كهرباء البناء</button>
+        </div>
+        <div class="tab-panels">
+          <div class="tab-panel is-active" id="rp1" role="tabpanel">
+            <div class="rp-card"><div><span class="chip dip">تقني متخصص</span><b>تسيير المقاولات</b><span class="rp-status">نتائج نهاية السنة التكوينية — <em>منتظرة</em></span></div><span class="btn btn-ghost is-disabled" role="button" aria-disabled="true">عرض النتائج (قريبًا)</span></div>
+          </div>
+          <div class="tab-panel" id="rp2" role="tabpanel">
+            <div class="rp-card"><div><span class="chip dip">تقني</span><b>مساعد إداري</b><span class="rp-status">نتائج نهاية السنة التكوينية — <em>منتظرة</em></span></div><span class="btn btn-ghost is-disabled" role="button" aria-disabled="true">عرض النتائج (قريبًا)</span></div>
+          </div>
+          <div class="tab-panel" id="rp3" role="tabpanel">
+            <div class="rp-card"><div><span class="chip dip">التأهيل</span><b>كهرباء الإنشاءات</b><span class="rp-status">نتائج نهاية السنة التكوينية — <em>منتظرة</em></span></div><span class="btn btn-ghost is-disabled" role="button" aria-disabled="true">عرض النتائج (قريبًا)</span></div>
+          </div>
+          <div class="tab-panel" id="rp4" role="tabpanel">
+            <div class="rp-card"><div><span class="chip dip">التأهيل</span><b>مصلح مركبات السيارات</b><span class="rp-status">نتائج نهاية السنة التكوينية — <em>منتظرة</em></span></div><span class="btn btn-ghost is-disabled" role="button" aria-disabled="true">عرض النتائج (قريبًا)</span></div>
+          </div>
+          <div class="tab-panel" id="rp5" role="tabpanel">
+            <div class="rp-card"><div><span class="chip dip">التخصص</span><b>كهرباء البناء</b><span class="rp-status">نتائج نهاية السنة التكوينية — <em>منتظرة</em></span></div><span class="btn btn-ghost is-disabled" role="button" aria-disabled="true">عرض النتائج (قريبًا)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- News -->
-  <section class="section section-alt" id="news">
+  <section class="section" id="news">
     <div class="container">
       <div class="center reveal" style="margin-bottom:40px">
         <span class="eyebrow">آخر أخبار التكوين</span>
@@ -339,7 +418,7 @@
   </section>
 
   <!-- Activities -->
-  <section class="section" id="activities">
+  <section class="section section-alt" id="activities">
     <div class="container">
       <div class="center reveal" style="margin-bottom:40px">
         <span class="eyebrow">الحياة المدرسية والأنشطة</span>
@@ -369,7 +448,7 @@
   </section>
 
   <!-- Facilities -->
-  <section class="section section-alt" id="facilities">
+  <section class="section" id="facilities">
     <div class="container">
       <div class="center reveal" style="margin-bottom:40px">
         <span class="eyebrow">فضاءات المعهد</span>
@@ -516,6 +595,8 @@
       </div>
     </div>
   </footer>
+
+  <button id="toTop" class="to-top" aria-label="العودة إلى الأعلى">↑</button>
 
   <script src="assets/institute/main.js"></script>
 </body>
