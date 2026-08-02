@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" role="img" aria-label="متدرّبون يتسلّقون جبال تافراوت الوردية نحو القمة حيث ينتظرهم دبلوم التخرّج مع شروق الشمس">
+  <defs>
+    <linearGradient id="hs-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff7f0"/>
+      <stop offset=".5" stop-color="#ffe7d7"/>
+      <stop offset="1" stop-color="#ffd3bb"/>
+    </linearGradient>
+    <radialGradient id="hs-sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffeeb0" stop-opacity=".95"/>
+      <stop offset="55%" stop-color="#ffd069" stop-opacity=".33"/>
+      <stop offset="100%" stop-color="#ffd069" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hs-m4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4ccbe"/><stop offset="1" stop-color="#ecbaa8"/></linearGradient>
+    <linearGradient id="hs-m3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e4a68f"/><stop offset="1" stop-color="#d78e75"/></linearGradient>
+    <linearGradient id="hs-m2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d1815f"/><stop offset="1" stop-color="#bd6b4d"/></linearGradient>
+    <linearGradient id="hs-m1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cb7659"/><stop offset="1" stop-color="#ac5540"/></linearGradient>
+    <linearGradient id="hs-ground" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1cba7"/><stop offset="1" stop-color="#e0ad80"/></linearGradient>
+    <style>
+      @keyframes hsTw{0%,100%{opacity:.15}50%{opacity:1}}
+      @keyframes hsPulse{0%,100%{opacity:.5}50%{opacity:.9}}
+      .hs-spark{animation:hsTw 2.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+      .hs-s2{animation-delay:.7s}.hs-s3{animation-delay:1.3s}.hs-s4{animation-delay:1.9s}
+      .hs-glow{animation:hsPulse 4.5s ease-in-out infinite}
+      @media (prefers-reduced-motion:reduce){.hs-spark,.hs-glow{animation:none}}
+    </style>
+  </defs>
+
+  <!-- sky -->
+  <rect width="720" height="560" fill="url(#hs-sky)"/>
+
+  <!-- soft clouds -->
+  <g fill="#ffffff" opacity=".5">
+    <ellipse cx="140" cy="90" rx="46" ry="15"/><ellipse cx="185" cy="82" rx="34" ry="13"/>
+    <ellipse cx="600" cy="70" rx="40" ry="13"/><ellipse cx="640" cy="78" rx="28" ry="11"/>
+  </g>
+
+  <!-- sun glow + sun -->
+  <circle cx="524" cy="150" r="160" fill="url(#hs-sun)" class="hs-glow"/>
+  <circle cx="524" cy="150" r="47" fill="#ffdc7a"/>
+  <circle cx="524" cy="150" r="47" fill="#ffffff" opacity=".14"/>
+
+  <!-- birds -->
+  <g fill="none" stroke="#a44d38" stroke-width="2.4" stroke-linecap="round" opacity=".65">
+    <path d="M120 150 q8 -7 16 0 q8 -7 16 0"/>
+    <path d="M168 176 q6 -5 12 0 q6 -5 12 0"/>
+    <path d="M596 200 q7 -6 14 0 q7 -6 14 0"/>
+  </g>
+
+  <!-- far mountains -->
+  <path d="M-20 336 Q 120 258 268 328 Q 392 274 520 326 Q 636 284 740 332 L740 560 L-20 560 Z" fill="url(#hs-m4)"/>
+  <path d="M-20 388 Q 150 312 312 372 Q 438 330 566 376 Q 664 344 740 382 L740 560 L-20 560 Z" fill="url(#hs-m3)"/>
+  <path d="M-20 430 Q 130 384 250 414 Q 360 440 470 410 Q 610 372 740 420 L740 560 L-20 560 Z" fill="url(#hs-m2)"/>
+
+  <!-- main summit mountain -->
+  <path d="M-20 486
+           L 92 446
+           C 194 420 250 402 300 352
+           C 360 250 400 152 430 124
+           C 462 154 502 250 562 332
+           C 612 398 662 428 740 448
+           L 740 560 L -20 560 Z" fill="url(#hs-m1)"/>
+  <!-- sunlit ridge highlight -->
+  <path d="M430 124 C 400 152 360 250 300 352 C 280 386 250 408 214 428 L 244 452 C 300 404 360 300 402 210 C 414 182 424 150 430 124 Z" fill="#d98b6f" opacity=".55"/>
+  <!-- granite boulders -->
+  <g opacity=".5">
+    <ellipse cx="360" cy="416" rx="40" ry="26" fill="#b5573f"/>
+    <ellipse cx="520" cy="440" rx="34" ry="22" fill="#b5573f"/>
+    <ellipse cx="150" cy="470" rx="30" ry="19" fill="#c16a4d"/>
+  </g>
+
+  <!-- climbing trail -->
+  <path d="M244 474 C 300 442 262 408 322 388 C 384 366 344 330 384 306 C 420 286 404 234 416 196 C 420 180 426 164 430 150"
+        fill="none" stroke="#f6ddc6" stroke-width="11" stroke-linecap="round" opacity=".92"/>
+  <path d="M244 474 C 300 442 262 408 322 388 C 384 366 344 330 384 306 C 420 286 404 234 416 196 C 420 180 426 164 430 150"
+        fill="none" stroke="#c99a72" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 9" opacity=".7"/>
+
+  <!-- ===== summit reward: diploma + graduation cap ===== -->
+  <!-- radiant rays -->
+  <g opacity=".55">
+    <g fill="#f6a821" opacity=".5">
+      <animateTransform attributeName="transform" type="rotate" from="0 430 84" to="360 430 84" dur="90s" repeatCount="indefinite"/>
+      <path d="M430 84 L423 8 L437 8 Z"/>
+      <path d="M430 84 L506 77 L506 91 Z"/>
+      <path d="M430 84 L354 77 L354 91 Z"/>
+      <path d="M430 84 L482 30 L492 40 Z"/>
+      <path d="M430 84 L378 30 L368 40 Z"/>
+      <path d="M430 84 L484 128 L494 118 Z"/>
+      <path d="M430 84 L376 128 L366 118 Z"/>
+    </g>
+  </g>
+  <!-- pole -->
+  <rect x="427" y="92" width="5" height="40" rx="2" fill="#7c4a2b"/>
+  <!-- diploma scroll -->
+  <g transform="translate(430 96) rotate(-4)">
+    <rect x="-23" y="-8" width="46" height="17" rx="2.5" fill="#fff8ea" stroke="#eeca8a" stroke-width="1.4"/>
+    <line x1="-14" y1="-3" x2="14" y2="-3" stroke="#c9b48a" stroke-width="1.4"/>
+    <line x1="-14" y1="2" x2="8" y2="2" stroke="#c9b48a" stroke-width="1.4"/>
+    <rect x="-26" y="-9" width="6" height="19" rx="3" fill="#f2d391"/>
+    <rect x="20" y="-9" width="6" height="19" rx="3" fill="#f2d391"/>
+    <!-- ribbon -->
+    <path d="M4 9 l-6 12 5 -3 4 5 3 -14 Z" fill="#c96a54"/>
+    <circle cx="4" cy="8" r="4.5" fill="#e0846a" stroke="#fff8ea" stroke-width="1.2"/>
+  </g>
+  <!-- graduation cap on top -->
+  <g transform="translate(430 60)">
+    <path d="M-22 4 L0 -6 L22 4 L0 14 Z" fill="#123a4a"/>
+    <path d="M-12 8 L-12 18 C-12 24 12 24 12 18 L12 8 L0 13 Z" fill="#1c4d60"/>
+    <path d="M22 4 L22 20" stroke="#f6a821" stroke-width="2"/>
+    <circle cx="22" cy="22" r="3.2" fill="#f6a821"/>
+  </g>
+  <!-- sparkles -->
+  <g fill="#fff3cf">
+    <path class="hs-spark" d="M486 60 l2.2 5.4 5.4 2.2 -5.4 2.2 -2.2 5.4 -2.2 -5.4 -5.4 -2.2 5.4 -2.2 Z"/>
+    <path class="hs-spark hs-s2" d="M372 66 l1.8 4.4 4.4 1.8 -4.4 1.8 -1.8 4.4 -1.8 -4.4 -4.4 -1.8 4.4 -1.8 Z"/>
+    <path class="hs-spark hs-s3" d="M470 118 l1.6 4 4 1.6 -4 1.6 -1.6 4 -1.6 -4 -4 -1.6 4 -1.6 Z"/>
+    <path class="hs-spark hs-s4" d="M392 116 l1.4 3.6 3.6 1.4 -3.6 1.4 -1.4 3.6 -1.4 -3.6 -3.6 -1.4 3.6 -1.4 Z"/>
+  </g>
+
+  <!-- ===== climbers ===== -->
+  <!-- climber 1 (lowest, teal) -->
+  <g transform="translate(312 392) scale(1.28) rotate(-18)">
+    <rect x="-8" y="-7" width="8" height="10" rx="2.5" fill="#155a72"/>
+    <path d="M-4 5 Q0 -9 4 5 Z" fill="#1f6f8b"/>
+    <circle cx="0" cy="-9" r="4.4" fill="#f0c193"/>
+    <path d="M-2 5 l-1.5 7 M2 5 l1.5 7" stroke="#3b3b3b" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M5 -3 l6 11" stroke="#7c4a2b" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+  <!-- climber 2 (middle, saffron) -->
+  <g transform="translate(388 304) scale(1.28) rotate(-22)">
+    <rect x="-8" y="-7" width="8" height="10" rx="2.5" fill="#d98b1e"/>
+    <path d="M-4 5 Q0 -9 4 5 Z" fill="#f6a821"/>
+    <circle cx="0" cy="-9" r="4.4" fill="#e7b183"/>
+    <path d="M-2 5 l-1.5 7 M2 5 l1.5 7" stroke="#3b3b3b" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M5 -3 l6 11" stroke="#7c4a2b" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+  <!-- climber 3 (highest, rose, arm raised toward the summit) -->
+  <g transform="translate(416 208) scale(1.28) rotate(-24)">
+    <rect x="-8" y="-7" width="8" height="10" rx="2.5" fill="#a44d38"/>
+    <path d="M-4 5 Q0 -9 4 5 Z" fill="#c96a54"/>
+    <circle cx="0" cy="-9" r="4.4" fill="#f0c193"/>
+    <path d="M-2 5 l-1.5 7 M2 5 l1.5 7" stroke="#3b3b3b" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M3 -7 C 8 -12 12 -15 15 -20" fill="none" stroke="#c96a54" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="15" cy="-21" r="2.6" fill="#f0c193"/>
+  </g>
+
+  <!-- ===== foreground ===== -->
+  <path d="M-20 508 Q 180 476 380 506 Q 560 532 740 500 L740 560 L-20 560 Z" fill="url(#hs-ground)"/>
+  <g opacity=".85">
+    <ellipse cx="120" cy="524" rx="46" ry="20" fill="#d79a6f"/>
+    <ellipse cx="612" cy="528" rx="52" ry="22" fill="#d79a6f"/>
+  </g>
+
+  <!-- palm left -->
+  <g transform="translate(96 508)">
+    <path d="M0 0 C -4 -26 -3 -46 -1 -66" fill="none" stroke="#7c4a2b" stroke-width="6" stroke-linecap="round"/>
+    <g fill="#2f7d49">
+      <path d="M-1 -66 C -22 -78 -40 -76 -52 -66 C -38 -70 -18 -70 -1 -66 Z"/>
+      <path d="M-1 -66 C 20 -80 40 -78 52 -68 C 38 -72 16 -72 -1 -66 Z"/>
+      <path d="M-1 -66 C -14 -88 -14 -104 -6 -116 C -8 -100 -4 -80 -1 -66 Z"/>
+      <path d="M-1 -66 C 10 -86 24 -96 38 -98 C 22 -92 8 -80 -1 -66 Z"/>
+      <path d="M-1 -66 C -12 -84 -26 -94 -40 -96 C -24 -90 -10 -80 -1 -66 Z"/>
+    </g>
+    <circle cx="-1" cy="-64" r="3.4" fill="#8a5a2b"/>
+  </g>
+  <!-- palm right -->
+  <g transform="translate(628 512) scale(1.15)">
+    <path d="M0 0 C 4 -26 3 -46 1 -66" fill="none" stroke="#7c4a2b" stroke-width="6" stroke-linecap="round"/>
+    <g fill="#2f7d49">
+      <path d="M1 -66 C 22 -78 40 -76 52 -66 C 38 -70 18 -70 1 -66 Z"/>
+      <path d="M1 -66 C -20 -80 -40 -78 -52 -68 C -38 -72 -16 -72 1 -66 Z"/>
+      <path d="M1 -66 C 14 -88 14 -104 6 -116 C 8 -100 4 -80 1 -66 Z"/>
+      <path d="M1 -66 C -10 -86 -24 -96 -38 -98 C -22 -92 -8 -80 1 -66 Z"/>
+      <path d="M1 -66 C 12 -84 26 -94 40 -96 C 24 -90 10 -80 1 -66 Z"/>
+    </g>
+    <circle cx="1" cy="-64" r="3.4" fill="#8a5a2b"/>
+  </g>
+
+  <!-- small desert bushes -->
+  <g>
+    <g transform="translate(250 534)">
+      <circle cx="-9" cy="0" r="8" fill="#2f7d49"/><circle cx="0" cy="-4" r="10" fill="#379256"/><circle cx="9" cy="0" r="8" fill="#2f7d49"/>
+      <rect x="-13" y="2" width="26" height="8" fill="#e0ad80"/>
+    </g>
+    <g transform="translate(470 540)">
+      <circle cx="-11" cy="0" r="9" fill="#2f7d49"/><circle cx="1" cy="-5" r="12" fill="#379256"/><circle cx="12" cy="0" r="9" fill="#2f7d49"/>
+      <rect x="-16" y="2" width="32" height="10" fill="#e0ad80"/>
+    </g>
+  </g>
+</svg>
