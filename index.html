@@ -255,26 +255,38 @@
       <!-- Training map / capacity -->
       <div class="map-block reveal">
         <div class="map-head">
-          <h3>الخريطة التكوينية — موسم 2026 / 2027</h3>
-          <p>عدد المجموعات والمقاعد المعتمدة لكل شعبة هذه السنة.</p>
+          <span class="mh-ico">🗺️</span>
+          <div class="mh-title"><h3>الخريطة التكوينية — موسم 2026 / 2027</h3><p>عدد المقاعد المتوفرة لكل شعبة هذه السنة.</p></div>
+          <span class="mh-total"><b>175</b><span>مقعدًا</span></span>
         </div>
-        <div class="cap-table-wrap">
-          <table class="cap-table">
-            <thead>
-              <tr><th>الشعبة</th><th>المستوى</th><th>المجموعات</th><th>عدد المقاعد</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>تسيير المقاولات</td><td>تقني متخصص</td><td>مجموعتان</td><td><span class="cap-n">50</span></td></tr>
-              <tr><td>مساعد إداري</td><td>تقني</td><td>مجموعة</td><td><span class="cap-n">25</span></td></tr>
-              <tr><td>مصلح مركبات السيارات</td><td>التأهيل</td><td>مجموعتان</td><td><span class="cap-n">50</span></td></tr>
-              <tr><td>كهرباء الإنشاءات</td><td>التأهيل</td><td>مجموعة</td><td><span class="cap-n">25</span></td></tr>
-              <tr><td>كهرباء البناء</td><td>التخصص</td><td>مجموعة</td><td><span class="cap-n">25</span></td></tr>
-            </tbody>
-            <tfoot>
-              <tr><td>المجموع</td><td>5 شعب</td><td>7 مجموعات</td><td><span class="cap-n">175</span> مقعدًا</td></tr>
-            </tfoot>
-          </table>
+        <div class="cap-grid">
+          <div class="cap-card ts">
+            <span class="cap-ico">📊</span>
+            <div class="cap-info"><b>تسيير المقاولات</b><span class="cap-lvl">تقني متخصص</span></div>
+            <div class="cap-seats"><span class="cap-num">50</span><span class="cap-lab">مقعدًا</span></div>
+          </div>
+          <div class="cap-card tc">
+            <span class="cap-ico">🗂️</span>
+            <div class="cap-info"><b>مساعد إداري</b><span class="cap-lvl">تقني</span></div>
+            <div class="cap-seats"><span class="cap-num">25</span><span class="cap-lab">مقعدًا</span></div>
+          </div>
+          <div class="cap-card qa">
+            <span class="cap-ico">🔧</span>
+            <div class="cap-info"><b>مصلح مركبات السيارات</b><span class="cap-lvl">التأهيل</span></div>
+            <div class="cap-seats"><span class="cap-num">50</span><span class="cap-lab">مقعدًا</span></div>
+          </div>
+          <div class="cap-card qa">
+            <span class="cap-ico">⚡</span>
+            <div class="cap-info"><b>كهرباء الإنشاءات</b><span class="cap-lvl">التأهيل</span></div>
+            <div class="cap-seats"><span class="cap-num">25</span><span class="cap-lab">مقعدًا</span></div>
+          </div>
+          <div class="cap-card sp">
+            <span class="cap-ico">💡</span>
+            <div class="cap-info"><b>كهرباء البناء</b><span class="cap-lvl">التخصص</span></div>
+            <div class="cap-seats"><span class="cap-num">25</span><span class="cap-lab">مقعدًا</span></div>
+          </div>
         </div>
+        <div class="cap-note"><span>ℹ️</span> بالنسبة لبعض الشعب، عند شغل جميع المقاعد يُفتح التسجيل عبر <b>دراسة الملفات</b>.</div>
       </div>
     </div>
   </section>
@@ -349,11 +361,12 @@
       </div>
 
       <div class="dates">
-        <div class="date reveal"><div class="d">التقني المتخصص</div><b>06 ماي → 27 يوليوز 2026</b><span>مستوى تقني متخصص — تسيير المقاولات.</span></div>
-        <div class="date reveal"><div class="d">التقني</div><b>06 ماي → 07 يوليوز 2026</b><span>مستوى تقني — مساعد إداري.</span></div>
-        <div class="date reveal"><div class="d">التأهيل</div><b>06 ماي → 09 يونيو 2026</b><span>كهرباء الإنشاءات · مصلح مركبات السيارات.</span></div>
-        <div class="date reveal"><div class="d">التخصص</div><b>06 ماي → حتى نفاد المقاعد</b><span>كهرباء البناء.</span></div>
+        <div class="date reveal" data-deadline="2026-07-27"><div class="d">التقني المتخصص</div><b>06 ماي → 27 يوليوز 2026</b><span>مستوى تقني متخصص — تسيير المقاولات.</span><span class="reg-badge"></span></div>
+        <div class="date reveal" data-deadline="2026-07-07"><div class="d">التقني</div><b>06 ماي → 07 يوليوز 2026</b><span>مستوى تقني — مساعد إداري.</span><span class="reg-badge"></span></div>
+        <div class="date reveal" data-deadline="2026-06-09"><div class="d">التأهيل</div><b>06 ماي → 09 يونيو 2026</b><span>كهرباء الإنشاءات · مصلح مركبات السيارات.</span><span class="reg-badge"></span></div>
+        <div class="date reveal" data-status="seats"><div class="d">التخصص</div><b>06 ماي → حتى نفاد المقاعد</b><span>كهرباء البناء.</span><span class="reg-badge"></span></div>
       </div>
+      <div class="cap-note" style="margin-top:20px"><span>ℹ️</span> بعض الشعب: عند شغل جميع المقاعد يُعاد فتح التسجيل عبر <b>دراسة الملفات</b>. تابعوا إعلانات المعهد.</div>
     </div>
   </section>
 

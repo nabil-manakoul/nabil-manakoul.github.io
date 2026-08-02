@@ -108,6 +108,31 @@
     });
   }
 
+  // ===== Registration status badges (auto open/closed) =====
+  (function regStatus(){
+    var cards = document.querySelectorAll('.date[data-deadline], .date[data-status]');
+    if(!cards.length) return;
+    var today = new Date(); today.setHours(0,0,0,0);
+    cards.forEach(function(c){
+      var badge = c.querySelector('.reg-badge');
+      if(!badge) return;
+      if(c.getAttribute('data-status') === 'seats'){
+        badge.className = 'reg-badge rb-seats';
+        badge.textContent = '⏳ حسب توفّر المقاعد';
+        return;
+      }
+      var dl = new Date(c.getAttribute('data-deadline')); dl.setHours(23,59,59,0);
+      if(today > dl){
+        c.classList.add('is-closed');
+        badge.className = 'reg-badge rb-closed';
+        badge.textContent = '🔒 التسجيل مغلق';
+      } else {
+        badge.className = 'reg-badge rb-open';
+        badge.textContent = '✅ التسجيل مفتوح';
+      }
+    });
+  })();
+
   // ===== Reviews (localStorage persistence) =====
   (function initReviews(){
     var list = document.getElementById('reviewsList');
