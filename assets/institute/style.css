@@ -542,6 +542,8 @@ body.lb-active .header{display:none}
   .menu a:hover .nav-ico,.menu a:active .nav-ico{transform:none;background:var(--brand);color:#fff;stroke:#fff}
   .menu a.is-current{background:#eef5f8}
   .burger{display:block}
+  .nav-actions{order:-1}
+  .nav .brand{order:1}
 }
 
 @media (max-width:640px){
