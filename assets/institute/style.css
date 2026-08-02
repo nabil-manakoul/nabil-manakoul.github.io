@@ -540,6 +540,9 @@ body.lb-active .header{display:none}
 }
 
 @media (max-width:640px){
+  .brand b{white-space:normal;font-size:.84rem;line-height:1.2}
+  .brand span{font-size:.7rem}
+  .brand .logo-img{width:42px;height:42px}
   .topbar{font-size:.78rem}
   .topbar .tb-addr,.topbar .tb-social{display:none}
   .topbar .tb-contact{justify-content:center;gap:16px;width:100%}
