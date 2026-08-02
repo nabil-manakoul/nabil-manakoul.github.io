@@ -124,6 +124,23 @@ h1,h2,h3{line-height:1.3;margin:0 0 .5em}
 .card .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .chip{background:#eef5f8;color:var(--brand);border-radius:999px;padding:5px 12px;font-size:.82rem;font-weight:700}
 .chip.dip{background:#fdeee9;color:var(--accent)}
+.chip.seats{background:#e8f5ec;color:var(--green);font-weight:800}
+
+/* ===== Training map / capacity table ===== */
+.map-block{margin-top:34px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden}
+.map-head{background:linear-gradient(120deg,var(--brand-dark),var(--brand));color:#fff;padding:22px 26px}
+.map-head h3{color:#fff;margin:0 0 4px;font-size:1.2rem}
+.map-head p{color:#cfe6ef;margin:0;font-size:.92rem}
+.cap-table-wrap{overflow-x:auto;padding:6px}
+.cap-table{width:100%;border-collapse:collapse;min-width:520px;text-align:center}
+.cap-table th,.cap-table td{padding:14px 16px;border-bottom:1px solid var(--line)}
+.cap-table th{color:var(--brand-dark);font-weight:800;background:#f4f9fb;font-size:.92rem}
+.cap-table td{color:#3a4a54}
+.cap-table td:first-child{font-weight:700;color:var(--brand-dark)}
+.cap-table tbody tr:hover{background:#f7fbfc}
+.cap-table .cap-n{display:inline-block;min-width:34px;background:#e8f5ec;color:var(--green);font-weight:900;border-radius:8px;padding:2px 8px}
+.cap-table tfoot td{background:var(--brand-dark);color:#fff;font-weight:800;border:0}
+.cap-table tfoot .cap-n{background:var(--accent-2);color:var(--brand-dark)}
 .card p{color:var(--muted);margin:.4em 0 0}
 
 /* ===== About ===== */
