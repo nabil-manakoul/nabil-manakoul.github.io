@@ -459,3 +459,142 @@
     }, {passive:true});
   }
 })();
+
+// ============================================================
+// Notifications opt-in — appears once on site entry.
+// Collects an email or phone to send real-time updates.
+// Stores locally now; POSTs to the institute backend once hosted
+// (set window.ISTA_SUBSCRIBE_URL, e.g. "/api/subscribe"). See BACKEND-PLAN.md.
+// ============================================================
+(function notifyOptIn(){
+  var KEY = 'ista_notify_v1';
+  var REASK_DAYS = 7;
+  function getState(){ try{ return JSON.parse(localStorage.getItem(KEY)) || null; }catch(_){ return null; } }
+  function setState(o){ try{ localStorage.setItem(KEY, JSON.stringify(o)); }catch(_){} }
+  function shouldShow(){
+    var s = getState();
+    if(!s) return true;
+    if(s.status === 'subscribed') return false;
+    if(s.status === 'dismissed'){
+      var days = (Date.now() - (s.at || 0)) / 86400000;
+      return days >= REASK_DAYS;
+    }
+    return true;
+  }
+  if(!shouldShow()) return;
+
+  var mode = 'email';
+  var wrap = document.createElement('div');
+  wrap.className = 'nmodal';
+  wrap.setAttribute('role', 'dialog');
+  wrap.setAttribute('aria-modal', 'true');
+  wrap.setAttribute('aria-label', 'الاشتراك في الإشعارات');
+  wrap.innerHTML =
+    '<div class="nmodal-card" role="document">' +
+      '<button class="nmodal-close" type="button" aria-label="إغلاق">✕</button>' +
+      '<div class="nmodal-ico" aria-hidden="true">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>' +
+      '</div>' +
+      '<h3 class="nmodal-title">ابقَ على اطّلاع بآخر المستجدات</h3>' +
+      '<p class="nmodal-sub">اشترك لتصلك <b>إشعارات فورية</b> عند نشر مستجدات مهمة: فتح التسجيل، النتائج، التواريخ والمباريات.</p>' +
+      '<div class="nmodal-tabs" role="tablist">' +
+        '<button type="button" class="nmodal-tab on" data-mode="email">✉️ البريد الإلكتروني</button>' +
+        '<button type="button" class="nmodal-tab" data-mode="phone">📱 رقم الهاتف</button>' +
+      '</div>' +
+      '<form class="nmodal-form" novalidate>' +
+        '<input class="nmodal-input" type="email" name="val" dir="ltr" placeholder="you@example.com" autocomplete="email">' +
+        '<div class="nmodal-err" aria-live="polite"></div>' +
+        '<button type="submit" class="btn btn-primary nmodal-submit">تفعيل الإشعارات</button>' +
+      '</form>' +
+      '<button type="button" class="nmodal-later">ليس الآن</button>' +
+      '<p class="nmodal-note">🔒 نحترم خصوصيتك — تُستعمل بياناتك فقط لإرسال مستجدات المعهد، ويمكنك إلغاء الاشتراك في أي وقت.</p>' +
+      '<div class="nmodal-done" hidden>' +
+        '<div class="nmodal-check">✓</div>' +
+        '<h3>تم تفعيل الإشعارات!</h3>' +
+        '<p>شكرًا لك — ستصلك مستجدات المعهد المهمة أولًا بأول.</p>' +
+        '<button type="button" class="btn btn-primary nmodal-ok">تمّ</button>' +
+      '</div>' +
+    '</div>';
+
+  var input = wrap.querySelector('.nmodal-input');
+  var errBox = wrap.querySelector('.nmodal-err');
+  var form = wrap.querySelector('.nmodal-form');
+  var tabs = wrap.querySelectorAll('.nmodal-tab');
+  var card = wrap.querySelector('.nmodal-card');
+  var doneBox = wrap.querySelector('.nmodal-done');
+
+  function close(status){
+    if(status) setState({ status: status, at: Date.now() });
+    wrap.classList.remove('open');
+    document.body.classList.remove('nmodal-lock');
+    setTimeout(function(){ if(wrap.parentNode) wrap.parentNode.removeChild(wrap); }, 250);
+    document.removeEventListener('keydown', onKey);
+  }
+  function onKey(e){ if(e.key === 'Escape') close('dismissed'); }
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      tabs.forEach(function(x){ x.classList.remove('on'); });
+      t.classList.add('on');
+      mode = t.getAttribute('data-mode');
+      errBox.textContent = '';
+      if(mode === 'email'){ input.type='email'; input.dir='ltr'; input.placeholder='you@example.com'; input.setAttribute('autocomplete','email'); }
+      else { input.type='tel'; input.dir='ltr'; input.placeholder='06 00 00 00 00'; input.setAttribute('autocomplete','tel'); }
+      input.value=''; input.focus();
+    });
+  });
+
+  function valid(val){
+    if(mode === 'email') return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    return /^\+?\d[\d\s\-]{7,}$/.test(val);
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var val = (input.value || '').trim();
+    if(!valid(val)){
+      errBox.textContent = mode === 'email' ? 'المرجو إدخال بريد إلكتروني صحيح.' : 'المرجو إدخال رقم هاتف صحيح.';
+      input.focus();
+      return;
+    }
+    errBox.textContent = '';
+    // Send to the institute backend once hosted; store locally meanwhile.
+    if(window.ISTA_SUBSCRIBE_URL){
+      try{
+        fetch(window.ISTA_SUBSCRIBE_URL, { method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ type: mode, value: val }) }).catch(function(){});
+      }catch(_){}
+    }
+    try{
+      var subs = JSON.parse(localStorage.getItem('ista_subscribers') || '[]');
+      subs.push({ type: mode, value: val, at: Date.now() });
+      localStorage.setItem('ista_subscribers', JSON.stringify(subs));
+    }catch(_){}
+    setState({ status: 'subscribed', at: Date.now() });
+    form.style.display = 'none';
+    wrap.querySelector('.nmodal-tabs').style.display = 'none';
+    wrap.querySelector('.nmodal-later').style.display = 'none';
+    wrap.querySelector('.nmodal-note').style.display = 'none';
+    wrap.querySelector('.nmodal-title').style.display = 'none';
+    wrap.querySelector('.nmodal-sub').style.display = 'none';
+    wrap.querySelector('.nmodal-ico').style.display = 'none';
+    doneBox.hidden = false;
+  });
+
+  wrap.querySelector('.nmodal-close').addEventListener('click', function(){ close('dismissed'); });
+  wrap.querySelector('.nmodal-later').addEventListener('click', function(){ close('dismissed'); });
+  wrap.querySelector('.nmodal-ok').addEventListener('click', function(){ close(); });
+  wrap.addEventListener('click', function(e){ if(e.target === wrap) close('dismissed'); });
+
+  function reveal(){
+    document.body.appendChild(wrap);
+    document.body.classList.add('nmodal-lock');
+    // force reflow then animate in
+    void card.offsetWidth;
+    wrap.classList.add('open');
+    document.addEventListener('keydown', onKey);
+    setTimeout(function(){ input.focus(); }, 350);
+  }
+  // Appear shortly after entering the site.
+  setTimeout(reveal, 2500);
+})();

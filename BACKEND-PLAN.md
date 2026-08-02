@@ -92,6 +92,12 @@ documents(id, title, category, file_url, published_at)
 POST /api/auth/login        { role, id, secret }        -> { token, profile }
 POST /api/auth/logout
 
+# اشتراك الزوّار في الإشعارات (النافذة المنبثقة عند الدخول)
+POST /api/subscribe         { type: "email"|"phone", value }  -> { ok }
+# ثم يرسل الخادم الإشعارات عبر مزوّد بريد (Mailgun/SES) أو SMS (Twilio/مزوّد محلي)
+# عند نشر مستجد مهم من لوحة التحكم. الواجهة الأمامية مهيّأة: تكفي تهيئة
+# window.ISTA_SUBSCRIBE_URL = "/api/subscribe" ليعمل الإرسال الحقيقي.
+
 # متدرّب
 GET  /api/me/results?type=fin_module                     (Bearer token)
 
