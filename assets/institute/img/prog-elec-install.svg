@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 300" role="img" aria-label="كهرباء الإنشاءات">
+  <defs>
+    <linearGradient id="e1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6a821"/><stop offset="1" stop-color="#d98b1e"/></linearGradient>
+  </defs>
+  <rect width="460" height="300" fill="url(#e1)"/>
+  <circle cx="70" cy="70" r="95" fill="#ffffff" opacity="0.08"/>
+  <circle cx="400" cy="240" r="120" fill="#ffffff" opacity="0.07"/>
+  <!-- electrical panel -->
+  <rect x="70" y="60" width="170" height="180" rx="12" fill="#fff7ea" stroke="#a5661a" stroke-width="3"/>
+  <rect x="86" y="78" width="138" height="40" rx="6" fill="#ffe6b8"/>
+  <!-- breakers -->
+  <g>
+    <rect x="92" y="130" width="26" height="46" rx="4" fill="#2f4858"/><rect x="99" y="136" width="12" height="18" rx="2" fill="#f6a821"/>
+    <rect x="126" y="130" width="26" height="46" rx="4" fill="#2f4858"/><rect x="133" y="150" width="12" height="18" rx="2" fill="#c96a54"/>
+    <rect x="160" y="130" width="26" height="46" rx="4" fill="#2f4858"/><rect x="167" y="136" width="12" height="18" rx="2" fill="#f6a821"/>
+    <rect x="194" y="130" width="26" height="46" rx="4" fill="#2f4858"/><rect x="201" y="150" width="12" height="18" rx="2" fill="#2f7d49"/>
+  </g>
+  <path d="M92 196h128M92 212h96" stroke="#a5661a" stroke-width="5" stroke-linecap="round"/>
+  <!-- bolt -->
+  <path d="M330 70l-46 90h34l-12 70 58-104h-40l18-56z" fill="#fff" stroke="#a5661a" stroke-width="3" stroke-linejoin="round"/>
+  <!-- plug -->
+  <g transform="translate(360 210)">
+    <circle r="30" fill="#fff7ea" stroke="#a5661a" stroke-width="3"/>
+    <circle cx="-9" cy="-6" r="4" fill="#2f4858"/><circle cx="9" cy="-6" r="4" fill="#2f4858"/>
+    <rect x="-4" y="4" width="8" height="12" rx="3" fill="#2f4858"/>
+  </g>
+</svg>

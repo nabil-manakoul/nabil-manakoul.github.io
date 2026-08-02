@@ -219,6 +219,20 @@ h1,h2,h3{line-height:1.3;margin:0 0 .5em}
 .level-badge.sp{background:linear-gradient(135deg,#5a6b78,#2f4858)}
 .level-note{color:var(--muted);font-weight:600;font-size:.92rem}
 
+/* ===== Program cards (horizontal, with image) ===== */
+.prog-list{display:grid;gap:20px;margin-top:4px}
+.prog-list.two{grid-template-columns:repeat(2,1fr)}
+.prog-card2{display:grid;grid-template-columns:300px 1fr;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:.25s}
+.prog-card2:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.prog-list.two .prog-card2{grid-template-columns:200px 1fr}
+.pc-media{position:relative;overflow:hidden;min-height:180px}
+.pc-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.prog-card2:hover .pc-media img{transform:scale(1.05)}
+.pc-content{padding:26px 28px;display:flex;flex-direction:column}
+.pc-content h3{color:var(--brand-dark);font-size:1.35rem;margin:0 0 .4em}
+.prog-list.two .pc-content h3{font-size:1.15rem}
+.pc-content p{color:var(--muted);margin:0 0 4px;flex:1}
+
 /* ===== Program details button + modal ===== */
 .prog-more{margin-top:16px;display:inline-flex;align-items:center;gap:6px;background:#eef5f8;color:var(--brand);border:1px solid var(--line);border-radius:10px;padding:9px 16px;font:inherit;font-weight:800;font-size:.9rem;cursor:pointer;transition:.2s}
 .prog-more:hover{background:var(--brand);color:#fff;border-color:var(--brand);transform:translateY(-2px)}
@@ -507,7 +521,8 @@ body.lb-active .header{display:none}
   .hero p.lead{margin-inline:auto}
   .hero-actions,.hero-badges{justify-content:center}
   .grid-3,.grid-4,.fac,.dates,.stats,.cap-grid{grid-template-columns:repeat(2,1fr)}
-  .about-intro,.reg,.footer .cols,.contact-grid,.result-highlight,.reviews-wrap{grid-template-columns:1fr}
+  .about-intro,.reg,.footer .cols,.contact-grid,.result-highlight,.reviews-wrap,.prog-list.two{grid-template-columns:1fr}
+  .prog-list.two .prog-card2{grid-template-columns:200px 1fr}
   .gallery{grid-template-columns:repeat(3,1fr)}
   .car-slide{flex-basis:50%}
   .footer .cols{gap:26px}
@@ -531,6 +546,8 @@ body.lb-active .header{display:none}
   .topbar .container{justify-content:center;padding:7px 0}
   .nav .cta{display:none}
   .grid-3,.grid-4,.fac,.dates,.stats,.grid-2,.cap-grid{grid-template-columns:1fr}
+  .prog-card2,.prog-list.two .prog-card2{grid-template-columns:1fr}
+  .pc-media{min-height:170px;max-height:190px}
   .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:120px}
   .car-slide{flex-basis:100%}
   .car-slide img{height:230px}
