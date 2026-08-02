@@ -385,6 +385,10 @@ body.lb-active .header{display:none}
 }
 
 @media (max-width:640px){
+  .topbar{font-size:.78rem}
+  .topbar .tb-addr,.topbar .tb-social{display:none}
+  .topbar .tb-contact{justify-content:center;gap:16px;width:100%}
+  .topbar .container{justify-content:center;padding:7px 0}
   .nav .cta{display:none}
   .grid-3,.grid-4,.fac,.dates,.stats,.grid-2{grid-template-columns:1fr}
   .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:120px}
