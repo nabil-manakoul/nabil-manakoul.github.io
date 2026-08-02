@@ -530,12 +530,16 @@ body.lb-active .header{display:none}
 /* Collapse nav to hamburger early — 10 icon items need the room */
 @media (max-width:1260px){
   .navbar{border:0;background:transparent}
-  .navbar .container{padding:0}
-  .menu{position:absolute;top:100%;left:0;right:0;flex-direction:column;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 20px;gap:4px;display:none;box-shadow:var(--shadow);max-height:80vh;overflow:auto}
+  .navbar .container{padding:0;width:100%;display:block}
+  .menu{position:absolute;top:100%;left:0;right:0;flex-direction:column;flex-wrap:nowrap;justify-content:flex-start;align-items:stretch;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px 0;gap:0;display:none;box-shadow:var(--shadow);max-height:82vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
   .menu.open{display:flex}
-  .menu a{width:100%;font-size:1rem;padding:12px 14px;justify-content:flex-start}
-  .menu a:hover{transform:none;box-shadow:none}
-  .menu a .nav-ico{width:18px;height:18px}
+  .menu li{width:100%;list-style:none}
+  .menu a{width:100%;display:flex;align-items:center;gap:14px;justify-content:flex-start;font-size:1.02rem;font-weight:700;padding:14px 22px;border-radius:0;border-bottom:1px solid #eef2f5;transition:background .18s}
+  .menu li:last-child a{border-bottom:0}
+  .menu a:hover,.menu a:active{transform:none;box-shadow:none;background:#eef5f8;color:var(--brand)}
+  .menu a .nav-ico{width:26px;height:26px;flex:none;padding:5px;border-radius:8px;background:#eef5f8;color:var(--brand);stroke:var(--brand)}
+  .menu a:hover .nav-ico,.menu a:active .nav-ico{transform:none;background:var(--brand);color:#fff;stroke:#fff}
+  .menu a.is-current{background:#eef5f8}
   .burger{display:block}
 }
 
