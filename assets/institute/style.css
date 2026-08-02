@@ -218,6 +218,7 @@ h1,h2,h3{line-height:1.3;margin:0 0 .5em}
 .portal-banner{display:flex;align-items:center;gap:18px;background:linear-gradient(120deg,var(--brand),var(--brand-2));color:#fff;border-radius:16px;padding:20px 26px;box-shadow:var(--shadow);margin-bottom:30px;text-decoration:none;transition:.25s}
 .portal-banner:hover{transform:translateY(-3px);box-shadow:0 16px 42px rgba(31,111,139,.32);color:#fff}
 .portal-banner .pb-ico{font-size:2rem;flex:none}
+.portal-banner .pb-logo{width:58px;height:58px;flex:none;border-radius:14px;background:#fff;padding:5px;object-fit:contain;box-shadow:var(--shadow-sm)}
 .portal-banner .pb-text{flex:1;min-width:0}
 .portal-banner .pb-text b{display:block;font-size:1.18rem}
 .portal-banner .pb-text span{color:#dbeef5;font-size:.92rem}
