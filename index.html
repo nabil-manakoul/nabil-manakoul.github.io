@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/institute/style.css?v=20260804a">
+  <link rel="stylesheet" href="assets/institute/style.css?v=20260804b">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f6f8b'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3E%D9%85%3C/text%3E%3C/svg%3E">
   <style>body{font-family:"Noto Kufi Arabic","Segoe UI",Tahoma,sans-serif}</style>
 </head>
@@ -68,16 +68,26 @@
     </nav>
   </header>
 
-  <!-- News ticker (auto-rotating every 5s) -->
+  <!-- News ticker (elegant announcement bar, auto-rotating every 5s) -->
   <div class="ticker" id="newsTicker" role="region" aria-label="آخر المستجدات">
-    <span class="ticker-label">📢 آخر المستجدات</span>
-    <a class="trot-current" href="#" aria-live="polite"></a>
-    <div class="ticker-ctrl">
-      <button class="trot-btn trot-prev" type="button" aria-label="السابق">‹</button>
-      <div class="trot-dots" role="tablist"></div>
-      <button class="trot-btn trot-next" type="button" aria-label="التالي">›</button>
+    <div class="ticker-inner">
+      <span class="ticker-label">
+        <span class="tk-live"><i></i>مباشر</span>
+        <span class="tk-title">آخر المستجدات</span>
+      </span>
+      <div class="tk-stage">
+        <a class="trot-current" href="#" aria-live="polite">
+          <span class="tk-ico" aria-hidden="true">📢</span>
+          <span class="tk-cat"></span>
+          <span class="tk-head"></span>
+        </a>
+      </div>
+      <div class="ticker-ctrl">
+        <button class="trot-btn trot-prev" type="button" aria-label="السابق">›</button>
+        <div class="trot-segs" role="tablist"></div>
+        <button class="trot-btn trot-next" type="button" aria-label="التالي">‹</button>
+      </div>
     </div>
-    <span class="trot-bar" aria-hidden="true"><i></i></span>
   </div>
 
   <!-- Hero -->
@@ -828,6 +838,6 @@
 
   <button id="toTop" class="to-top" aria-label="العودة إلى الأعلى">↑</button>
 
-  <script src="assets/institute/main.js?v=20260804a"></script>
+  <script src="assets/institute/main.js?v=20260804b"></script>
 </body>
 </html>

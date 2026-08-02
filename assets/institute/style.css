@@ -74,30 +74,48 @@ h1,h2,h3{line-height:1.3;margin:0 0 .5em}
 .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
 .burger span{display:block;width:26px;height:3px;background:var(--brand-dark);border-radius:3px;margin:5px 0;transition:.25s}
 
-/* ===== News ticker (auto-rotating carousel) ===== */
-.ticker{display:flex;align-items:center;background:var(--brand-dark);color:#eaf6fa;overflow:hidden;border-bottom:2px solid var(--accent)}
-.ticker-label{flex:none;align-self:stretch;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;padding:0 18px;font-size:.9rem;white-space:nowrap}
-.trot-current{flex:1;min-width:0;padding:11px 22px;color:#eaf6fa;font-weight:600;font-size:.92rem;line-height:1.5;text-decoration:none;transition:opacity .3s ease}
-.trot-current:hover{color:#fff;text-decoration:underline}
-.ticker-ctrl{flex:none;display:flex;align-items:center;gap:9px;padding:0 14px}
-.trot-btn{background:rgba(255,255,255,.12);border:0;color:#fff;width:27px;height:27px;border-radius:50%;cursor:pointer;font-size:1.1rem;line-height:1;display:grid;place-items:center;transition:.2s;padding:0}
-.trot-btn:hover{background:rgba(255,255,255,.3)}
-.trot-dots{display:flex;gap:5px}
-.trot-dots button{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);border:0;padding:0;cursor:pointer;transition:.25s}
-.trot-dots button.on{background:var(--accent-2);width:20px;border-radius:5px}
-.ticker{position:relative}
-.trot-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.12);overflow:hidden}
-.trot-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent-2),var(--accent));transform:scaleX(0);transform-origin:right}
-.trot-bar i.filling{animation:trotFill 5s linear forwards}
-.ticker:hover .trot-bar i.filling{animation-play-state:paused}
-@keyframes trotFill{to{transform:scaleX(1)}}
-.ticker-label::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#7CFC9A;margin-inline-end:8px;box-shadow:0 0 0 0 rgba(124,252,154,.7);animation:liveDot 1.6s ease-out infinite}
-@keyframes liveDot{70%{box-shadow:0 0 0 7px rgba(124,252,154,0)}100%{box-shadow:0 0 0 0 rgba(124,252,154,0)}}
-@media (max-width:640px){
-  .ticker-label{padding:0 12px;font-size:.8rem}
-  .trot-current{font-size:.8rem;padding:8px 12px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .ticker-ctrl{padding:0 10px;gap:6px}
-  .ticker-ctrl .trot-btn{display:none}
+/* ===== News ticker (elegant announcement bar, auto-rotating) ===== */
+.ticker{position:relative;background:linear-gradient(100deg,var(--brand-dark) 0%,var(--brand) 58%,#2c85a3 100%);color:#eaf6fa;border-bottom:2px solid var(--accent);overflow:hidden}
+.ticker::before{content:"";position:absolute;inset:0;background:radial-gradient(130% 160% at 100% 0,rgba(246,168,33,.16),transparent 46%);pointer-events:none}
+.ticker-inner{position:relative;display:flex;align-items:stretch;width:min(1360px,96%);margin:0 auto}
+/* label block */
+.ticker-label{flex:none;display:flex;flex-direction:column;justify-content:center;gap:3px;padding:9px 20px 9px 24px;border-inline-end:1px solid rgba(255,255,255,.16)}
+.tk-live{display:inline-flex;align-items:center;gap:7px;font-size:.64rem;font-weight:800;letter-spacing:1px;color:#8ff0b0}
+.tk-live i{width:8px;height:8px;border-radius:50%;background:#43e08a;box-shadow:0 0 0 0 rgba(67,224,138,.7);animation:liveDot 1.6s ease-out infinite}
+.tk-title{font-size:.98rem;font-weight:800;color:#fff;white-space:nowrap;line-height:1}
+/* rotating stage */
+.tk-stage{flex:1;min-width:0;display:flex;align-items:center;padding:0 20px;overflow:hidden}
+.trot-current{display:flex;align-items:center;gap:13px;min-width:0;color:#eaf6fa;text-decoration:none;transition:transform .5s cubic-bezier(.22,1,.36,1),opacity .38s ease}
+.trot-current.swap{opacity:0;transform:translateY(12px)}
+.tk-ico{flex:none;width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font-size:1.1rem;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.16)}
+.tk-cat{flex:none;font-size:.7rem;font-weight:800;color:var(--brand-dark);background:var(--accent-2);padding:4px 11px;border-radius:999px;white-space:nowrap;box-shadow:0 2px 6px rgba(246,168,33,.35)}
+.tk-head{min-width:0;font-size:.95rem;font-weight:600;line-height:1.45;color:#eef7fb;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.trot-current:hover .tk-head{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.trot-current:hover .tk-ico{background:rgba(255,255,255,.22)}
+/* controls */
+.ticker-ctrl{flex:none;display:flex;align-items:center;gap:12px;padding:0 18px;border-inline-start:1px solid rgba(255,255,255,.16)}
+.trot-segs{display:flex;gap:6px}
+.trot-segs button{position:relative;width:22px;height:4px;border-radius:3px;background:rgba(255,255,255,.24);border:0;padding:0;cursor:pointer;overflow:hidden;transition:width .3s ease}
+.trot-segs button.on{width:40px}
+.trot-segs button i{position:absolute;inset:0;transform:scaleX(0);transform-origin:right;background:linear-gradient(90deg,var(--accent-2),#ffd06a);border-radius:3px}
+.trot-segs button.done i{transform:scaleX(1)}
+.trot-segs button i.run{animation:segFill 5s linear forwards}
+.ticker:hover .trot-segs button i.run{animation-play-state:paused}
+@keyframes segFill{to{transform:scaleX(1)}}
+.trot-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1.15rem;line-height:1;display:grid;place-items:center;transition:.2s;padding:0}
+.trot-btn:hover{background:rgba(255,255,255,.26);transform:scale(1.09)}
+@keyframes liveDot{70%{box-shadow:0 0 0 7px rgba(67,224,138,0)}100%{box-shadow:0 0 0 0 rgba(67,224,138,0)}}
+@media (max-width:760px){
+  .ticker-inner{flex-wrap:wrap}
+  .ticker-label{width:100%;flex-direction:row;align-items:center;justify-content:center;gap:10px;padding:7px 12px;border-inline-end:0;border-bottom:1px solid rgba(255,255,255,.14)}
+  .tk-stage{flex:1;padding:9px 14px}
+  .tk-head{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:.86rem}
+  .ticker-ctrl{border-inline-start:0;padding:0 12px}
+  .trot-btn{display:none}
+}
+@media (max-width:480px){
+  .tk-cat{display:none}
+  .tk-ico{width:32px;height:32px;font-size:1rem}
 }
 
 /* ===== Hero ===== */

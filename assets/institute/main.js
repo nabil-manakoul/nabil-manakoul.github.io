@@ -62,52 +62,70 @@
   var y = document.getElementById('year');
   if(y) y.textContent = new Date().getFullYear();
 
-  // News ticker — auto-rotating carousel (every 5 seconds)
+  // News ticker — elegant announcement bar (auto-rotating every 5 seconds)
   (function newsTicker(){
     var box = document.getElementById('newsTicker');
     if(!box) return;
     var el = box.querySelector('.trot-current');
-    var dotsWrap = box.querySelector('.trot-dots');
-    var bar = box.querySelector('.trot-bar i');
-    function restartBar(){ if(!bar) return; bar.classList.remove('filling'); void bar.offsetWidth; bar.classList.add('filling'); }
+    var icoEl = box.querySelector('.tk-ico');
+    var catEl = box.querySelector('.tk-cat');
+    var headEl = box.querySelector('.tk-head');
+    var segsWrap = box.querySelector('.trot-segs');
+    if(!el || !headEl || !segsWrap) return;
     var items = [
-      {t:'🔒 انتهت آجال التسجيل الأولي لموسم 2026/2027 — بعض الشعب قد تُفتح عبر دراسة الملفات', href:'#dates'},
-      {t:'🌐 التسجيل الأولي يتم إلكترونيًا عبر بوابة MyWay — myway.ac.ma', href:'#registration'},
-      {t:'📄 نتائج الانتقاء ونهاية السنة التكوينية تُنشر بالمعهد وعبر الموقع', href:'#results'},
-      {t:'📚 حمّل النظام الداخلي للمعهد من المكتبة الرقمية', href:'#library'},
-      {t:'⭐ شارك تجربتك وقيّم المعهد لمساعدة زملائك', href:'#reviews'},
-      {t:'🏠 الداخلية والمطعم متوفّران للمتدربين القادمين من مناطق بعيدة', href:'#facilities'}
+      {ico:'📝', cat:'التسجيل',     t:'انتهت آجال التسجيل الأولي لموسم 2026/2027 — بعض الشعب قد تُفتح عبر دراسة الملفات', href:'#dates'},
+      {ico:'🌐', cat:'بوابة MyWay', t:'التسجيل الأولي يتم إلكترونيًا عبر بوابة MyWay — myway.ac.ma', href:'#registration'},
+      {ico:'📄', cat:'النتائج',      t:'نتائج الانتقاء ونهاية السنة التكوينية تُنشر بالمعهد وعبر الموقع', href:'#results'},
+      {ico:'🖥️', cat:'جديد',        t:'فضاء المتدربين متاح للاطلاع على نتائجك بالرمز الوطني والرمز السري', href:'#spaces'},
+      {ico:'📚', cat:'المكتبة',      t:'حمّل النظام الداخلي للمعهد من المكتبة الرقمية', href:'#library'},
+      {ico:'🏠', cat:'الإيواء',      t:'الداخلية والمطعم متوفّران للمتدربين القادمين من مناطق بعيدة', href:'#facilities'}
     ];
     var i = 0, timer;
     items.forEach(function(_, n){
-      var d = document.createElement('button');
-      d.type = 'button'; d.setAttribute('aria-label', 'الخبر ' + (n+1));
-      d.addEventListener('click', function(){ show(n); reset(); });
-      dotsWrap.appendChild(d);
+      var b = document.createElement('button');
+      b.type = 'button'; b.setAttribute('aria-label', 'الخبر ' + (n+1));
+      b.appendChild(document.createElement('i'));
+      b.addEventListener('click', function(){ show(n); reset(); });
+      segsWrap.appendChild(b);
     });
-    var dots = dotsWrap.querySelectorAll('button');
-    function paint(){ dots.forEach(function(d, n){ d.classList.toggle('on', n === i); }); }
+    var segs = segsWrap.querySelectorAll('button');
+    function paintSegs(){
+      segs.forEach(function(s, n){
+        s.classList.toggle('on', n === i);
+        s.classList.toggle('done', n < i);
+        var f = s.querySelector('i'); if(f) f.classList.remove('run');
+      });
+      void segsWrap.offsetWidth; // reflow to restart the fill animation
+      var af = segs[i] && segs[i].querySelector('i');
+      if(af) af.classList.add('run');
+    }
+    function render(){
+      var it = items[i];
+      if(icoEl) icoEl.textContent = it.ico;
+      if(catEl) catEl.textContent = it.cat;
+      headEl.textContent = it.t;
+      el.setAttribute('href', it.href);
+    }
     function show(n){
       i = (n + items.length) % items.length;
-      restartBar();
-      el.style.opacity = 0;
+      el.classList.add('swap');
       setTimeout(function(){
-        el.textContent = items[i].t;
-        el.setAttribute('href', items[i].href);
-        el.style.opacity = 1;
-        paint();
-      }, 260);
+        render();
+        el.classList.remove('swap');
+        paintSegs();
+      }, 300);
     }
     function next(){ show(i + 1); }
     function prev(){ show(i - 1); }
     function start(){ timer = setInterval(next, 5000); }
     function reset(){ clearInterval(timer); start(); }
+    function armActive(){ var af = segs[i] && segs[i].querySelector('i'); if(af){ af.classList.remove('run'); void af.offsetWidth; af.classList.add('run'); } }
     box.querySelector('.trot-next').addEventListener('click', function(){ next(); reset(); });
     box.querySelector('.trot-prev').addEventListener('click', function(){ prev(); reset(); });
     box.addEventListener('mouseenter', function(){ clearInterval(timer); });
-    box.addEventListener('mouseleave', function(){ start(); restartBar(); });
-    el.textContent = items[0].t; el.setAttribute('href', items[0].href); el.style.opacity = 1; paint();
-    start(); restartBar();
+    box.addEventListener('mouseleave', function(){ start(); armActive(); });
+    render(); paintSegs();
+    start();
   })();
 
   // Tab sets (scoped per container)
