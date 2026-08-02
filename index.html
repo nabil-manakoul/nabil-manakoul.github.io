@@ -67,23 +67,14 @@
     </nav>
   </header>
 
-  <!-- News ticker -->
-  <div class="ticker" role="region" aria-label="آخر المستجدات">
+  <!-- News ticker (auto-rotating every 5s) -->
+  <div class="ticker" id="newsTicker" role="region" aria-label="آخر المستجدات">
     <span class="ticker-label">📢 آخر المستجدات</span>
-    <div class="ticker-view">
-      <div class="ticker-track">
-        <a href="#dates" class="ti">انطلاق التسجيل الإلكتروني يوم الأربعاء 06 ماي 2026</a>
-        <a href="#dates" class="ti">آخر أجل للتسجيل في شعبة التقني المتخصص: 27 يوليوز 2026</a>
-        <a href="#results" class="ti">نتائج الانتقاء ستُنشر بعد انتهاء آجال التسجيل</a>
-        <a href="#results" class="ti">نتائج نهاية السنة التكوينية تُعلن بالمعهد وعبر الموقع</a>
-        <a href="#registration" class="ti">أبواب مفتوحة للتعريف بالشعب والتخصصات</a>
-        <!-- تكرار للتمرير المتواصل -->
-        <a href="#dates" class="ti" aria-hidden="true">انطلاق التسجيل الإلكتروني يوم الأربعاء 06 ماي 2026</a>
-        <a href="#dates" class="ti" aria-hidden="true">آخر أجل للتسجيل في شعبة التقني المتخصص: 27 يوليوز 2026</a>
-        <a href="#results" class="ti" aria-hidden="true">نتائج الانتقاء ستُنشر بعد انتهاء آجال التسجيل</a>
-        <a href="#results" class="ti" aria-hidden="true">نتائج نهاية السنة التكوينية تُعلن بالمعهد وعبر الموقع</a>
-        <a href="#registration" class="ti" aria-hidden="true">أبواب مفتوحة للتعريف بالشعب والتخصصات</a>
-      </div>
+    <a class="trot-current" href="#" aria-live="polite"></a>
+    <div class="ticker-ctrl">
+      <button class="trot-btn trot-prev" type="button" aria-label="السابق">‹</button>
+      <div class="trot-dots" role="tablist"></div>
+      <button class="trot-btn trot-next" type="button" aria-label="التالي">›</button>
     </div>
   </div>
 

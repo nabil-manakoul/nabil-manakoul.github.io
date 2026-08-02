@@ -62,6 +62,51 @@
   var y = document.getElementById('year');
   if(y) y.textContent = new Date().getFullYear();
 
+  // News ticker — auto-rotating carousel (every 5 seconds)
+  (function newsTicker(){
+    var box = document.getElementById('newsTicker');
+    if(!box) return;
+    var el = box.querySelector('.trot-current');
+    var dotsWrap = box.querySelector('.trot-dots');
+    var items = [
+      {t:'🔒 انتهت آجال التسجيل الأولي لموسم 2026/2027 — بعض الشعب قد تُفتح عبر دراسة الملفات', href:'#dates'},
+      {t:'🌐 التسجيل الأولي يتم إلكترونيًا عبر بوابة MyWay — myway.ac.ma', href:'#registration'},
+      {t:'📄 نتائج الانتقاء ونهاية السنة التكوينية تُنشر بالمعهد وعبر الموقع', href:'#results'},
+      {t:'📚 حمّل النظام الداخلي للمعهد من المكتبة الرقمية', href:'#library'},
+      {t:'⭐ شارك تجربتك وقيّم المعهد لمساعدة زملائك', href:'#reviews'},
+      {t:'🏠 الداخلية والمطعم متوفّران للمتدربين القادمين من مناطق بعيدة', href:'#facilities'}
+    ];
+    var i = 0, timer;
+    items.forEach(function(_, n){
+      var d = document.createElement('button');
+      d.type = 'button'; d.setAttribute('aria-label', 'الخبر ' + (n+1));
+      d.addEventListener('click', function(){ show(n); reset(); });
+      dotsWrap.appendChild(d);
+    });
+    var dots = dotsWrap.querySelectorAll('button');
+    function paint(){ dots.forEach(function(d, n){ d.classList.toggle('on', n === i); }); }
+    function show(n){
+      i = (n + items.length) % items.length;
+      el.style.opacity = 0;
+      setTimeout(function(){
+        el.textContent = items[i].t;
+        el.setAttribute('href', items[i].href);
+        el.style.opacity = 1;
+        paint();
+      }, 260);
+    }
+    function next(){ show(i + 1); }
+    function prev(){ show(i - 1); }
+    function start(){ timer = setInterval(next, 5000); }
+    function reset(){ clearInterval(timer); start(); }
+    box.querySelector('.trot-next').addEventListener('click', function(){ next(); reset(); });
+    box.querySelector('.trot-prev').addEventListener('click', function(){ prev(); reset(); });
+    box.addEventListener('mouseenter', function(){ clearInterval(timer); });
+    box.addEventListener('mouseleave', start);
+    el.textContent = items[0].t; el.setAttribute('href', items[0].href); el.style.opacity = 1; paint();
+    start();
+  })();
+
   // Tab sets (scoped per container)
   document.querySelectorAll('.tabset').forEach(function(set){
     var tabs = set.querySelectorAll('.tab');
