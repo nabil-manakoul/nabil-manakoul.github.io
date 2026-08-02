@@ -469,6 +469,9 @@
 (function notifyOptIn(){
   var KEY = 'ista_notify_v1';
   var REASK_DAYS = 7;
+  // ضع هنا رابط نموذج Formspree الخاص بك لتصلك الاشتراكات على بريدك.
+  // مثال: 'https://formspree.io/f/xxxxxxx'  (اتركه فارغًا لتعطيل الإرسال)
+  var FORMSPREE_ENDPOINT = '';
   function getState(){ try{ return JSON.parse(localStorage.getItem(KEY)) || null; }catch(_){ return null; } }
   function setState(o){ try{ localStorage.setItem(KEY, JSON.stringify(o)); }catch(_){} }
   function shouldShow(){
@@ -558,7 +561,22 @@
       return;
     }
     errBox.textContent = '';
-    // Send to the institute backend once hosted; store locally meanwhile.
+    // 1) Send to Formspree (delivers the subscription to the institute's email).
+    if(FORMSPREE_ENDPOINT){
+      try{
+        fetch(FORMSPREE_ENDPOINT, {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
+          body: JSON.stringify({
+            email: mode === 'email' ? val : undefined,
+            'نوع الاشتراك': mode === 'email' ? 'بريد إلكتروني' : 'رقم الهاتف',
+            'قيمة الاشتراك': val,
+            _subject: 'اشتراك جديد في إشعارات المعهد — تافراوت'
+          })
+        }).catch(function(){});
+      }catch(_){}
+    }
+    // 2) Send to the institute backend once hosted.
     if(window.ISTA_SUBSCRIBE_URL){
       try{
         fetch(window.ISTA_SUBSCRIBE_URL, { method:'POST', headers:{'Content-Type':'application/json'},
