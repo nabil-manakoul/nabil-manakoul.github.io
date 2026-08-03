@@ -18,6 +18,28 @@
     });
   }
 
+  // Auto-hide header on scroll down, reveal on scroll up (keeps content visible)
+  (function autoHideHeader(){
+    var header = document.querySelector('.header');
+    if(!header) return;
+    var lastY = window.pageYOffset || 0;
+    var ticking = false;
+    function update(){
+      var y = window.pageYOffset || 0;
+      var menuOpen = menu && menu.classList.contains('open');
+      if(!menuOpen && y > 200 && y > lastY + 4){
+        header.classList.add('nav-hidden');       // scrolling down
+      } else if(y < lastY - 4 || y < 200){
+        header.classList.remove('nav-hidden');     // scrolling up / near top
+      }
+      lastY = y;
+      ticking = false;
+    }
+    window.addEventListener('scroll', function(){
+      if(!ticking){ window.requestAnimationFrame(update); ticking = true; }
+    }, {passive:true});
+  })();
+
   // Reveal on scroll
   var items = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
