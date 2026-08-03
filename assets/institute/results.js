@@ -54,15 +54,15 @@ window.ISTA_RESULTS = {
   /* (أ) نتائج الامتحانات — حسب كل شعبة */
   programs: [
 
-    /* — تسيير المقاولات — تقني متخصص (3 سنوات) — */
-    { prog:"تسيير المقاولات", cls:"ts", level:"تقني متخصص", years:"3 سنوات", results:[
+    /* — تسيير المقاولات — تقني متخصص (سنتان ونصف) — */
+    { prog:"تسيير المقاولات", cls:"ts", level:"تقني متخصص", years:"سنتان ونصف", results:[
       { cat:"passage", title:"نتائج المرور إلى السنة الثانية", when:"يونيو", note:"", status:"waiting", date:"", url:"" },
       { cat:"passage", title:"نتائج المرور إلى السنة الثالثة", when:"يونيو", note:"", status:"waiting", date:"", url:"" },
       { cat:"final",   title:"نتائج امتحان نهاية التكوين",      when:"يناير", note:"الناجحون ينالون الدبلوم • للراسبين دورة استدراكية", status:"waiting", date:"", url:"" }
     ]},
 
-    /* — مساعد إداري — تقني (3 سنوات) — */
-    { prog:"مساعد إداري", cls:"tq", level:"تقني", years:"3 سنوات", results:[
+    /* — مساعد إداري — تقني (سنتان ونصف) — */
+    { prog:"مساعد إداري", cls:"tq", level:"تقني", years:"سنتان ونصف", results:[
       { cat:"passage", title:"نتائج المرور إلى السنة الثانية", when:"يونيو", note:"", status:"waiting", date:"", url:"" },
       { cat:"passage", title:"نتائج المرور إلى السنة الثالثة", when:"يونيو", note:"", status:"waiting", date:"", url:"" },
       { cat:"final",   title:"نتائج امتحان نهاية التكوين",      when:"يناير", note:"الناجحون ينالون الدبلوم • للراسبين دورة استدراكية", status:"waiting", date:"", url:"" }
