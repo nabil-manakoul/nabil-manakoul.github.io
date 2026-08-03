@@ -795,3 +795,8 @@ body.nmodal-lock{overflow:hidden}
 .promo-duo .promo-video{max-width:none;margin:0}
 .promo-item figcaption{margin-top:13px;text-align:center;color:var(--brand-dark);font-weight:800;font-size:1.05rem}
 @media (max-width:760px){.promo-duo{grid-template-columns:1fr;gap:24px}}
+
+/* Passerelles infographic */
+.passerelles{margin:0 auto 34px;max-width:620px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow-sm)}
+.passerelles img{width:100%;border-radius:10px;display:block}
+.passerelles figcaption{margin-top:12px;color:var(--muted);font-weight:700;font-size:.95rem}
