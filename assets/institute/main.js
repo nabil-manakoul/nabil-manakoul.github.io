@@ -358,9 +358,12 @@
     function starHtml(n){ var s=''; for(var i=1;i<=5;i++){ s+='<span class="'+(i<=n?'':'off')+'">★</span>'; } return s; }
     function render(){
       list.innerHTML = reviews.map(function(r){
-        return '<div class="review-card"><div class="rc-head"><span class="rc-avatar">'+esc((r.name||'?').charAt(0))+
-          '</span><span class="rc-who"><b>'+esc(r.name)+'</b><span>'+esc(r.role||'')+'</span></span>'+
-          '<span class="rc-stars">'+starHtml(r.rating)+'</span></div><p>'+esc(r.text)+'</p></div>';
+        return '<article class="review-card">'+
+          '<div class="rc-top"><span class="rc-stars">'+starHtml(r.rating)+'</span><span class="rc-quote" aria-hidden="true">❝</span></div>'+
+          '<p class="rc-text">'+esc(r.text)+'</p>'+
+          '<div class="rc-foot"><span class="rc-avatar">'+esc((r.name||'?').charAt(0))+
+          '</span><span class="rc-who"><b>'+esc(r.name)+'</b><span>'+esc(r.role||'')+'</span></span></div>'+
+          '</article>';
       }).join('');
       var avg = reviews.reduce(function(a,r){return a+r.rating;},0)/reviews.length;
       document.getElementById('avgScore').textContent = avg.toFixed(1);

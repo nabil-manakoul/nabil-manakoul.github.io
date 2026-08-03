@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/institute/style.css?v=20260804y">
+  <link rel="stylesheet" href="assets/institute/style.css?v=20260804z">
   <link rel="icon" href="assets/institute/img/logo-emblem.svg">
   <style>body{font-family:"Noto Kufi Arabic","Segoe UI",Tahoma,sans-serif}</style>
 </head>
@@ -748,50 +748,6 @@
     </div>
   </section>
 
-  <!-- Reviews -->
-  <section class="section" id="reviews">
-    <div class="container">
-      <div class="center reveal" style="margin-bottom:40px">
-        <span class="eyebrow">آراء وتقييمات</span>
-        <h2 class="section-title">ماذا يقول متدربونا عن المعهد؟</h2>
-        <p class="section-lead">شارك تجربتك وقيّم المعهد لمساعدة الآخرين على اتخاذ قرارهم.</p>
-      </div>
-
-      <div class="reviews-wrap">
-        <aside class="reviews-summary reveal">
-          <div class="rs-score" id="avgScore">0.0</div>
-          <div class="rs-stars" id="avgStars" aria-hidden="true">★★★★★</div>
-          <div class="rs-count"><span id="revCount">0</span> تقييم</div>
-          <p class="rs-note">تقييمات المتدربين والمتدربات حول جودة التكوين والفضاءات والتأطير.</p>
-        </aside>
-
-        <div class="reviews-main">
-          <div class="reviews-list reveal" id="reviewsList"></div>
-
-          <form class="review-form reveal" id="reviewForm">
-            <h3>أضِف تقييمك</h3>
-            <div class="form-status" id="revStatus">شكرًا لمشاركتك! تم نشر تقييمك.</div>
-            <div class="field-row">
-              <div class="field"><label for="rv-name">الاسم</label><input type="text" id="rv-name" placeholder="اسمك" required></div>
-              <div class="field"><label for="rv-role">الصفة (اختياري)</label><input type="text" id="rv-role" placeholder="متدرّب/ة — الشعبة"></div>
-            </div>
-            <div class="field">
-              <label>تقييمك</label>
-              <div class="star-input" id="starInput" role="radiogroup" aria-label="التقييم بالنجوم">
-                <button type="button" class="star" data-v="1" aria-label="نجمة">★</button>
-                <button type="button" class="star" data-v="2" aria-label="نجمتان">★</button>
-                <button type="button" class="star" data-v="3" aria-label="ثلاث نجوم">★</button>
-                <button type="button" class="star" data-v="4" aria-label="أربع نجوم">★</button>
-                <button type="button" class="star" data-v="5" aria-label="خمس نجوم">★</button>
-              </div>
-            </div>
-            <div class="field"><label for="rv-msg">رأيك</label><textarea id="rv-msg" placeholder="اكتب رأيك في المعهد..." required></textarea></div>
-            <button type="submit" class="btn btn-primary">نشر التقييم</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Promotional banner -->
   <section class="section" id="join">
@@ -814,6 +770,58 @@
           </div>
           <div class="promo-ribbon">✦ تعلّم اليوم... لتُبدع غدًا ✦</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <div class="center reveal" style="margin-bottom:36px">
+        <span class="eyebrow">آراء وتقييمات</span>
+        <h2 class="section-title">ماذا يقول متدربونا عن المعهد؟</h2>
+        <p class="section-lead">رضا متدرّبينا هو مقياس نجاحنا. شارك تجربتك وقيّم المعهد لمساعدة الآخرين على اتخاذ قرارهم.</p>
+      </div>
+
+      <div class="reviews2">
+        <!-- summary strip -->
+        <div class="rv-summary reveal">
+          <div class="rv-score-box">
+            <div class="rv-score" id="avgScore">0.0</div>
+            <div class="rv-stars" id="avgStars" aria-hidden="true">★★★★★</div>
+            <div class="rv-count"><span id="revCount">0</span> تقييمًا</div>
+          </div>
+          <div class="rv-summary-text">
+            <h3>تقييمات موثوقة من متدرّبينا</h3>
+            <p>آراء المتدربين والمتدربات حول جودة التكوين والفضاءات والتأطير والحياة المدرسية بالمعهد.</p>
+            <a href="#reviewForm" class="btn btn-primary">✍️ أضِف تقييمك</a>
+          </div>
+        </div>
+
+        <!-- testimonials grid -->
+        <div class="rv-grid reveal" id="reviewsList"></div>
+
+        <!-- add-review form -->
+        <form class="review-form reveal" id="reviewForm">
+          <h3>✨ شاركنا رأيك</h3>
+          <div class="form-status" id="revStatus">شكرًا لمشاركتك! تم نشر تقييمك.</div>
+          <div class="field-row">
+            <div class="field"><label for="rv-name">الاسم</label><input type="text" id="rv-name" placeholder="اسمك" required></div>
+            <div class="field"><label for="rv-role">الصفة (اختياري)</label><input type="text" id="rv-role" placeholder="متدرّب/ة — الشعبة"></div>
+          </div>
+          <div class="field">
+            <label>تقييمك</label>
+            <div class="star-input" id="starInput" role="radiogroup" aria-label="التقييم بالنجوم">
+              <button type="button" class="star" data-v="1" aria-label="نجمة">★</button>
+              <button type="button" class="star" data-v="2" aria-label="نجمتان">★</button>
+              <button type="button" class="star" data-v="3" aria-label="ثلاث نجوم">★</button>
+              <button type="button" class="star" data-v="4" aria-label="أربع نجوم">★</button>
+              <button type="button" class="star" data-v="5" aria-label="خمس نجوم">★</button>
+            </div>
+          </div>
+          <div class="field"><label for="rv-msg">رأيك</label><textarea id="rv-msg" placeholder="اكتب رأيك في المعهد..." required></textarea></div>
+          <button type="submit" class="btn btn-primary">نشر التقييم</button>
+        </form>
       </div>
     </div>
   </section>
@@ -952,7 +960,7 @@
 
   <button id="toTop" class="to-top" aria-label="العودة إلى الأعلى">↑</button>
 
-  <script src="assets/institute/main.js?v=20260804y"></script>
-  <script src="assets/institute/results.js?v=20260804y"></script>
+  <script src="assets/institute/main.js?v=20260804z"></script>
+  <script src="assets/institute/results.js?v=20260804z"></script>
 </body>
 </html>
