@@ -884,7 +884,8 @@
   if(!box || !window.fetch) return;
 
   var COUNT = 9;
-  var QUERY = '"التكوين المهني" OR OFPPT OR "مكتب التكوين المهني وإنعاش الشغل"';
+  // يجب أن يحتوي الخبر على عبارة «التكوين المهني» + سياق مغربي (المغرب / OFPPT / إنعاش الشغل)
+  var QUERY = '"التكوين المهني" (المغرب OR OFPPT OR "إنعاش الشغل")';
   var FEED = 'https://news.google.com/rss/search?q=' + encodeURIComponent(QUERY) + '&hl=ar&gl=MA&ceid=MA:ar';
   var SEARCH_PAGE = 'https://news.google.com/search?q=' + encodeURIComponent(QUERY) + '&hl=ar&gl=MA&ceid=MA:ar';
 
