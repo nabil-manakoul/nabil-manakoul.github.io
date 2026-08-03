@@ -150,6 +150,19 @@
     start();
   })();
 
+  // Intro video — custom play button toggles native playback
+  (function introVideo(){
+    var box = document.querySelector('.promo-video');
+    if(!box) return;
+    var v = box.querySelector('video');
+    var play = box.querySelector('.pv-play');
+    if(!v) return;
+    if(play) play.addEventListener('click', function(){ v.play(); });
+    v.addEventListener('play',  function(){ box.classList.add('playing'); });
+    v.addEventListener('pause', function(){ box.classList.remove('playing'); });
+    v.addEventListener('ended', function(){ box.classList.remove('playing'); });
+  })();
+
   // Tab sets (scoped per container)
   document.querySelectorAll('.tabset').forEach(function(set){
     var tabs = set.querySelectorAll('.tab');

@@ -764,3 +764,15 @@ body.nmodal-lock{overflow:hidden}
 .nmodal-done p{color:var(--muted);margin:0 0 18px;line-height:1.6}
 .nmodal-done .nmodal-ok{width:auto;padding-inline:34px}
 @media (max-width:480px){.nmodal-card{padding:26px 18px 18px}.nmodal-title{font-size:1.15rem}}
+
+/* ===== Intro video (فيديو تقديمي) ===== */
+.promo-video{position:relative;max-width:940px;margin:0 auto;aspect-ratio:16/9;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);background:#0b2531;border:1px solid var(--line)}
+.promo-video video{width:100%;height:100%;object-fit:cover;display:block;background:#0b2531}
+.pv-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:88px;height:88px;border-radius:50%;border:0;cursor:pointer;background:rgba(255,255,255,.94);color:var(--brand);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .2s,background .2s;animation:pvPulse 2.4s ease-out infinite}
+.pv-play svg{width:40px;height:40px;fill:currentColor;margin-inline-start:4px}
+.pv-play:hover{transform:translate(-50%,-50%) scale(1.08);background:#fff}
+@keyframes pvPulse{0%{box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 0 rgba(255,255,255,.5)}70%{box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 22px rgba(255,255,255,0)}100%{box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 0 rgba(255,255,255,0)}}
+@media (prefers-reduced-motion:reduce){.pv-play{animation:none}}
+.pv-badge{position:absolute;top:14px;inset-inline-end:14px;background:var(--accent);color:#fff;font-weight:800;font-size:.82rem;padding:7px 13px;border-radius:999px;box-shadow:var(--shadow-sm);letter-spacing:.3px}
+.promo-video::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,37,49,.15),transparent 30%,transparent 70%,rgba(11,37,49,.35));pointer-events:none;transition:opacity .3s}
+.promo-video.playing::after,.promo-video.playing .pv-play,.promo-video.playing .pv-badge{opacity:0;pointer-events:none}
