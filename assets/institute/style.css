@@ -54,8 +54,8 @@ h1,h2,h3{line-height:1.3;margin:0 0 .5em}
 .nav{display:flex;align-items:center;justify-content:center;gap:16px;padding:13px 0;position:relative}
 .brand{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
 .brand .logo-img{
-  width:64px;height:64px;flex:none;border-radius:16px;object-fit:contain;
-  background:#fff;padding:4px;box-shadow:var(--shadow);border:1px solid var(--line);transition:transform .3s ease;
+  width:64px;height:64px;flex:none;border-radius:50%;object-fit:contain;
+  box-shadow:var(--shadow);transition:transform .3s ease;
 }
 .brand:hover .logo-img{transform:scale(1.05)}
 .brand b{display:block;color:var(--brand-dark);font-size:1.05rem;line-height:1.2;white-space:nowrap}
@@ -146,7 +146,7 @@ h1,h2,h3{line-height:1.3;margin:0 0 .5em}
 .hero-figure img{display:block;width:100%;height:auto;border-radius:var(--radius);box-shadow:var(--shadow)}
 /* branded plate over the hero image */
 .hero-plate{position:absolute;inset-inline:0;bottom:0;display:flex;align-items:center;gap:12px;padding:30px 18px 14px;background:linear-gradient(0deg,rgba(18,58,74,.86),rgba(18,58,74,.5) 55%,transparent);border-radius:0 0 var(--radius) var(--radius);color:#fff;pointer-events:none}
-.hero-plate .hp-logo{width:46px;height:46px;border-radius:10px;background:#fff;padding:3px;flex:none;object-fit:contain;box-shadow:0 3px 10px rgba(0,0,0,.25)}
+.hero-plate .hp-logo{width:46px;height:46px;border-radius:50%;background:#fff;padding:2px;flex:none;object-fit:contain;box-shadow:0 3px 10px rgba(0,0,0,.25)}
 .hero-plate .hp-txt b{display:block;font-size:.92rem;font-weight:800;line-height:1.3}
 .hero-plate .hp-txt span{font-size:.74rem;opacity:.92}
 /* feature cards row */

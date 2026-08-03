@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="شعار المعهد المتخصص للتكنولوجيا التطبيقية بتافراوت">
+  <circle cx="60" cy="60" r="60" fill="#0e4f7c"/>
+  <!-- cap bowl (head part) -->
+  <path d="M42 60 L42 70 C42 78 78 78 78 70 L78 60 L60 67 Z" fill="#e9f1f8"/>
+  <path d="M42 70 C42 78 78 78 78 70 L78 66 C78 74 42 74 42 66 Z" fill="#cbdcec"/>
+  <!-- mortarboard top -->
+  <path d="M60 40 L96 53 L60 66 L24 53 Z" fill="#ffffff"/>
+  <path d="M24 53 L60 66 L96 53 L96 55 L60 68 L24 55 Z" fill="#c7dae9"/>
+  <!-- center button -->
+  <circle cx="60" cy="53" r="3.2" fill="#0e4f7c"/>
+  <!-- green tassel -->
+  <path d="M60 53 L92 55 L92 74" fill="none" stroke="#33b25a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="92" cy="78" r="5" fill="#33b25a"/>
+  <path d="M89 80 l6 0 M89.5 83 l5 0" stroke="#2a9a4c" stroke-width="1.6" stroke-linecap="round"/>
+</svg>
