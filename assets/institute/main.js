@@ -163,6 +163,17 @@
     v.addEventListener('ended', function(){ box.classList.remove('playing'); });
   })();
 
+  // Activity video gallery — play buttons
+  document.querySelectorAll('.vid-frame').forEach(function(frame){
+    var v = frame.querySelector('video');
+    var btn = frame.querySelector('.vid-play');
+    if(!v) return;
+    if(btn) btn.addEventListener('click', function(){ v.play(); });
+    v.addEventListener('play',  function(){ frame.classList.add('playing'); });
+    v.addEventListener('pause', function(){ frame.classList.remove('playing'); });
+    v.addEventListener('ended', function(){ frame.classList.remove('playing'); });
+  });
+
   // Tab sets (scoped per container)
   document.querySelectorAll('.tabset').forEach(function(set){
     var tabs = set.querySelectorAll('.tab');

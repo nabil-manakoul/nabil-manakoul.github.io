@@ -776,3 +776,15 @@ body.nmodal-lock{overflow:hidden}
 .pv-badge{position:absolute;top:14px;inset-inline-end:14px;background:var(--accent);color:#fff;font-weight:800;font-size:.82rem;padding:7px 13px;border-radius:999px;box-shadow:var(--shadow-sm);letter-spacing:.3px}
 .promo-video::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,37,49,.15),transparent 30%,transparent 70%,rgba(11,37,49,.35));pointer-events:none;transition:opacity .3s}
 .promo-video.playing::after,.promo-video.playing .pv-play,.promo-video.playing .pv-badge{opacity:0;pointer-events:none}
+
+/* ===== Activity videos gallery ===== */
+.videos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.vid-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);transition:.25s}
+.vid-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.vid-frame{position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,var(--brand-dark),var(--brand));overflow:hidden}
+.vid-frame video{width:100%;height:100%;object-fit:cover;display:block;background:#0b2531}
+.vid-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;border:0;cursor:pointer;background:rgba(255,255,255,.94);color:var(--brand);display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.35);transition:transform .2s,background .2s}
+.vid-play svg{width:26px;height:26px;fill:currentColor;margin-inline-start:3px}
+.vid-play:hover{transform:translate(-50%,-50%) scale(1.09);background:#fff}
+.vid-frame.playing .vid-play{opacity:0;pointer-events:none}
+.vid-card h4{margin:0;padding:14px 16px;color:var(--brand-dark);font-size:1rem;line-height:1.5}
