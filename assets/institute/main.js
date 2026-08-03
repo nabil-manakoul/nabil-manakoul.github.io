@@ -150,10 +150,8 @@
     start();
   })();
 
-  // Intro video — custom play button toggles native playback
-  (function introVideo(){
-    var box = document.querySelector('.promo-video');
-    if(!box) return;
+  // Intro videos — custom play button toggles native playback
+  document.querySelectorAll('.promo-video').forEach(function(box){
     var v = box.querySelector('video');
     var play = box.querySelector('.pv-play');
     if(!v) return;
@@ -161,7 +159,7 @@
     v.addEventListener('play',  function(){ box.classList.add('playing'); });
     v.addEventListener('pause', function(){ box.classList.remove('playing'); });
     v.addEventListener('ended', function(){ box.classList.remove('playing'); });
-  })();
+  });
 
   // Activity video gallery — play buttons
   document.querySelectorAll('.vid-frame').forEach(function(frame){

@@ -788,3 +788,10 @@ body.nmodal-lock{overflow:hidden}
 .vid-play:hover{transform:translate(-50%,-50%) scale(1.09);background:#fff}
 .vid-frame.playing .vid-play{opacity:0;pointer-events:none}
 .vid-card h4{margin:0;padding:14px 16px;color:var(--brand-dark);font-size:1rem;line-height:1.5}
+
+/* Two intro videos side by side */
+.promo-duo{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:1000px;margin:0 auto}
+.promo-item{margin:0}
+.promo-duo .promo-video{max-width:none;margin:0}
+.promo-item figcaption{margin-top:13px;text-align:center;color:var(--brand-dark);font-weight:800;font-size:1.05rem}
+@media (max-width:760px){.promo-duo{grid-template-columns:1fr;gap:24px}}
