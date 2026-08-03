@@ -817,3 +817,55 @@
     });
   });
 })();
+
+// ===== Live weather for Tafraout (Open-Meteo — free, no API key, auto-updates) =====
+(function weatherWidget(){
+  var el = document.getElementById('wxWidget');
+  if(!el || !window.fetch) return;
+  // تافراوت: خط العرض 29.72 — خط الطول -8.97
+  var API = 'https://api.open-meteo.com/v1/forecast?latitude=29.72&longitude=-8.97' +
+            '&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m' +
+            '&daily=temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=1';
+
+  function wxInfo(code){
+    var m = {
+      0:['☀️','صحو'], 1:['🌤️','صحو غالبًا'], 2:['⛅','غائم جزئيًا'], 3:['☁️','غائم'],
+      45:['🌫️','ضباب'], 48:['🌫️','ضباب كثيف'],
+      51:['🌦️','رذاذ خفيف'], 53:['🌦️','رذاذ'], 55:['🌦️','رذاذ كثيف'],
+      56:['🌧️','رذاذ متجمّد'], 57:['🌧️','رذاذ متجمّد'],
+      61:['🌧️','مطر خفيف'], 63:['🌧️','مطر'], 65:['🌧️','مطر غزير'],
+      66:['🌧️','مطر متجمّد'], 67:['🌧️','مطر متجمّد'],
+      71:['🌨️','ثلوج خفيفة'], 73:['🌨️','ثلوج'], 75:['❄️','ثلوج كثيفة'], 77:['🌨️','حبيبات ثلجية'],
+      80:['🌦️','زخات مطر'], 81:['🌧️','زخات مطر'], 82:['⛈️','زخات غزيرة'],
+      85:['🌨️','زخات ثلجية'], 86:['❄️','زخات ثلجية'],
+      95:['⛈️','عاصفة رعدية'], 96:['⛈️','عاصفة رعدية'], 99:['⛈️','عاصفة رعدية بَرَد']
+    };
+    return m[code] || ['🌡️',''];
+  }
+
+  function load(){
+    fetch(API).then(function(r){ return r.ok ? r.json() : Promise.reject(); }).then(function(d){
+      var c = d.current || {}, dl = d.daily || {};
+      if(typeof c.temperature_2m !== 'number') return;
+      var info = wxInfo(c.weather_code);
+      var t = Math.round(c.temperature_2m);
+      var tmax = (dl.temperature_2m_max && dl.temperature_2m_max.length) ? Math.round(dl.temperature_2m_max[0]) : null;
+      var tmin = (dl.temperature_2m_min && dl.temperature_2m_min.length) ? Math.round(dl.temperature_2m_min[0]) : null;
+      el.innerHTML =
+        '<span class="wx-emoji">' + info[0] + '</span>' +
+        '<span class="wx-temp">' + t + '°</span>' +
+        '<span class="wx-sep">·</span>' +
+        '<span class="wx-city">تافراوت</span>';
+      var title = 'طقس تافراوت الآن: ' + info[1] + ' ' + t + '°';
+      if(tmin != null && tmax != null) title += ' · الصغرى ' + tmin + '° / العظمى ' + tmax + '°';
+      if(c.relative_humidity_2m != null) title += ' · الرطوبة ' + c.relative_humidity_2m + '%';
+      if(c.wind_speed_10m != null) title += ' · الرياح ' + Math.round(c.wind_speed_10m) + ' كم/س';
+      el.setAttribute('title', title);
+      el.classList.add('show');
+    }).catch(function(){ /* تعذّر الجلب — يبقى المؤشّر مخفيًا */ });
+  }
+
+  load();
+  // تحديث تلقائي كل 30 دقيقة أثناء بقاء الصفحة مفتوحة
+  setInterval(load, 30 * 60 * 1000);
+})();

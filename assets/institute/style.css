@@ -46,6 +46,12 @@ h1,h2,h3{line-height:1.3;margin:0 0 .5em}
 .topbar a{color:#dbe9ef}
 .topbar .tb-contact{display:flex;gap:18px;flex-wrap:wrap}
 .topbar .tb-social{display:flex;gap:12px}
+.tb-weather{display:none;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:3px 12px;color:#eaf6fa;white-space:nowrap;cursor:default}
+.tb-weather.show{display:inline-flex;animation:fadeIn .4s ease}
+.tb-weather .wx-emoji{font-size:1.05rem;line-height:1}
+.tb-weather .wx-temp{font-weight:900}
+.tb-weather .wx-sep{opacity:.5}
+.tb-weather .wx-city{opacity:.9;font-size:.82rem}
 
 /* ===== Header / nav ===== */
 .header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:transform .32s cubic-bezier(.4,0,.2,1)}
