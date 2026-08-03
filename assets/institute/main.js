@@ -725,3 +725,95 @@
     }, 2500);
   }
 })();
+
+// ===== Emergency call confirmation (copy number + open dialer) =====
+(function emergencyCall(){
+  var cards = document.querySelectorAll('.emg-card[href^="tel:"]');
+  if(!cards.length) return;
+
+  var overlay = null, lastFocus = null;
+
+  function copyNumber(txt){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      return navigator.clipboard.writeText(txt).catch(function(){ fallbackCopy(txt); });
+    }
+    fallbackCopy(txt);
+    return Promise.resolve();
+  }
+  function fallbackCopy(txt){
+    try{
+      var ta = document.createElement('textarea');
+      ta.value = txt; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    }catch(e){}
+  }
+
+  function close(){
+    if(!overlay) return;
+    overlay.classList.remove('open');
+    document.body.classList.remove('nmodal-lock');
+    document.removeEventListener('keydown', onKey);
+    var o = overlay; overlay = null;
+    setTimeout(function(){ if(o.parentNode) o.parentNode.removeChild(o); }, 220);
+    if(lastFocus && lastFocus.focus){ try{ lastFocus.focus(); }catch(e){} }
+  }
+  function onKey(e){ if(e.key === 'Escape') close(); }
+
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+  function open(name, shownNum, href, digits){
+    lastFocus = document.activeElement;
+    overlay = document.createElement('div');
+    overlay.className = 'callm';
+    overlay.setAttribute('role','dialog');
+    overlay.setAttribute('aria-modal','true');
+    overlay.innerHTML =
+      '<div class="callm-card" role="document">' +
+        '<div class="callm-ico" aria-hidden="true">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.5-1.1a2 2 0 012.1-.5c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z"/></svg>' +
+        '</div>' +
+        '<h3 class="callm-title">تأكيد الاتصال</h3>' +
+        '<p class="callm-text">هل تريد الاتصال بـ <b>' + esc(name) + '</b>؟</p>' +
+        '<div class="callm-num" dir="ltr">' + esc(shownNum) + '</div>' +
+        '<div class="callm-actions">' +
+          '<button type="button" class="btn btn-primary callm-yes">📞 نعم، اتصل الآن</button>' +
+          '<button type="button" class="btn btn-ghost callm-no">إلغاء</button>' +
+        '</div>' +
+        '<div class="callm-copied" aria-live="polite">✓ تم نسخ الرقم إلى الحافظة</div>' +
+      '</div>';
+
+    document.body.appendChild(overlay);
+    document.body.classList.add('nmodal-lock');
+    void overlay.offsetWidth;
+    overlay.classList.add('open');
+    document.addEventListener('keydown', onKey);
+
+    var yes = overlay.querySelector('.callm-yes');
+    var no = overlay.querySelector('.callm-no');
+    var copied = overlay.querySelector('.callm-copied');
+    setTimeout(function(){ yes.focus(); }, 250);
+
+    overlay.addEventListener('click', function(e){ if(e.target === overlay) close(); });
+    no.addEventListener('click', close);
+    yes.addEventListener('click', function(){
+      copyNumber(digits);
+      copied.classList.add('show');
+      // open the phone dialer shortly after (lets the copy toast show)
+      setTimeout(function(){ window.location.href = href; }, 550);
+      setTimeout(close, 1400);
+    });
+  }
+
+  cards.forEach(function(card){
+    card.addEventListener('click', function(e){
+      e.preventDefault();
+      var href = card.getAttribute('href');
+      var digits = href.replace(/^tel:/,'');
+      var nameEl = card.querySelector('.emg-body b');
+      var numEl = card.querySelector('.emg-num');
+      var name = nameEl ? nameEl.textContent.trim() : '';
+      var shown = numEl ? numEl.textContent.trim() : digits;
+      open(name, shown, href, digits);
+    });
+  });
+})();
