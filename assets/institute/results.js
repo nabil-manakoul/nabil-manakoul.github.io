@@ -25,25 +25,30 @@
        url    : رابط ملف النتائج (صورة أو PDF)
 
    • نتائج الانتقاء (الكائن selection):
-       status : "waiting" | "published"
-       date   : تاريخ الإعلان
-       url    : رابط اللائحة الرسمية للمقبولين
-       url2   : رابط لوائح الانتظار (اختياري)
+       status      : "waiting" | "published"
+       resultDate  : تاريخ إصدار نتائج الانتقاء (نص للعرض)
+       deadline    : تاريخ نهاية تأكيد التسجيل (نص للعرض) — عادةً أسبوع بعد الإعلان
+       deadlineISO : نفس التاريخ بصيغة ISO لتشغيل العدّاد العكسي،
+                     مثال: "2026-09-09T23:59:59"  (اتركه فارغًا لتعطيل العدّاد)
+       url         : رابط اللائحة الرسمية للمقبولين
+       url2        : رابط لوائح الانتظار (اختياري)
 
-   ➜ لنشر نتيجة: غيّر status إلى "published" وأضف date و url. فقط.
+   ➜ لنشر النتائج: غيّر status إلى "published" وأضف resultDate و deadline
+     و deadlineISO و url. سيبدأ العدّاد العكسي تلقائيًا نحو أجل تأكيد التسجيل.
    ===================================================================== */
 window.ISTA_RESULTS = {
 
   /* (ب) نتائج الانتقاء — خاصّة بالتقني المتخصص فقط */
   selection: {
-    program: "تسيير المقاولات",
-    level:   "تقني متخصص",
-    when:    "بداية السنة التكوينية",
-    note:    "الانتقاء حسب نقط الباكالوريا ووفق الخريطة التكوينية — لائحة رسمية للمقبولين ولوائح الانتظار حسب عدد المترشّحين المستوفين للشروط.",
-    status:  "waiting",
-    date:    "",
-    url:     "",   // اللائحة الرسمية للمقبولين
-    url2:    ""    // لوائح الانتظار (اختياري)
+    program:     "تسيير المقاولات",
+    level:       "تقني متخصص",
+    note:        "الانتقاء حسب نقط الباكالوريا ووفق الخريطة التكوينية — لائحة رسمية للمقبولين ولوائح الانتظار حسب عدد المترشّحين المستوفين للشروط.",
+    status:      "waiting",
+    resultDate:  "",   // تاريخ إصدار النتائج، مثال: "02 شتنبر 2026"
+    deadline:    "",   // آخر أجل لتأكيد التسجيل، مثال: "09 شتنبر 2026"
+    deadlineISO: "",   // للعدّاد العكسي، مثال: "2026-09-09T23:59:59"
+    url:         "",   // اللائحة الرسمية للمقبولين
+    url2:        ""    // لوائح الانتظار (اختياري)
   },
 
   /* (أ) نتائج الامتحانات — حسب كل شعبة */
@@ -212,15 +217,45 @@ window.ISTA_RESULTS = {
     render();
   }
 
+  /* ---------- countdown to registration-confirmation deadline ---------- */
+  var selTimer = null;
+  function pad2(n) { return (n < 10 ? "0" : "") + n; }
+  function startCountdown(el) {
+    var target = new Date(el.getAttribute("data-deadline")).getTime();
+    if (isNaN(target)) return;
+    var dE = el.querySelector("[data-d]"), hE = el.querySelector("[data-h]"),
+        mE = el.querySelector("[data-m]"), sE = el.querySelector("[data-s]");
+    function tick() {
+      var diff = target - Date.now();
+      if (diff <= 0) {
+        el.classList.add("ended");
+        el.innerHTML = '<span class="rsc-ended">⛔ انتهى أجل تأكيد التسجيل</span>';
+        if (selTimer) { clearInterval(selTimer); selTimer = null; }
+        return;
+      }
+      var t = Math.floor(diff / 1000);
+      var d = Math.floor(t / 86400); t -= d * 86400;
+      var h = Math.floor(t / 3600);  t -= h * 3600;
+      var m = Math.floor(t / 60);    t -= m * 60;
+      if (dE) dE.textContent = pad2(d);
+      if (hE) hE.textContent = pad2(h);
+      if (mE) mE.textContent = pad2(m);
+      if (sE) sE.textContent = pad2(t);
+    }
+    tick();
+    selTimer = setInterval(tick, 1000);
+  }
+
   /* ---------- selection block (التقني المتخصص only) ---------- */
   function renderSelection() {
     if (!selBox) return;
+    if (selTimer) { clearInterval(selTimer); selTimer = null; }
     var s = ROOT.selection;
     if (!s) { selBox.innerHTML = ""; return; }
     var pub = s.status === "published" && s.url;
     var cls = "rsel-card " + (pub ? "is-pub" : "is-wait");
 
-    var status, actions;
+    var status, actions, extra = "";
     if (pub) {
       status = '<span class="rsel-status pub">✓ متاحة الآن</span>';
       actions =
@@ -232,8 +267,27 @@ window.ISTA_RESULTS = {
           '<a class="rc-btn go2" href="' + esc(s.url2) + '" target="_blank" rel="noopener">' +
             '<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>' +
             '<span>لوائح الانتظار</span>' +
-          '</a>' : "") +
-        (s.date ? '<span class="rc-date">📅 أُعلنت: ' + esc(s.date) + '</span>' : "");
+          '</a>' : "");
+
+      // date pills: results-issue date + registration-confirmation deadline
+      var pills = "";
+      if (s.resultDate) pills += '<span class="rsel-dpill"><i>📅</i> إصدار النتائج: <b>' + esc(s.resultDate) + '</b></span>';
+      if (s.deadline)   pills += '<span class="rsel-dpill warn"><i>⏰</i> آخر أجل لتأكيد التسجيل: <b>' + esc(s.deadline) + '</b></span>';
+      if (pills) extra += '<div class="rsel-dates">' + pills + '</div>';
+
+      // live countdown to the deadline
+      if (s.deadlineISO) {
+        extra +=
+          '<div class="rsel-count" data-deadline="' + esc(s.deadlineISO) + '">' +
+            '<span class="rsc-label">⏳ المتبقّي على نهاية تأكيد التسجيل</span>' +
+            '<div class="rsc-units">' +
+              '<div class="rsc-u"><b data-d>00</b><span>يوم</span></div>' +
+              '<div class="rsc-u"><b data-h>00</b><span>ساعة</span></div>' +
+              '<div class="rsc-u"><b data-m>00</b><span>دقيقة</span></div>' +
+              '<div class="rsc-u"><b data-s>00</b><span>ثانية</span></div>' +
+            '</div>' +
+          '</div>';
+      }
     } else {
       status = '<span class="rsel-status wait">قيد الانتظار</span>';
       actions =
@@ -241,7 +295,7 @@ window.ISTA_RESULTS = {
           '<svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>' +
           '<span>أبلغني عند الإعلان</span>' +
         '</button>' +
-        '<span class="rc-hint">تُنشر فور صدورها رسميًا</span>';
+        '<span class="rc-hint">يُعلن تاريخ النتائج وأجل تأكيد التسجيل فور صدورها</span>';
     }
 
     selBox.innerHTML =
@@ -254,11 +308,14 @@ window.ISTA_RESULTS = {
           '<div class="rsel-tags"><span class="rsel-tag">نتائج الانتقاء</span><span class="rsel-lvl">' + esc(s.level) + '</span>' + status + '</div>' +
           '<h3 class="rsel-title">لائحة المقبولين في الانتقاء</h3>' +
           '<p class="rsel-desc">' + esc(s.note) + '</p>' +
-          '<div class="rsel-meta">🎓 الشعبة: <b>' + esc(s.program) + '</b>' + (s.when ? ' &nbsp;•&nbsp; 🗓️ عادةً: <b>' + esc(s.when) + '</b>' : '') + '</div>' +
+          '<div class="rsel-meta">🎓 الشعبة: <b>' + esc(s.program) + '</b></div>' +
+          extra +
         '</div>' +
         '<div class="rsel-actions">' + actions + '</div>' +
       '</div>';
     wireNotify(selBox);
+    var cd = selBox.querySelector(".rsel-count");
+    if (cd) startCountdown(cd);
   }
 
   /* ---------- build program tabs ---------- */

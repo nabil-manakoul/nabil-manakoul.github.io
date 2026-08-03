@@ -966,6 +966,21 @@ body.nmodal-lock{overflow:hidden}
 .rsel-meta b{font-weight:800}
 .rsel-actions{flex:0 0 auto;display:flex;flex-direction:column;gap:8px;width:230px;text-align:center}
 .rsel-actions .rc-btn{width:100%}
+
+/* selection date pills + countdown */
+.rsel-dates{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.rsel-dpill{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--brand-dark);background:#eef5f8;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+.rsel-dpill i{font-style:normal}
+.rsel-dpill b{font-weight:800}
+.rsel-dpill.warn{color:#8a4b1e;background:#fff3e6;border-color:#f3d6ac}
+.rsel-count{margin-top:14px;background:linear-gradient(120deg,var(--brand-dark),var(--brand));border-radius:14px;padding:12px 16px;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;box-shadow:0 10px 24px rgba(18,58,74,.22)}
+.rsc-label{font-size:.86rem;font-weight:800}
+.rsc-units{display:flex;gap:8px}
+.rsc-u{min-width:52px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:6px 4px;text-align:center;line-height:1.1}
+.rsc-u b{display:block;font-size:1.3rem;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:.5px}
+.rsc-u span{font-size:.68rem;opacity:.85}
+.rsel-count.ended{background:#fbeaea;box-shadow:none;justify-content:center}
+.rsc-ended{color:#b23b3b;font-weight:900;font-size:.95rem}
 @media (max-width:760px){
   .rsel-card{flex-direction:column;align-items:stretch;text-align:center;gap:16px;padding:22px 18px}
   .rsel-ico{margin:0 auto}
