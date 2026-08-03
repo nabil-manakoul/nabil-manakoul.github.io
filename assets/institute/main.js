@@ -528,8 +528,7 @@
     }
     return true;
   }
-  if(!shouldShow()) return;
-
+  function build(){
   var mode = 'email';
   var wrap = document.createElement('div');
   wrap.className = 'nmodal';
@@ -657,6 +656,20 @@
     document.addEventListener('keydown', onKey);
     setTimeout(function(){ input.focus(); }, 350);
   }
-  // Appear shortly after entering the site.
-  setTimeout(reveal, 2500);
+  return reveal;
+  }
+
+  // Open on demand (e.g. from a "أبلغني عند الإعلان" button) — always shows.
+  window.ISTAopenNotify = function(){
+    if(document.querySelector('.nmodal.open')) return;
+    var reveal = build();
+    reveal();
+  };
+
+  // Auto-appear shortly after entering the site (only if not already handled).
+  if(shouldShow()){
+    setTimeout(function(){
+      if(!document.querySelector('.nmodal')) build()();
+    }, 2500);
+  }
 })();
