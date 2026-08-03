@@ -1084,11 +1084,14 @@ body.nmodal-lock{overflow:hidden}
 .mfp-fallback{text-align:center;color:var(--muted);padding:40px 0}
 .mfp-fallback .btn{margin-top:12px}
 .mfp-slide{cursor:default;direction:rtl}
-.mfp-card{display:flex;flex-direction:column;height:100%;min-height:150px;background:var(--card);border:1px solid var(--line);border-inline-start:4px solid var(--brand-2);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow-sm);text-decoration:none;transition:transform .22s,box-shadow .22s,border-color .22s}
+.mfp-card{display:flex;flex-direction:column;height:100%;min-height:150px;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);text-decoration:none;transition:transform .22s,box-shadow .22s,border-color .22s}
 .mfp-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.mfp-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
-.mfp-source{font-size:.78rem;font-weight:800;color:var(--brand);background:#eef5f8;border:1px solid var(--line);padding:3px 10px;border-radius:999px;max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.mfp-date{font-size:.76rem;color:var(--muted);white-space:nowrap}
+.mfp-media{position:relative;height:150px;display:grid;place-items:center;background:linear-gradient(135deg,var(--brand),var(--brand-2));overflow:hidden}
+.mfp-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.mfp-ph{font-size:2.6rem;opacity:.55}
+.mfp-media .mfp-source{position:absolute;z-index:2;top:10px;inset-inline-start:10px;font-size:.74rem;font-weight:800;color:var(--brand-dark);background:rgba(255,255,255,.94);border:0;padding:4px 11px;border-radius:999px;max-width:75%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;box-shadow:var(--shadow-sm)}
+.mfp-cbody{display:flex;flex-direction:column;flex:1;padding:14px 18px 16px}
+.mfp-date{font-size:.76rem;color:var(--muted);white-space:nowrap;margin-bottom:6px}
 .mfp-title{margin:0 0 14px;font-size:1rem;font-weight:800;color:var(--brand-dark);line-height:1.6;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .mfp-go{font-size:.85rem;font-weight:800;color:var(--brand-2)}
 .mfp-note{margin:22px 0 0;text-align:center;color:var(--muted);font-size:.84rem}

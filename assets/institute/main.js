@@ -884,8 +884,9 @@
   if(!box || !window.fetch) return;
 
   var COUNT = 9;
-  // يجب أن يحتوي الخبر على عبارة «التكوين المهني» + سياق مغربي (المغرب / OFPPT / إنعاش الشغل)
-  var QUERY = '"التكوين المهني" (المغرب OR OFPPT OR "إنعاش الشغل")';
+  var MAX_AGE = 5 * 24 * 3600 * 1000;   // 5 أيام كحدّ أقصى لعمر الخبر
+  // يجب أن يحتوي الخبر على عبارة «التكوين المهني» + سياق مغربي، وألا يتجاوز عمره 5 أيام (when:5d)
+  var QUERY = '"التكوين المهني" (المغرب OR OFPPT OR "إنعاش الشغل") when:5d';
   var FEED = 'https://news.google.com/rss/search?q=' + encodeURIComponent(QUERY) + '&hl=ar&gl=MA&ceid=MA:ar';
   var SEARCH_PAGE = 'https://news.google.com/search?q=' + encodeURIComponent(QUERY) + '&hl=ar&gl=MA&ceid=MA:ar';
 
@@ -912,24 +913,56 @@
     return { title: t.trim(), source: src.trim() };
   }
 
+  // keep only items published within the last 5 days (safety net over when:5d)
+  function isFresh(it){
+    var d = new Date(it.pubDate).getTime();
+    if(isNaN(d)) return true;              // تاريخ غير معروف: مُرشّح مسبقًا من الخادم
+    return (Date.now() - d) <= MAX_AGE;
+  }
+
+  // best-effort extraction of an article image from RSS fields/HTML
+  function extractImg(html){
+    if(!html) return '';
+    var m = /<img[^>]+src=["']([^"']+)["']/i.exec(html);
+    return m ? m[1] : '';
+  }
+  function pickImage(it){
+    if(it.image) return it.image;
+    if(it.thumbnail) return it.thumbnail;
+    if(it.enclosure && it.enclosure.link) return it.enclosure.link;
+    return extractImg(it.content || it.description || '');
+  }
+
   function render(items){
-    if(!items || !items.length){ fallback(); return; }
+    items = (items || []).filter(isFresh);
+    if(!items.length){ fallback(); return; }
     var html = '';
     for(var i = 0; i < Math.min(items.length, COUNT); i++){
       var it = items[i];
       var s = splitSource(it.title, it.source);
+      var img = pickImage(it);
+      var media =
+        '<div class="mfp-media">' +
+          (img ? '<img class="mfp-img" src="' + esc(img) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : '') +
+          '<span class="mfp-ph" aria-hidden="true">📰</span>' +
+          (s.source ? '<span class="mfp-source">' + esc(s.source) + '</span>' : '<span class="mfp-source">خبر</span>') +
+        '</div>';
       html += '<div class="car-slide mfp-slide">' +
         '<a class="mfp-card" href="' + esc(it.link) + '" target="_blank" rel="noopener noreferrer">' +
-          '<div class="mfp-top">' +
-            (s.source ? '<span class="mfp-source">' + esc(s.source) + '</span>' : '<span class="mfp-source">خبر</span>') +
-            '<span class="mfp-date">' + esc(timeAgo(it.pubDate)) + '</span>' +
+          media +
+          '<div class="mfp-cbody">' +
+            '<span class="mfp-date">🕒 ' + esc(timeAgo(it.pubDate)) + '</span>' +
+            '<h4 class="mfp-title">' + esc(s.title) + '</h4>' +
+            '<span class="mfp-go">اقرأ الخبر ↗</span>' +
           '</div>' +
-          '<h4 class="mfp-title">' + esc(s.title) + '</h4>' +
-          '<span class="mfp-go">اقرأ الخبر ↗</span>' +
         '</a>' +
       '</div>';
     }
     box.innerHTML = html;
+    // if an image fails to load, remove it to reveal the placeholder
+    Array.prototype.slice.call(box.querySelectorAll('.mfp-img')).forEach(function(im){
+      im.addEventListener('error', function(){ if(im.parentNode) im.parentNode.removeChild(im); });
+    });
     if(window.ISTAinitCarousel && root) window.ISTAinitCarousel(root);
   }
 
@@ -941,10 +974,13 @@
 
   // 1) Primary: rss2json (returns clean JSON, CORS-enabled)
   function viaRss2json(){
-    var u = 'https://api.rss2json.com/v1/api.json?count=' + COUNT + '&rss_url=' + encodeURIComponent(FEED);
+    var u = 'https://api.rss2json.com/v1/api.json?count=20&rss_url=' + encodeURIComponent(FEED);
     return fetch(u).then(function(r){ return r.ok ? r.json() : Promise.reject(); }).then(function(d){
       if(d && d.status === 'ok' && d.items && d.items.length){
-        render(d.items.map(function(it){ return { title: it.title, link: it.link, pubDate: it.pubDate, source: (it.author || '') }; }));
+        render(d.items.map(function(it){ return {
+          title: it.title, link: it.link, pubDate: it.pubDate, source: (it.author || ''),
+          thumbnail: it.thumbnail, enclosure: it.enclosure, content: it.content, description: it.description
+        }; }));
         return true;
       }
       return Promise.reject();
@@ -959,14 +995,18 @@
       var nodes = doc.querySelectorAll('item');
       if(!nodes.length) return Promise.reject();
       var items = [];
-      for(var i = 0; i < nodes.length && i < COUNT; i++){
+      for(var i = 0; i < nodes.length; i++){
         var n = nodes[i];
         var srcEl = n.getElementsByTagName('source')[0];
+        var mediaEl = n.getElementsByTagName('media:content')[0] || n.getElementsByTagName('enclosure')[0];
+        var descEl = n.getElementsByTagName('description')[0];
         items.push({
           title: (n.getElementsByTagName('title')[0] || {}).textContent || '',
           link: (n.getElementsByTagName('link')[0] || {}).textContent || '',
           pubDate: (n.getElementsByTagName('pubDate')[0] || {}).textContent || '',
-          source: srcEl ? srcEl.textContent : ''
+          source: srcEl ? srcEl.textContent : '',
+          image: mediaEl ? (mediaEl.getAttribute('url') || '') : '',
+          description: descEl ? descEl.textContent : ''
         });
       }
       render(items);
