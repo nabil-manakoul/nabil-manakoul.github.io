@@ -869,3 +869,97 @@
   // تحديث تلقائي كل 30 دقيقة أثناء بقاء الصفحة مفتوحة
   setInterval(load, 30 * 60 * 1000);
 })();
+
+// ===== Vocational-training news (auto-fetched from Google News RSS) =====
+(function mfpNews(){
+  var box = document.getElementById('mfpNews');
+  if(!box || !window.fetch) return;
+
+  var COUNT = 6;
+  var QUERY = '"التكوين المهني" OR OFPPT OR "مكتب التكوين المهني وإنعاش الشغل"';
+  var FEED = 'https://news.google.com/rss/search?q=' + encodeURIComponent(QUERY) + '&hl=ar&gl=MA&ceid=MA:ar';
+  var SEARCH_PAGE = 'https://news.google.com/search?q=' + encodeURIComponent(QUERY) + '&hl=ar&gl=MA&ceid=MA:ar';
+
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  function timeAgo(dstr){
+    var d = new Date(dstr).getTime();
+    if(isNaN(d)) return '';
+    var s = Math.floor((Date.now() - d) / 1000);
+    if(s < 60) return 'الآن';
+    var m = Math.floor(s/60); if(m < 60) return 'منذ ' + m + ' دقيقة';
+    var h = Math.floor(m/60); if(h < 24) return 'منذ ' + h + ' ساعة';
+    var days = Math.floor(h/24); if(days < 30) return 'منذ ' + days + ' يوم';
+    try{ return new Date(d).toLocaleDateString('ar-MA', {day:'numeric', month:'long', year:'numeric'}); }catch(e){ return ''; }
+  }
+
+  // Google News titles are "Headline - Source"; split the source out.
+  function splitSource(title, srcHint){
+    var src = srcHint || '';
+    var t = title || '';
+    var i = t.lastIndexOf(' - ');
+    if(!src && i > 0){ src = t.slice(i + 3); t = t.slice(0, i); }
+    else if(src && t.slice(-(src.length + 3)) === ' - ' + src){ t = t.slice(0, -(src.length + 3)); }
+    return { title: t.trim(), source: src.trim() };
+  }
+
+  function render(items){
+    if(!items || !items.length){ fallback(); return; }
+    var html = '';
+    for(var i = 0; i < Math.min(items.length, COUNT); i++){
+      var it = items[i];
+      var s = splitSource(it.title, it.source);
+      html += '<a class="mfp-card" href="' + esc(it.link) + '" target="_blank" rel="noopener noreferrer">' +
+        '<div class="mfp-top">' +
+          (s.source ? '<span class="mfp-source">' + esc(s.source) + '</span>' : '<span class="mfp-source">خبر</span>') +
+          '<span class="mfp-date">' + esc(timeAgo(it.pubDate)) + '</span>' +
+        '</div>' +
+        '<h4 class="mfp-title">' + esc(s.title) + '</h4>' +
+        '<span class="mfp-go">اقرأ الخبر ↗</span>' +
+      '</a>';
+    }
+    box.innerHTML = html;
+  }
+
+  function fallback(){
+    box.innerHTML = '<div class="mfp-fallback"><p>تعذّر تحميل الأخبار تلقائيًا حاليًا.</p>' +
+      '<a class="btn btn-primary" href="' + SEARCH_PAGE + '" target="_blank" rel="noopener noreferrer">تصفّح أخبار التكوين المهني ↗</a></div>';
+  }
+
+  // 1) Primary: rss2json (returns clean JSON, CORS-enabled)
+  function viaRss2json(){
+    var u = 'https://api.rss2json.com/v1/api.json?count=' + COUNT + '&rss_url=' + encodeURIComponent(FEED);
+    return fetch(u).then(function(r){ return r.ok ? r.json() : Promise.reject(); }).then(function(d){
+      if(d && d.status === 'ok' && d.items && d.items.length){
+        render(d.items.map(function(it){ return { title: it.title, link: it.link, pubDate: it.pubDate, source: (it.author || '') }; }));
+        return true;
+      }
+      return Promise.reject();
+    });
+  }
+
+  // 2) Fallback: allorigins raw proxy → parse XML client-side
+  function viaAllOrigins(){
+    var u = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(FEED);
+    return fetch(u).then(function(r){ return r.ok ? r.text() : Promise.reject(); }).then(function(xml){
+      var doc = new DOMParser().parseFromString(xml, 'text/xml');
+      var nodes = doc.querySelectorAll('item');
+      if(!nodes.length) return Promise.reject();
+      var items = [];
+      for(var i = 0; i < nodes.length && i < COUNT; i++){
+        var n = nodes[i];
+        var srcEl = n.getElementsByTagName('source')[0];
+        items.push({
+          title: (n.getElementsByTagName('title')[0] || {}).textContent || '',
+          link: (n.getElementsByTagName('link')[0] || {}).textContent || '',
+          pubDate: (n.getElementsByTagName('pubDate')[0] || {}).textContent || '',
+          source: srcEl ? srcEl.textContent : ''
+        });
+      }
+      render(items);
+      return true;
+    });
+  }
+
+  viaRss2json().catch(function(){ return viaAllOrigins(); }).catch(function(){ fallback(); });
+})();

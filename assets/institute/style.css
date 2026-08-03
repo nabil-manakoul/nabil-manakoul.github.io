@@ -1078,3 +1078,18 @@ body.nmodal-lock{overflow:hidden}
 .callm-copied{margin-top:14px;color:var(--green);font-weight:800;font-size:.88rem;opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s}
 .callm-copied.show{opacity:1;transform:none}
 @media (max-width:480px){.callm-card{padding:24px 18px 18px}.callm-num{font-size:1.4rem}}
+
+/* ===================== أخبار التكوين المهني (جلب تلقائي) ===================== */
+.mfp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mfp-loading,.mfp-fallback{grid-column:1/-1;text-align:center;color:var(--muted);padding:34px 0}
+.mfp-fallback .btn{margin-top:12px}
+.mfp-card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-inline-start:4px solid var(--brand-2);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow-sm);text-decoration:none;transition:transform .22s,box-shadow .22s,border-color .22s;animation:fadeIn .4s ease}
+.mfp-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.mfp-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.mfp-source{font-size:.78rem;font-weight:800;color:var(--brand);background:#eef5f8;border:1px solid var(--line);padding:3px 10px;border-radius:999px;max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mfp-date{font-size:.76rem;color:var(--muted);white-space:nowrap}
+.mfp-title{margin:0 0 14px;font-size:1rem;font-weight:800;color:var(--brand-dark);line-height:1.6;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.mfp-go{font-size:.85rem;font-weight:800;color:var(--brand-2)}
+.mfp-note{margin:22px 0 0;text-align:center;color:var(--muted);font-size:.84rem}
+@media (max-width:900px){.mfp-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.mfp-grid{grid-template-columns:1fr}}
