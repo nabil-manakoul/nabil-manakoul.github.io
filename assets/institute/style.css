@@ -1024,3 +1024,34 @@ body.nmodal-lock{overflow:hidden}
   .rprog-head{padding:14px 16px}
   .rph-name{font-size:1.06rem}
 }
+
+/* ===================== أرقام الطوارئ والخدمات ===================== */
+.emg-group{display:flex;align-items:center;gap:10px;font-size:1.15rem;font-weight:900;color:var(--brand-dark);margin:0 0 16px}
+.emg-flag{font-size:1.35rem;line-height:1}
+.emg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.emg-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-inline-start:5px solid var(--brand);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);text-decoration:none;transition:transform .22s,box-shadow .22s,border-color .22s}
+.emg-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.emg-ico{flex:0 0 auto;width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-size:1.5rem;background:#eef5f8}
+.emg-body{flex:1;min-width:0}
+.emg-body b{display:block;color:var(--brand-dark);font-size:.98rem;line-height:1.4}
+.emg-note{color:var(--muted);font-size:.8rem}
+.emg-num{flex:0 0 auto;font-weight:900;font-size:1.12rem;letter-spacing:.5px;color:var(--brand);white-space:nowrap;font-variant-numeric:tabular-nums}
+/* category accents */
+.emg-card.e-secu{border-inline-start-color:var(--brand)}
+.emg-card.e-secu .emg-num{color:var(--brand)}
+.emg-card.e-secu .emg-ico{background:#e9f2f6}
+.emg-card.e-fire{border-inline-start-color:#c0392b}
+.emg-card.e-fire .emg-num{color:#c0392b}
+.emg-card.e-fire .emg-ico{background:#fdecea}
+.emg-card.e-health{border-inline-start-color:var(--green)}
+.emg-card.e-health .emg-num{color:var(--green)}
+.emg-card.e-health .emg-ico{background:#e9f7ee}
+.emg-card.e-auth{border-inline-start-color:var(--accent-2)}
+.emg-card.e-auth .emg-num{color:#a8760f}
+.emg-card.e-auth .emg-ico{background:#fdf3e0}
+.emg-card.e-phone{border-inline-start-color:var(--brand-2)}
+.emg-card.e-phone .emg-num{color:var(--brand-2)}
+.emg-card.e-phone .emg-ico{background:#e8f4f8}
+.emg-foot{margin:26px 0 0;text-align:center;color:var(--muted);font-size:.9rem;background:#fff6e6;border:1px dashed #f0d9a8;border-radius:12px;padding:14px 18px}
+@media (max-width:900px){.emg-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.emg-grid{grid-template-columns:1fr}}
