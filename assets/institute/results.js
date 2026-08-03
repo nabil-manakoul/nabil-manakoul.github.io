@@ -1,66 +1,83 @@
 /* =====================================================================
    بوابة النتائج — قسم النتائج (Data-driven results portal)
+   =====================================================================
+
+   يتكوّن القسم من كتلتين مستقلّتين:
+
+   (أ) بوابة نتائج الامتحانات — خاصّة بالمتدرّبين المسجّلين لدينا فعليًا:
+       نتائج المرور إلى السنوات الأعلى + نتائج امتحانات نهاية التكوين.
+       تُعرض حسب كل شعبة (programs أدناه).
+
+   (ب) نتائج الانتقاء — خاصّة بالمترشّحين الجدد الملتحقين لأول مرة،
+       وتخصّ مستوى «التقني المتخصص» فقط (الانتقاء حسب نقط الباكالوريا).
+       تُضبط عبر الكائن selection أدناه، وتُعرض في كتلة مستقلّة.
+
    ---------------------------------------------------------------------
-   البنية حسب الشعبة: لكل شعبة قائمة أنواع النتائج الخاصة بمستواها.
+   للتحكّم السهل: عدّل فقط الكائن ISTA_RESULTS أدناه.
 
-   للتحكم السهل: عدّل فقط الكائن ISTA_RESULTS أدناه.
-   لكل نتيجة الحقول التالية:
-     cat    : نوع النتيجة →
-                "selection" (الانتقاء — لوائح المقبولين للمتدربين الجدد)
-                "passage"   (المرور إلى سنة أعلى)
-                "final"     (نهاية التكوين)
-     title  : عنوان النتيجة كما يظهر في البطاقة
-     when   : الفترة المعتادة للإعلان (نص حر، مثال: "يونيو")
-     note   : ملاحظة اختيارية تظهر أسفل العنوان (اتركها فارغة إن لم تلزم)
-     status : "waiting"   → لم تُعلن بعد (بطاقة انتظار + زر "أبلغني")
-              "published" → مُعلنة (زر "عرض" يفتح الصورة/الـ PDF)
-     date   : تاريخ الإعلان الفعلي (يظهر عند النشر) — نص حر
-     url    : رابط الملف الرئيسي (صورة أو PDF)
-                • للانتقاء: اللائحة الرسمية للمقبولين
-                • لباقي النتائج: ملف النتائج
-     url2   : رابط ثانوي اختياري (للانتقاء = لوائح الانتظار). اتركه فارغًا
-              إن لم يوجد ملف ثانٍ.
+   • نتيجة امتحان (داخل program.results):
+       cat    : "passage" (المرور) | "final" (نهاية التكوين)
+       title  : عنوان النتيجة
+       when   : الفترة المعتادة للإعلان (نص حر)
+       note   : ملاحظة اختيارية
+       status : "waiting" | "published"
+       date   : تاريخ الإعلان الفعلي (عند النشر)
+       url    : رابط ملف النتائج (صورة أو PDF)
 
-   ➜ لنشر نتيجة: غيّر status إلى "published"، وأضف date و url (و url2 للانتقاء).
-   ➜ لإضافة نتيجة جديدة: أضف كائنًا جديدًا داخل results الخاصة بالشعبة.
+   • نتائج الانتقاء (الكائن selection):
+       status : "waiting" | "published"
+       date   : تاريخ الإعلان
+       url    : رابط اللائحة الرسمية للمقبولين
+       url2   : رابط لوائح الانتظار (اختياري)
+
+   ➜ لنشر نتيجة: غيّر status إلى "published" وأضف date و url. فقط.
    ===================================================================== */
 window.ISTA_RESULTS = {
+
+  /* (ب) نتائج الانتقاء — خاصّة بالتقني المتخصص فقط */
+  selection: {
+    program: "تسيير المقاولات",
+    level:   "تقني متخصص",
+    when:    "بداية السنة التكوينية",
+    note:    "الانتقاء حسب نقط الباكالوريا ووفق الخريطة التكوينية — لائحة رسمية للمقبولين ولوائح الانتظار حسب عدد المترشّحين المستوفين للشروط.",
+    status:  "waiting",
+    date:    "",
+    url:     "",   // اللائحة الرسمية للمقبولين
+    url2:    ""    // لوائح الانتظار (اختياري)
+  },
+
+  /* (أ) نتائج الامتحانات — حسب كل شعبة */
   programs: [
 
     /* — تسيير المقاولات — تقني متخصص (3 سنوات) — */
     { prog:"تسيير المقاولات", cls:"ts", level:"تقني متخصص", years:"3 سنوات", results:[
-      { cat:"selection", title:"نتائج الانتقاء — لوائح المقبولين", when:"بداية السنة التكوينية", note:"الانتقاء حسب معدلات الباكلوريا ووفق الخريطة التكوينية • لائحة رسمية + لوائح الانتظار", status:"waiting", date:"", url:"", url2:"" },
-      { cat:"passage",   title:"نتائج المرور إلى السنة الثانية", when:"يونيو", note:"", status:"waiting", date:"", url:"" },
-      { cat:"passage",   title:"نتائج المرور إلى السنة الثالثة", when:"يونيو", note:"", status:"waiting", date:"", url:"" },
-      { cat:"final",     title:"نتائج امتحان نهاية التكوين",      when:"يناير", note:"الناجحون ينالون الدبلوم • للراسبين دورة استدراكية", status:"waiting", date:"", url:"" }
+      { cat:"passage", title:"نتائج المرور إلى السنة الثانية", when:"يونيو", note:"", status:"waiting", date:"", url:"" },
+      { cat:"passage", title:"نتائج المرور إلى السنة الثالثة", when:"يونيو", note:"", status:"waiting", date:"", url:"" },
+      { cat:"final",   title:"نتائج امتحان نهاية التكوين",      when:"يناير", note:"الناجحون ينالون الدبلوم • للراسبين دورة استدراكية", status:"waiting", date:"", url:"" }
     ]},
 
     /* — مساعد إداري — تقني (3 سنوات) — */
     { prog:"مساعد إداري", cls:"tq", level:"تقني", years:"3 سنوات", results:[
-      { cat:"selection", title:"نتائج الانتقاء — لوائح المقبولين", when:"بداية السنة التكوينية", note:"الانتقاء حسب معدلات الباكلوريا ووفق الخريطة التكوينية • لائحة رسمية + لوائح الانتظار", status:"waiting", date:"", url:"", url2:"" },
-      { cat:"passage",   title:"نتائج المرور إلى السنة الثانية", when:"يونيو", note:"", status:"waiting", date:"", url:"" },
-      { cat:"passage",   title:"نتائج المرور إلى السنة الثالثة", when:"يونيو", note:"", status:"waiting", date:"", url:"" },
-      { cat:"final",     title:"نتائج امتحان نهاية التكوين",      when:"يناير", note:"الناجحون ينالون الدبلوم • للراسبين دورة استدراكية", status:"waiting", date:"", url:"" }
+      { cat:"passage", title:"نتائج المرور إلى السنة الثانية", when:"يونيو", note:"", status:"waiting", date:"", url:"" },
+      { cat:"passage", title:"نتائج المرور إلى السنة الثالثة", when:"يونيو", note:"", status:"waiting", date:"", url:"" },
+      { cat:"final",   title:"نتائج امتحان نهاية التكوين",      when:"يناير", note:"الناجحون ينالون الدبلوم • للراسبين دورة استدراكية", status:"waiting", date:"", url:"" }
     ]},
 
     /* — كهرباء الإنشاءات — التأهيل (سنتان) — */
     { prog:"كهرباء الإنشاءات", cls:"ta", level:"التأهيل", years:"سنتان", results:[
-      { cat:"selection", title:"نتائج الانتقاء — لوائح المقبولين", when:"بداية السنة التكوينية", note:"الانتقاء حسب معدلات الباكلوريا ووفق الخريطة التكوينية • لائحة رسمية + لوائح الانتظار", status:"waiting", date:"", url:"", url2:"" },
-      { cat:"passage",   title:"نتائج المرور إلى السنة الثانية", when:"يونيو", note:"للمتدربين في السنة الأولى", status:"waiting", date:"", url:"" },
-      { cat:"final",     title:"نتائج امتحان نهاية التكوين",      when:"يونيو", note:"للمتدربين في السنة الثانية", status:"waiting", date:"", url:"" }
+      { cat:"passage", title:"نتائج المرور إلى السنة الثانية", when:"يونيو", note:"للمتدربين في السنة الأولى", status:"waiting", date:"", url:"" },
+      { cat:"final",   title:"نتائج امتحان نهاية التكوين",      when:"يونيو", note:"للمتدربين في السنة الثانية", status:"waiting", date:"", url:"" }
     ]},
 
     /* — مصلح مركبات السيارات — التأهيل (سنتان) — */
     { prog:"مصلح مركبات السيارات", cls:"ta", level:"التأهيل", years:"سنتان", results:[
-      { cat:"selection", title:"نتائج الانتقاء — لوائح المقبولين", when:"بداية السنة التكوينية", note:"الانتقاء حسب معدلات الباكلوريا ووفق الخريطة التكوينية • لائحة رسمية + لوائح الانتظار", status:"waiting", date:"", url:"", url2:"" },
-      { cat:"passage",   title:"نتائج المرور إلى السنة الثانية", when:"يونيو", note:"للمتدربين في السنة الأولى", status:"waiting", date:"", url:"" },
-      { cat:"final",     title:"نتائج امتحان نهاية التكوين",      when:"يونيو", note:"للمتدربين في السنة الثانية", status:"waiting", date:"", url:"" }
+      { cat:"passage", title:"نتائج المرور إلى السنة الثانية", when:"يونيو", note:"للمتدربين في السنة الأولى", status:"waiting", date:"", url:"" },
+      { cat:"final",   title:"نتائج امتحان نهاية التكوين",      when:"يونيو", note:"للمتدربين في السنة الثانية", status:"waiting", date:"", url:"" }
     ]},
 
     /* — كهرباء البناء — التخصص (سنة واحدة) — */
     { prog:"كهرباء البناء", cls:"sp", level:"التخصص", years:"سنة واحدة", results:[
-      { cat:"selection", title:"نتائج الانتقاء — لوائح المقبولين", when:"بداية السنة التكوينية", note:"الانتقاء حسب معدلات الباكلوريا ووفق الخريطة التكوينية • لائحة رسمية + لوائح الانتظار", status:"waiting", date:"", url:"", url2:"" },
-      { cat:"final",     title:"نتائج امتحان نهاية التكوين",      when:"يونيو", note:"", status:"waiting", date:"", url:"" }
+      { cat:"final",   title:"نتائج امتحان نهاية التكوين",      when:"يونيو", note:"", status:"waiting", date:"", url:"" }
     ]}
 
   ]
@@ -69,19 +86,15 @@ window.ISTA_RESULTS = {
 (function () {
   "use strict";
 
-  var DATA = (window.ISTA_RESULTS && window.ISTA_RESULTS.programs) || [];
+  var ROOT = window.ISTA_RESULTS || {};
+  var DATA = ROOT.programs || [];
   var tabsBox = document.getElementById("rprogTabs");
   var headBox = document.getElementById("rprogHead");
   var grid = document.getElementById("resultsGrid");
+  var selBox = document.getElementById("resultsSelection");
   if (!tabsBox || !grid) return;
 
-  // category metadata: label + accent tone + inline svg icon
   var CAT = {
-    selection: {
-      label: "الانتقاء",
-      tone: "adm",
-      icon: '<svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>'
-    },
     passage: {
       label: "المرور",
       tone: "pas",
@@ -102,6 +115,16 @@ window.ISTA_RESULTS = {
     });
   }
 
+  function wireNotify(scope) {
+    var btns = scope.querySelectorAll("[data-notify]");
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].addEventListener("click", function () {
+        if (typeof window.ISTAopenNotify === "function") window.ISTAopenNotify();
+        else { var c = document.getElementById("contact"); if (c) c.scrollIntoView({ behavior: "smooth" }); }
+      });
+    }
+  }
+
   function pubCount(prog) {
     var n = 0;
     for (var i = 0; i < prog.results.length; i++)
@@ -109,12 +132,11 @@ window.ISTA_RESULTS = {
     return n;
   }
 
+  /* ---------- exam result card ---------- */
   function cardHTML(item) {
     var meta = CAT[item.cat] || CAT.final;
     var pub = item.status === "published" && item.url;
     var cls = "rcard " + (pub ? "is-pub" : "is-wait") + " cat-" + meta.tone;
-    var isSel = item.cat === "selection";
-    var mainLabel = isSel ? "اللائحة الرسمية" : "عرض النتائج";
 
     var top, foot;
     if (pub) {
@@ -124,13 +146,8 @@ window.ISTA_RESULTS = {
       foot =
         '<a class="rc-btn go" href="' + esc(item.url) + '" target="_blank" rel="noopener">' +
           '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>' +
-          '<span>' + mainLabel + '</span>' +
+          '<span>عرض النتائج</span>' +
         '</a>' +
-        (item.url2 ?
-          '<a class="rc-btn go2" href="' + esc(item.url2) + '" target="_blank" rel="noopener">' +
-            '<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>' +
-            '<span>لوائح الانتظار</span>' +
-          '</a>' : "") +
         (item.date ? '<span class="rc-date">📅 أُعلنت: ' + esc(item.date) + '</span>' : "");
     } else {
       top =
@@ -181,14 +198,7 @@ window.ISTA_RESULTS = {
     var html = "";
     for (var i = 0; i < prog.results.length; i++) html += cardHTML(prog.results[i]);
     grid.innerHTML = html;
-
-    var btns = grid.querySelectorAll("[data-notify]");
-    for (var j = 0; j < btns.length; j++) {
-      btns[j].addEventListener("click", function () {
-        if (typeof window.ISTAopenNotify === "function") window.ISTAopenNotify();
-        else { var c = document.getElementById("contact"); if (c) c.scrollIntoView({ behavior: "smooth" }); }
-      });
-    }
+    wireNotify(grid);
   }
 
   function setTab(idx) {
@@ -202,7 +212,56 @@ window.ISTA_RESULTS = {
     render();
   }
 
-  // build program tabs
+  /* ---------- selection block (التقني المتخصص only) ---------- */
+  function renderSelection() {
+    if (!selBox) return;
+    var s = ROOT.selection;
+    if (!s) { selBox.innerHTML = ""; return; }
+    var pub = s.status === "published" && s.url;
+    var cls = "rsel-card " + (pub ? "is-pub" : "is-wait");
+
+    var status, actions;
+    if (pub) {
+      status = '<span class="rsel-status pub">✓ متاحة الآن</span>';
+      actions =
+        '<a class="rc-btn go" href="' + esc(s.url) + '" target="_blank" rel="noopener">' +
+          '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>' +
+          '<span>اللائحة الرسمية للمقبولين</span>' +
+        '</a>' +
+        (s.url2 ?
+          '<a class="rc-btn go2" href="' + esc(s.url2) + '" target="_blank" rel="noopener">' +
+            '<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>' +
+            '<span>لوائح الانتظار</span>' +
+          '</a>' : "") +
+        (s.date ? '<span class="rc-date">📅 أُعلنت: ' + esc(s.date) + '</span>' : "");
+    } else {
+      status = '<span class="rsel-status wait">قيد الانتظار</span>';
+      actions =
+        '<button class="rc-btn notify" type="button" data-notify="1">' +
+          '<svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>' +
+          '<span>أبلغني عند الإعلان</span>' +
+        '</button>' +
+        '<span class="rc-hint">تُنشر فور صدورها رسميًا</span>';
+    }
+
+    selBox.innerHTML =
+      '<div class="rsel-head"><span class="rsel-line"></span><span class="rsel-htxt">للمترشّحين الجدد</span><span class="rsel-line"></span></div>' +
+      '<div class="' + cls + '">' +
+        '<div class="rsel-ico" aria-hidden="true">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12A10 10 0 1112 2"/><path d="M22 4L12 14.01l-3-3"/></svg>' +
+        '</div>' +
+        '<div class="rsel-body">' +
+          '<div class="rsel-tags"><span class="rsel-tag">نتائج الانتقاء</span><span class="rsel-lvl">' + esc(s.level) + '</span>' + status + '</div>' +
+          '<h3 class="rsel-title">لائحة المقبولين في الانتقاء</h3>' +
+          '<p class="rsel-desc">' + esc(s.note) + '</p>' +
+          '<div class="rsel-meta">🎓 الشعبة: <b>' + esc(s.program) + '</b>' + (s.when ? ' &nbsp;•&nbsp; 🗓️ عادةً: <b>' + esc(s.when) + '</b>' : '') + '</div>' +
+        '</div>' +
+        '<div class="rsel-actions">' + actions + '</div>' +
+      '</div>';
+    wireNotify(selBox);
+  }
+
+  /* ---------- build program tabs ---------- */
   var thtml = "";
   for (var i = 0; i < DATA.length; i++) {
     var p = DATA[i];
@@ -225,4 +284,8 @@ window.ISTA_RESULTS = {
   }
 
   render();
+  renderSelection();
+
+  // Allow re-rendering if the data is updated at runtime.
+  window.ISTArefreshResults = function () { render(); renderSelection(); };
 })();

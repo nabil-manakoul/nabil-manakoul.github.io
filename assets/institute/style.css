@@ -942,6 +942,37 @@ body.nmodal-lock{overflow:hidden}
 .rhub-note{font-size:.86rem;color:var(--muted)}
 .rhub-empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
 
+/* selection block — new candidates (Technicien Spécialisé) */
+.rsel{max-width:1040px;margin:40px auto 0}
+.rsel-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.rsel-head .rsel-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+.rsel-htxt{font-size:.82rem;font-weight:800;color:var(--brand);background:#eaf3f7;border:1px solid #d3e6ee;padding:5px 16px;border-radius:999px;white-space:nowrap}
+.rsel-card{display:flex;align-items:center;gap:22px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px 26px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.rsel-card::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:6px;background:linear-gradient(var(--brand),var(--brand-2))}
+.rsel-card.is-pub::before{background:linear-gradient(var(--green),#3a9a5c)}
+.rsel-ico{flex:0 0 auto;width:74px;height:74px;border-radius:20px;display:grid;place-items:center;color:#fff;background:linear-gradient(140deg,var(--brand),var(--brand-2));box-shadow:0 10px 24px rgba(31,111,139,.32)}
+.rsel-card.is-pub .rsel-ico{background:linear-gradient(140deg,var(--green),#3a9a5c);box-shadow:0 10px 24px rgba(47,125,73,.3)}
+.rsel-ico svg{width:38px;height:38px}
+.rsel-body{flex:1;min-width:0}
+.rsel-tags{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:8px}
+.rsel-tag{font-size:.76rem;font-weight:900;color:#fff;background:var(--brand);padding:4px 12px;border-radius:999px}
+.rsel-lvl{font-size:.76rem;font-weight:800;color:var(--brand-dark);background:#eef5f8;border:1px solid var(--line);padding:4px 12px;border-radius:999px}
+.rsel-status{font-size:.74rem;font-weight:900;padding:4px 12px;border-radius:999px}
+.rsel-status.wait{color:#a56a10;background:#fff6e6;border:1px solid #f0d9a8}
+.rsel-status.pub{color:#fff;background:var(--green)}
+.rsel-title{margin:0 0 6px;font-size:1.22rem;font-weight:900;color:var(--brand-dark)}
+.rsel-desc{margin:0 0 10px;font-size:.9rem;line-height:1.7;color:var(--muted)}
+.rsel-meta{font-size:.84rem;color:var(--brand-dark)}
+.rsel-meta b{font-weight:800}
+.rsel-actions{flex:0 0 auto;display:flex;flex-direction:column;gap:8px;width:230px;text-align:center}
+.rsel-actions .rc-btn{width:100%}
+@media (max-width:760px){
+  .rsel-card{flex-direction:column;align-items:stretch;text-align:center;gap:16px;padding:22px 18px}
+  .rsel-ico{margin:0 auto}
+  .rsel-tags{justify-content:center}
+  .rsel-actions{width:100%}
+}
+
 @media (max-width:900px){.rhub-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){
   .rhub-grid{grid-template-columns:1fr}
