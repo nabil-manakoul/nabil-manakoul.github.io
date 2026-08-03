@@ -967,8 +967,9 @@
   }
 
   function fallback(){
+    var browse = 'https://news.google.com/home?hl=ar&gl=MA&ceid=MA:ar';
     var msg = '<div class="mfp-fallback"><p>تعذّر تحميل الأخبار تلقائيًا حاليًا.</p>' +
-      '<a class="btn btn-primary" href="' + SEARCH_PAGE + '" target="_blank" rel="noopener noreferrer">تصفّح أخبار التكوين المهني ↗</a></div>';
+      '<a class="btn btn-primary" href="' + browse + '" target="_blank" rel="noopener noreferrer">تصفّح المزيد من الأخبار ↗</a></div>';
     if(root) root.innerHTML = msg; else box.innerHTML = msg;
   }
 

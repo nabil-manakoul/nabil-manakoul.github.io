@@ -875,6 +875,9 @@ body.nmodal-lock{overflow:hidden}
 .rhub-bar-ico svg{width:34px;height:34px;color:#fff}
 .rhub-bar-txt{position:relative;z-index:1}
 .rhub-bar-txt h2{margin:0 0 5px;font-size:1.7rem;font-weight:900;letter-spacing:-.5px}
+.rhub-live{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:800;vertical-align:middle;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:3px 10px;margin-inline-start:8px;letter-spacing:0}
+.rhub-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#5ff29a;box-shadow:0 0 0 0 rgba(95,242,154,.6);animation:livePulse 1.8s ease-out infinite}
+@keyframes livePulse{0%{box-shadow:0 0 0 0 rgba(95,242,154,.55)}100%{box-shadow:0 0 0 8px rgba(95,242,154,0)}}
 .rhub-bar-txt p{margin:0;font-size:.95rem;line-height:1.7;color:#e6f2f7;max-width:760px}
 @media (max-width:600px){
   .rhub-bar{flex-direction:row;gap:14px;padding:18px}
