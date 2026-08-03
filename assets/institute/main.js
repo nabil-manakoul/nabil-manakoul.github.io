@@ -223,6 +223,7 @@
     var cards = document.querySelectorAll('.date[data-deadline], .date[data-status]');
     if(!cards.length) return;
     var today = new Date(); today.setHours(0,0,0,0);
+    function pad2(n){ return (n<10?'0':'')+n; }
     cards.forEach(function(c){
       var badge = c.querySelector('.reg-badge');
       if(!badge) return;
@@ -239,8 +240,56 @@
       } else {
         badge.className = 'reg-badge rb-open';
         badge.textContent = '✅ التسجيل مفتوح';
+        // add live countdown to the registration deadline
+        var cd = document.createElement('div');
+        cd.className = 'reg-count';
+        cd.setAttribute('data-deadline', dl.toISOString());
+        cd.innerHTML =
+          '<span class="rgc-label">⏳ يتبقّى على إغلاق التسجيل</span>' +
+          '<div class="rgc-units">' +
+            '<span class="rgc-u"><b data-d>00</b>يوم</span>' +
+            '<span class="rgc-u"><b data-h>00</b>ساعة</span>' +
+            '<span class="rgc-u"><b data-m>00</b>دقيقة</span>' +
+            '<span class="rgc-u"><b data-s>00</b>ثانية</span>' +
+          '</div>';
+        c.appendChild(cd);
       }
     });
+
+    // tick all open-registration countdowns together
+    var counts = document.querySelectorAll('.reg-count');
+    if(!counts.length) return;
+    function tickAll(){
+      counts.forEach(function(el){
+        if(el.getAttribute('data-done')) return;
+        var target = new Date(el.getAttribute('data-deadline')).getTime();
+        var diff = target - Date.now();
+        if(diff <= 0){
+          el.setAttribute('data-done','1');
+          el.classList.add('ended');
+          el.innerHTML = '<span class="rgc-ended">🔒 انتهى أجل التسجيل</span>';
+          var card = el.parentNode;
+          if(card){
+            card.classList.add('is-closed');
+            var b = card.querySelector('.reg-badge');
+            if(b){ b.className = 'reg-badge rb-closed'; b.textContent = '🔒 التسجيل مغلق'; }
+          }
+          return;
+        }
+        var t = Math.floor(diff/1000);
+        var d = Math.floor(t/86400); t -= d*86400;
+        var h = Math.floor(t/3600);  t -= h*3600;
+        var m = Math.floor(t/60);    t -= m*60;
+        var dE=el.querySelector('[data-d]'), hE=el.querySelector('[data-h]'),
+            mE=el.querySelector('[data-m]'), sE=el.querySelector('[data-s]');
+        if(dE) dE.textContent = pad2(d);
+        if(hE) hE.textContent = pad2(h);
+        if(mE) mE.textContent = pad2(m);
+        if(sE) sE.textContent = pad2(t);
+      });
+    }
+    tickAll();
+    setInterval(tickAll, 1000);
   })();
 
   // ===== Carousels (auto every 5s) =====

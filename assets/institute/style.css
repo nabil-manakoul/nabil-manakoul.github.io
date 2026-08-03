@@ -351,6 +351,14 @@ body.pm-active .header{display:none}
 .date .d{color:var(--accent);font-weight:900;font-size:1.05rem}
 .date b{display:block;color:var(--brand-dark);margin:.3em 0}
 .date span{color:var(--muted);font-size:.9rem}
+/* registration-deadline countdown */
+.reg-count{margin-top:14px;background:linear-gradient(120deg,var(--brand-dark),var(--brand));border-radius:12px;padding:10px 10px 11px;color:#fff;text-align:center}
+.reg-count .rgc-label{display:block;color:#fff;font-size:.74rem;font-weight:800;margin-bottom:8px}
+.rgc-units{display:flex;gap:5px;justify-content:center}
+.rgc-u{flex:1;display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:8px;padding:5px 2px;color:#fff;font-size:.6rem;line-height:1.15}
+.rgc-u b{font-size:1.05rem;font-weight:900;font-variant-numeric:tabular-nums}
+.reg-count.ended{background:#fdeaea}
+.rgc-ended{color:#c0392b;font-weight:900;font-size:.82rem}
 
 /* ===== Launch banner ===== */
 .launch-banner{display:flex;align-items:center;gap:16px;background:linear-gradient(120deg,var(--accent),#a8462f);color:#fff;border-radius:16px;padding:18px 24px;box-shadow:var(--shadow-sm);margin-bottom:22px}
