@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/institute/style.css?v=20260805h">
+  <link rel="stylesheet" href="assets/institute/style.css?v=20260805i">
   <link rel="icon" href="assets/institute/img/logo-emblem.svg">
   <style>body{font-family:"Noto Kufi Arabic","Segoe UI",Tahoma,sans-serif}</style>
 </head>
@@ -536,8 +536,15 @@
         <h2 class="section-title">أخبار التكوين المهني بالمغرب</h2>
         <p class="section-lead">آخر مستجدّات قطاع التكوين المهني ومكتب التكوين المهني وإنعاش الشغل (OFPPT)، تُجلب تلقائيًا من مصادر إخبارية وطنية. تُفتح الأخبار في مواقعها الأصلية.</p>
       </div>
-      <div class="mfp-grid" id="mfpNews" aria-live="polite">
-        <div class="mfp-loading">⏳ جاري تحميل آخر الأخبار…</div>
+      <div class="carousel reveal" id="mfpCarousel" data-manual>
+        <button class="car-arrow car-prev" type="button" aria-label="السابق">›</button>
+        <div class="car-viewport">
+          <div class="car-track" id="mfpNews" aria-live="polite">
+            <div class="mfp-loading">⏳ جاري تحميل آخر الأخبار…</div>
+          </div>
+        </div>
+        <button class="car-arrow car-next" type="button" aria-label="التالي">‹</button>
+        <div class="car-dots" id="mfpDots"></div>
       </div>
       <p class="mfp-note reveal">🔗 المصدر: Google News — المعهد غير مسؤول عن محتوى المصادر الخارجية.</p>
     </div>
@@ -1064,7 +1071,7 @@
 
   <button id="toTop" class="to-top" aria-label="العودة إلى الأعلى">↑</button>
 
-  <script src="assets/institute/main.js?v=20260805h"></script>
-  <script src="assets/institute/results.js?v=20260805h"></script>
+  <script src="assets/institute/main.js?v=20260805i"></script>
+  <script src="assets/institute/results.js?v=20260805i"></script>
 </body>
 </html>

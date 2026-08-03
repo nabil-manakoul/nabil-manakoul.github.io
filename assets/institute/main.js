@@ -293,9 +293,12 @@
   })();
 
   // ===== Carousels (auto every 5s) =====
-  document.querySelectorAll('.carousel').forEach(function(root){
+  function initCarousel(root){
     var viewport = root.querySelector('.car-viewport');
     var track = root.querySelector('.car-track');
+    if(!viewport || !track || !track.children.length) return;
+    if(root.getAttribute('data-car-init')) return;   // avoid double init
+    root.setAttribute('data-car-init', '1');
     var slides = Array.prototype.slice.call(track.children);
     var dotsWrap = root.querySelector('.car-dots');
     var index = 0, timer, dots = [];
@@ -338,7 +341,11 @@
     window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ index = Math.min(index, maxIndex()); buildDots(); apply(); }, 160); });
 
     buildDots(); apply(); start();
-  });
+  }
+  // auto-init all static carousels (skip ones marked for manual/async init)
+  document.querySelectorAll('.carousel:not([data-manual])').forEach(initCarousel);
+  // expose so async-loaded carousels (e.g. news) can init themselves
+  window.ISTAinitCarousel = initCarousel;
 
   // ===== Reviews (localStorage persistence) =====
   (function initReviews(){
@@ -873,9 +880,10 @@
 // ===== Vocational-training news (auto-fetched from Google News RSS) =====
 (function mfpNews(){
   var box = document.getElementById('mfpNews');
+  var root = document.getElementById('mfpCarousel');
   if(!box || !window.fetch) return;
 
-  var COUNT = 6;
+  var COUNT = 9;
   var QUERY = '"التكوين المهني" OR OFPPT OR "مكتب التكوين المهني وإنعاش الشغل"';
   var FEED = 'https://news.google.com/rss/search?q=' + encodeURIComponent(QUERY) + '&hl=ar&gl=MA&ceid=MA:ar';
   var SEARCH_PAGE = 'https://news.google.com/search?q=' + encodeURIComponent(QUERY) + '&hl=ar&gl=MA&ceid=MA:ar';
@@ -909,21 +917,25 @@
     for(var i = 0; i < Math.min(items.length, COUNT); i++){
       var it = items[i];
       var s = splitSource(it.title, it.source);
-      html += '<a class="mfp-card" href="' + esc(it.link) + '" target="_blank" rel="noopener noreferrer">' +
-        '<div class="mfp-top">' +
-          (s.source ? '<span class="mfp-source">' + esc(s.source) + '</span>' : '<span class="mfp-source">خبر</span>') +
-          '<span class="mfp-date">' + esc(timeAgo(it.pubDate)) + '</span>' +
-        '</div>' +
-        '<h4 class="mfp-title">' + esc(s.title) + '</h4>' +
-        '<span class="mfp-go">اقرأ الخبر ↗</span>' +
-      '</a>';
+      html += '<div class="car-slide mfp-slide">' +
+        '<a class="mfp-card" href="' + esc(it.link) + '" target="_blank" rel="noopener noreferrer">' +
+          '<div class="mfp-top">' +
+            (s.source ? '<span class="mfp-source">' + esc(s.source) + '</span>' : '<span class="mfp-source">خبر</span>') +
+            '<span class="mfp-date">' + esc(timeAgo(it.pubDate)) + '</span>' +
+          '</div>' +
+          '<h4 class="mfp-title">' + esc(s.title) + '</h4>' +
+          '<span class="mfp-go">اقرأ الخبر ↗</span>' +
+        '</a>' +
+      '</div>';
     }
     box.innerHTML = html;
+    if(window.ISTAinitCarousel && root) window.ISTAinitCarousel(root);
   }
 
   function fallback(){
-    box.innerHTML = '<div class="mfp-fallback"><p>تعذّر تحميل الأخبار تلقائيًا حاليًا.</p>' +
+    var msg = '<div class="mfp-fallback"><p>تعذّر تحميل الأخبار تلقائيًا حاليًا.</p>' +
       '<a class="btn btn-primary" href="' + SEARCH_PAGE + '" target="_blank" rel="noopener noreferrer">تصفّح أخبار التكوين المهني ↗</a></div>';
+    if(root) root.innerHTML = msg; else box.innerHTML = msg;
   }
 
   // 1) Primary: rss2json (returns clean JSON, CORS-enabled)
