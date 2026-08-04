@@ -209,8 +209,10 @@ h1,h2,h3{line-height:1.3;margin:0 0 .5em}
 .cap-seats{flex:none;text-align:center}
 .cap-seats .cap-num{display:block;font-size:1.9rem;font-weight:900;color:var(--green);line-height:1}
 .cap-seats .cap-lab{font-size:.72rem;color:var(--muted)}
-.cap-note{display:flex;align-items:center;gap:8px;background:#fff8ec;border-top:1px solid #f2e3c4;color:#7a5a1e;padding:14px 24px;font-size:.9rem}
-.cap-note b{color:#8a5a12}
+.cap-note{display:flex;align-items:flex-start;gap:10px;background:#fff8ec;border-top:1px solid #f2e3c4;color:#7a5a1e;padding:14px 24px;font-size:.9rem;line-height:1.8}
+.cap-note .cn-ico{flex:none;font-size:1.05rem;line-height:1.7}
+.cap-note .cn-txt{flex:1}
+.cap-note b{color:#8a5a12;font-weight:800}
 
 /* Registration status badges */
 .date{position:relative}
