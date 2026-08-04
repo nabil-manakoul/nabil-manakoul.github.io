@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/institute/style.css?v=20260805o">
+  <link rel="stylesheet" href="assets/institute/style.css?v=20260805p">
   <link rel="icon" href="assets/institute/img/logo-emblem.svg">
   <style>body{font-family:"Noto Kufi Arabic","Segoe UI",Tahoma,sans-serif}</style>
 </head>
@@ -253,16 +253,15 @@
   <!-- Programs -->
   <section class="section" id="programs">
     <div class="container">
-      <div class="center reveal" style="margin-bottom:14px">
-        <span class="eyebrow">الشعب والتخصصات</span>
-        <h2 class="section-title">الشعب المتوفرة بالمعهد</h2>
-        <p class="section-lead">شعب تكوينية موزّعة على أربعة مستويات — <b>تقني متخصص</b>، <b>تقني</b>، <b>التأهيل</b> و<b>التخصص</b> — مصمّمة لتزويدك بمهارات عملية قابلة للتوظيف مباشرة.</p>
+      <div class="rhub-bar reveal">
+        <span class="rhub-bar-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </span>
+        <div class="rhub-bar-txt">
+          <h2>الشعب والتخصصات المتوفرة</h2>
+          <p>شعب تكوينية موزّعة على أربعة مستويات — تقني متخصص، تقني، التأهيل والتخصص — مصمّمة لتزويدك بمهارات عملية قابلة للتوظيف مباشرة.</p>
+        </div>
       </div>
-
-      <figure class="passerelles reveal">
-        <img src="assets/institute/img/passerelles.jpg?v=2" alt="نظام الممرات بالتكوين المهني — مستوى التخصص، التأهيل، التقني، التقني المتخصص">
-        <figcaption>نظام الممرات — اختيارك لتطوير مسارك خطوةً خطوة نحو مستويات أعلى.</figcaption>
-      </figure>
 
       <!-- Level: Technicien Spécialisé -->
       <div class="level-group reveal">
@@ -372,6 +371,39 @@
           </div>
         </div>
         <div class="cap-note"><span>ℹ️</span> بالنسبة لبعض الشعب، عند شغل جميع المقاعد يُفتح التسجيل عبر <b>دراسة الملفات</b>.</div>
+      </div>
+
+      <!-- Passerelles system (enriched from the admission code) -->
+      <div class="pass-block reveal" id="passerelles">
+        <div class="pass-header">
+          <span class="pass-ico" aria-hidden="true">🪜</span>
+          <div>
+            <h3>نظام الممرات</h3>
+            <p>مسار تدرّجي يتيح للمتدرّب الارتقاء من مستوى إلى المستوى الأعلى بالاعتماد على دبلومه المحصّل عليه — دون البدء من الصفر — لبناء مساره المهني خطوةً خطوة.</p>
+          </div>
+        </div>
+        <div class="pass-grid">
+          <figure class="passerelles">
+            <img src="assets/institute/img/passerelles.jpg?v=2" alt="نظام الممرات بالتكوين المهني — من مستوى التخصص إلى التأهيل فالتقني فالتقني المتخصص">
+            <figcaption>من التخصص نحو التقني المتخصص — ارتقاءٌ خطوةً خطوة.</figcaption>
+          </figure>
+          <div class="pass-side">
+            <ol class="pass-ladder">
+              <li><span class="pl-path"><b>التخصص</b> ← <b>التأهيل</b></span><em>بالحصول على دبلوم مستوى التخصص.</em></li>
+              <li><span class="pl-path"><b>التأهيل</b> ← <b>التقني</b></span><em>بالحصول على دبلوم مستوى التأهيل.</em></li>
+              <li><span class="pl-path"><b>التقني</b> ← <b>التقني المتخصص</b></span><em>للناجحين في امتحان نهاية التكوين من خرّيجي المكتب (الأفواج السابقة)، وفق شروط الولوج.</em></li>
+            </ol>
+            <div class="pass-notes">
+              <b>🎂 حدود السن ضمن نظام الممرات (في فاتح شتنبر 2026):</b>
+              <ul>
+                <li>التقني المتخصص: <b>33 سنة</b> كحد أقصى</li>
+                <li>التقني: <b>33 سنة</b> كحد أقصى</li>
+                <li>التأهيل: <b>32 سنة</b> كحد أقصى</li>
+              </ul>
+              <p class="pass-tip">💡 حاملو دبلوم من خارج المكتب: يُقبل الدبلوم إذا كان مصادقًا عليه ومطابقًا لجدول التكافؤ المعتمد من مديرية البحث والهندسة (DRIF).</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1141,7 +1173,7 @@
 
   <button id="toTop" class="to-top" aria-label="العودة إلى الأعلى">↑</button>
 
-  <script src="assets/institute/main.js?v=20260805o"></script>
-  <script src="assets/institute/results.js?v=20260805o"></script>
+  <script src="assets/institute/main.js?v=20260805p"></script>
+  <script src="assets/institute/results.js?v=20260805p"></script>
 </body>
 </html>
