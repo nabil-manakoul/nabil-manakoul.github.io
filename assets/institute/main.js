@@ -1,4 +1,18 @@
 // ISTA Tafraout — interactions
+
+// On page refresh/reload, always return to the top (home) instead of
+// restoring the previous scroll position or jumping to the last #anchor.
+(function backHomeOnReload(){
+  if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+  var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
+  var isReload = nav ? nav.type === 'reload' : (performance.navigation && performance.navigation.type === 1);
+  if(isReload){
+    if(location.hash){ history.replaceState(null, '', location.pathname + location.search); }
+    window.scrollTo(0, 0);
+    window.addEventListener('load', function(){ window.scrollTo(0, 0); });
+  }
+})();
+
 (function(){
   // Mobile menu
   var burger = document.querySelector('.burger');
