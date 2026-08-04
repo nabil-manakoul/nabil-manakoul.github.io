@@ -179,8 +179,8 @@ h1,h2,h3{line-height:1.3;margin:0 0 .5em}
 .prog-ico{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;margin-bottom:16px;color:#fff}
 .prog-ico svg{width:30px;height:30px;stroke:#fff}
 .card h3{color:var(--brand-dark);font-size:1.2rem}
-.card .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.chip{background:#eef5f8;color:var(--brand);border-radius:999px;padding:5px 12px;font-size:.82rem;font-weight:700}
+.card .meta,.pc-content .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.chip{display:inline-flex;align-items:center;line-height:1.5;background:#eef5f8;color:var(--brand);border-radius:999px;padding:5px 12px;font-size:.82rem;font-weight:700;white-space:nowrap}
 .chip.dip{background:#fdeee9;color:var(--accent)}
 .chip.seats{background:#e8f5ec;color:var(--green);font-weight:800}
 
