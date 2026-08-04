@@ -322,7 +322,7 @@ body.pm-active .header{display:none}
 .fac figcaption p{color:var(--muted);margin:.3em 0 0;font-size:.9rem}
 
 /* ===== Registration ===== */
-.reg{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
+.reg{display:block}
 .steps{list-style:none;margin:0;padding:0;counter-reset:s}
 .steps li{position:relative;padding:0 62px 24px 0;counter-increment:s}
 .steps li:before{
@@ -340,6 +340,11 @@ body.pm-active .header{display:none}
 .reg-card .ok{color:var(--accent-2);flex:none;font-weight:900}
 .reg-card .btn{margin-top:18px;background:var(--accent-2);color:var(--brand-dark)}
 .reg-card .btn:hover{background:#ffbe3d}
+/* full-width variant placed under the access conditions */
+.reg-card-wide{margin-top:24px}
+.reg-card-wide ul{display:grid;grid-template-columns:1fr 1fr;gap:0 30px}
+.reg-card-wide li:nth-last-child(2){border-bottom:0}
+@media (max-width:700px){.reg-card-wide ul{grid-template-columns:1fr}.reg-card-wide li:nth-last-child(2){border-bottom:1px dashed rgba(255,255,255,.18)}}
 
 /* ===== MyWay portal banner ===== */
 .portal-banner{display:flex;align-items:center;gap:18px;background:linear-gradient(120deg,var(--brand),var(--brand-2));color:#fff;border-radius:16px;padding:20px 26px;box-shadow:var(--shadow);margin-bottom:30px;text-decoration:none;transition:.25s}
