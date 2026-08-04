@@ -1129,8 +1129,9 @@ body.nmodal-lock{overflow:hidden}
 .fees-table tbody tr:last-child td{border-bottom:0}
 .fees-table tbody tr:nth-child(even){background:#f6f9fb}
 .fees-notes ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.fees-notes li{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:#3a4a54;line-height:1.65}
+.fees-notes li{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:#3a4a54;line-height:1.7;text-align:start}
 .fees-notes li .ok{flex:none}
+.fees-notes li>span:last-child{flex:1}
 .reg-official{margin:26px 0 0;text-align:center;color:var(--muted);font-size:.86rem;background:#eef5f8;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
 @media (max-width:900px){.acc-grid{grid-template-columns:repeat(2,1fr)}.fees-wrap{grid-template-columns:1fr}}
 @media (max-width:520px){.acc-grid{grid-template-columns:1fr}}
