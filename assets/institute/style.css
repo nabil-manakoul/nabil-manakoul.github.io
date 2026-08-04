@@ -1098,3 +1098,37 @@ body.nmodal-lock{overflow:hidden}
 .mfp-title{margin:0 0 14px;font-size:1rem;font-weight:800;color:var(--brand-dark);line-height:1.6;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .mfp-go{font-size:.85rem;font-weight:800;color:var(--brand-2)}
 .mfp-note{margin:22px 0 0;text-align:center;color:var(--muted);font-size:.84rem}
+
+/* ===================== شروط الولوج + ملف التسجيل + الواجبات ===================== */
+.reg-subtitle{display:flex;align-items:center;gap:10px;font-size:1.3rem;font-weight:900;color:var(--brand-dark);margin:44px 0 20px}
+.reg-subtitle span{font-size:1.5rem;line-height:1}
+.acc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.acc-card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--brand);border-radius:14px;padding:18px;box-shadow:var(--shadow-sm);transition:transform .22s,box-shadow .22s}
+.acc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.acc-card .ac-head{margin-bottom:12px}
+.ac-row{padding:9px 0;border-top:1px dashed var(--line)}
+.ac-row:first-of-type{border-top:0}
+.ac-row b{display:block;font-size:.78rem;font-weight:800;color:var(--brand);margin-bottom:3px}
+.ac-row span{font-size:.86rem;color:#3a4a54;line-height:1.6}
+/* colored top border per level */
+.acc-card:nth-child(1){border-top-color:var(--brand)}
+.acc-card:nth-child(2){border-top-color:var(--brand-2)}
+.acc-card:nth-child(3){border-top-color:var(--accent-2)}
+.acc-card:nth-child(4){border-top-color:var(--accent)}
+
+.fees-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:26px}
+.fees-card,.fees-notes{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow-sm)}
+.fees-card h3,.fees-notes h3{margin:0 0 14px;color:var(--brand-dark);font-size:1.12rem}
+.fees-table{width:100%;border-collapse:collapse;font-size:.92rem}
+.fees-table th{background:var(--brand);color:#fff;padding:11px 14px;text-align:start;font-weight:800}
+.fees-table th:last-child{text-align:center}
+.fees-table td{padding:11px 14px;border-bottom:1px solid var(--line);color:var(--brand-dark)}
+.fees-table td:last-child{text-align:center;font-weight:900;color:var(--brand)}
+.fees-table tbody tr:last-child td{border-bottom:0}
+.fees-table tbody tr:nth-child(even){background:#f6f9fb}
+.fees-notes ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.fees-notes li{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:#3a4a54;line-height:1.65}
+.fees-notes li .ok{flex:none}
+.reg-official{margin:26px 0 0;text-align:center;color:var(--muted);font-size:.86rem;background:#eef5f8;border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+@media (max-width:900px){.acc-grid{grid-template-columns:repeat(2,1fr)}.fees-wrap{grid-template-columns:1fr}}
+@media (max-width:520px){.acc-grid{grid-template-columns:1fr}}
