@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/institute/style.css?v=20260806i">
+  <link rel="stylesheet" href="assets/institute/style.css?v=20260806k">
   <link rel="icon" href="assets/institute/img/logo-emblem.svg">
   <style>body{font-family:"Noto Kufi Arabic","Segoe UI",Tahoma,sans-serif}</style>
 </head>
@@ -282,7 +282,7 @@
         <div class="level-head"><span class="level-badge qa">التأهيل</span><span class="level-note">مستوى الدخول: إتمام الثالثة إعدادي أو دبلوم التخصص · السن: 30 سنة كحد أقصى · مدة التكوين: سنتان</span></div>
         <div class="prog-list">
           <article class="prog-card2">
-            <div class="pc-media pc-media-tall"><img src="assets/institute/img/prog-elec-install.jpg?v=3" alt="كهرباء الإنشاءات — تكوين تقني بالمعهد" loading="lazy"></div>
+            <div class="pc-media pc-media-tall"><img src="assets/institute/img/prog-elec-install.jpg?v=4" alt="كهرباء الإنشاءات — تكوين تقني بالمعهد" loading="lazy"></div>
             <div class="pc-content">
               <h3>كهرباء الإنشاءات</h3>
               <p>تركيب وصيانة الشبكات والتجهيزات الكهربائية، الحماية والتحكّم في التركيبات الكهربائية للمنشآت.</p>
@@ -467,19 +467,79 @@
         </div>
       </div>
 
-      <!-- Registration file (under access conditions) -->
-      <aside class="reg-card reg-card-wide reveal">
-        <h3>📄 ملف التسجيل</h3>
-        <ul>
-          <li><span class="ok">✓</span> نسخة من البطاقة الوطنية للتعريف أو رسم الولادة.</li>
-          <li><span class="ok">✓</span> الوثائق المثبتة للمستوى الدراسي المطلوب (نسخ مصادق عليها من الشهادات وكشوف النقط).</li>
-          <li><span class="ok">✓</span> بالنسبة للتقني المتخصص: أصل شهادة البكالوريا.</li>
-          <li><span class="ok">✓</span> وصل أداء واجبات التسجيل (الأداء إلكترونيًا عبر البوابة).</li>
-          <li><span class="ok">✓</span> نموذج الترخيص بمعالجة المعطيات الشخصية موقّعًا (يُحمّل من بوابة المترشّح).</li>
-          <li><span class="ok">✓</span> صور شمسية حديثة.</li>
-        </ul>
-        <a href="https://www.myway.ac.ma/fr" target="_blank" rel="noopener" class="btn">التسجيل عبر بوابة MyWay ↗</a>
-      </aside>
+      <!-- Registration file — required documents per level -->
+      <div class="regfile reveal">
+        <div class="regfile-head">
+          <span class="rf-ico" aria-hidden="true">📄</span>
+          <div>
+            <h3>ملف التسجيل — الوثائق المطلوبة</h3>
+            <p>اختر مستواك لعرض لائحة الوثائق المطلوبة لتكوين ملف التسجيل. تُقدَّم النسخ مصادقًا عليها داخل الآجال المحددة.</p>
+          </div>
+        </div>
+
+        <div class="tabset regfile-tabs">
+          <div class="tabs" role="tablist" aria-label="المستوى">
+            <button class="tab is-active" role="tab" aria-selected="true" data-panel="rf-ts">تقني متخصص</button>
+            <button class="tab" role="tab" aria-selected="false" data-panel="rf-tc">تقني</button>
+            <button class="tab" role="tab" aria-selected="false" data-panel="rf-qa">التأهيل</button>
+            <button class="tab" role="tab" aria-selected="false" data-panel="rf-sp">التخصص</button>
+          </div>
+          <div class="tab-panels">
+            <div class="tab-panel is-active" id="rf-ts" role="tabpanel">
+              <ul class="doclist">
+                <li><span class="dl-ico">📄</span><span>نسختان مصادق عليهما من شهادة البكالوريا.</span></li>
+                <li><span class="dl-ico">📄</span><span>نسختان مصادق عليهما من بيان النقط.</span></li>
+                <li><span class="dl-ico">🪪</span><span>نسختان مصادق عليهما من البطاقة الوطنية للتعريف <span dir="ltr">(A4)</span>.</span></li>
+                <li><span class="dl-ico">📷</span><span>صورتان شمسيتان حديثتان.</span></li>
+                <li><span class="dl-ico">📘</span><span>القانون الداخلي مصادق عليه.</span></li>
+                <li><span class="dl-ico">📝</span><span>وثيقة الموافقة على معالجة المعطيات الشخصية موقّعة.</span></li>
+                <li><span class="dl-ico">💰</span><span>وصل أداء مصاريف الملف <b>(50 درهم)</b>.</span></li>
+                <li><span class="dl-ico">💰</span><span>وصل أداء مصاريف التسجيل <b>(950 درهم)</b>.</span></li>
+              </ul>
+            </div>
+            <div class="tab-panel" id="rf-tc" role="tabpanel">
+              <ul class="doclist">
+                <li><span class="dl-ico">📄</span><span>شهادتان مدرسيتان تثبتان استكمال السنة الثانية بكالوريا، أو دبلوم التأهيل المهني (حسب جدول مطابقة الشعب).</span></li>
+                <li><span class="dl-ico">🪪</span><span>نسختان مصادق عليهما من البطاقة الوطنية للتعريف <span dir="ltr">(A4)</span>.</span></li>
+                <li><span class="dl-ico">📷</span><span>صورتان شمسيتان حديثتان.</span></li>
+                <li><span class="dl-ico">📘</span><span>القانون الداخلي مصادق عليه.</span></li>
+                <li><span class="dl-ico">📝</span><span>وثيقة الموافقة على معالجة المعطيات الشخصية موقّعة.</span></li>
+                <li><span class="dl-ico">💰</span><span>وصل أداء مصاريف الملف <b>(50 درهم)</b>.</span></li>
+                <li><span class="dl-ico">💰</span><span>وصل أداء مصاريف التسجيل <b>(800 درهم)</b>.</span></li>
+              </ul>
+            </div>
+            <div class="tab-panel" id="rf-qa" role="tabpanel">
+              <ul class="doclist">
+                <li><span class="dl-ico">📄</span><span>شهادتان مدرسيتان تثبتان استكمال السنة الثالثة إعدادي، أو دبلوم التخصص.</span></li>
+                <li><span class="dl-ico">🪪</span><span>نسختان مصادق عليهما من البطاقة الوطنية للتعريف <span dir="ltr">(A4)</span>.</span></li>
+                <li><span class="dl-ico">📷</span><span>صورتان شمسيتان حديثتان.</span></li>
+                <li><span class="dl-ico">📘</span><span>القانون الداخلي مصادق عليه.</span></li>
+                <li><span class="dl-ico">📝</span><span>وثيقة الموافقة على معالجة المعطيات الشخصية موقّعة.</span></li>
+                <li><span class="dl-ico">💰</span><span>وصل أداء مصاريف الملف <b>(50 درهم)</b>.</span></li>
+                <li><span class="dl-ico">💰</span><span>وصل أداء مصاريف التسجيل <b>(550 درهم)</b>.</span></li>
+              </ul>
+            </div>
+            <div class="tab-panel" id="rf-sp" role="tabpanel">
+              <ul class="doclist">
+                <li><span class="dl-ico">📄</span><span>شهادتان مدرسيتان تثبتان استكمال السنة السادسة ابتدائي.</span></li>
+                <li><span class="dl-ico">🪪</span><span>نسختان مصادق عليهما من البطاقة الوطنية للتعريف <span dir="ltr">(A4)</span>، أو عقد الازدياد.</span></li>
+                <li><span class="dl-ico">📷</span><span>صورتان شمسيتان حديثتان.</span></li>
+                <li><span class="dl-ico">📘</span><span>القانون الداخلي مصادق عليه.</span></li>
+                <li><span class="dl-ico">📝</span><span>وثيقة الموافقة على معالجة المعطيات الشخصية موقّعة.</span></li>
+                <li><span class="dl-ico">💰</span><span>وصل أداء مصاريف الملف <b>(50 درهم)</b>.</span></li>
+                <li><span class="dl-ico">💰</span><span>وصل أداء مصاريف التسجيل <b>(400 درهم)</b>.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="regfile-templates">
+          <span class="rft-label">📥 نماذج للتحميل:</span>
+          <a class="tmpl-btn is-soon" href="#" data-doc="reglement" aria-disabled="true">📘 القانون الداخلي (PDF)</a>
+          <a class="tmpl-btn is-soon" href="#" data-doc="rgpd" aria-disabled="true">📝 وثيقة معالجة المعطيات الشخصية (PDF)</a>
+          <span class="rft-soon">النماذج ستتوفّر للتحميل قريبًا.</span>
+        </div>
+      </div>
 
       <!-- Fees + notes -->
       <div class="fees-wrap reveal">
@@ -1207,7 +1267,7 @@
 
   <button id="toTop" class="to-top" aria-label="العودة إلى الأعلى">↑</button>
 
-  <script src="assets/institute/main.js?v=20260806i"></script>
-  <script src="assets/institute/results.js?v=20260806i"></script>
+  <script src="assets/institute/main.js?v=20260806k"></script>
+  <script src="assets/institute/results.js?v=20260806k"></script>
 </body>
 </html>
