@@ -1218,6 +1218,7 @@ body.nmodal-lock{overflow:hidden}
 .rft-label{font-weight:800;color:var(--brand-dark);font-size:.92rem}
 .tmpl-btn{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;text-decoration:none;padding:9px 16px;border-radius:10px;background:var(--brand);color:#fff;transition:.2s}
 .tmpl-btn:hover{background:var(--brand-dark)}
+.tmpl-fmt{opacity:.75;font-weight:600;font-size:.8rem}
 .tmpl-btn.is-soon{background:#eef2f5;color:var(--muted);border:1px dashed var(--line);cursor:not-allowed;pointer-events:none}
 .rft-soon{font-size:.82rem;color:var(--muted)}
 @media (max-width:640px){.doclist{grid-template-columns:1fr}}
