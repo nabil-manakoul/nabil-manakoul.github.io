@@ -1031,3 +1031,33 @@
 
   viaRss2json().catch(function(){ return viaAllOrigins(); }).catch(function(){ fallback(); });
 })();
+
+// ===== Smooth centered scroll for the re-registration callout =====
+(function reinscScroll(){
+  var link = document.querySelector('a.reinsc-callout');
+  var target = document.getElementById('reinscription');
+  if(!link || !target) return;
+  link.addEventListener('click', function(e){
+    e.preventDefault();
+    // ensure the section (and its reveal animation) is visible
+    target.classList.add('in');
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var h = target.offsetHeight;
+    var rectTop = target.getBoundingClientRect().top + window.pageYOffset;
+    var top;
+    if(h >= vh - 100){
+      // taller than the viewport: place its heading just below the header
+      top = rectTop - 84;
+    } else {
+      // center it in the screen
+      top = rectTop - Math.max(84, (vh - h) / 2);
+    }
+    if(top < 0) top = 0;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+    // brief highlight so it's obvious where we landed
+    target.classList.remove('reinsc-flash');
+    void target.offsetWidth; // reflow to restart animation
+    target.classList.add('reinsc-flash');
+    if(history.replaceState) history.replaceState(null, '', '#reinscription');
+  });
+})();
