@@ -1230,9 +1230,14 @@ body.nmodal-lock{overflow:hidden}
 .regfile.in .tab-panel.is-active .doclist li:nth-child(6){animation-delay:.34s}
 .regfile.in .tab-panel.is-active .doclist li:nth-child(7){animation-delay:.40s}
 .regfile.in .tab-panel.is-active .doclist li:nth-child(8){animation-delay:.46s}
+.cond-frame.in .acc-grid .acc-card{opacity:0;animation:rfDocIn .55s ease both}
+.cond-frame.in .acc-grid .acc-card:nth-child(1){animation-delay:.06s}
+.cond-frame.in .acc-grid .acc-card:nth-child(2){animation-delay:.16s}
+.cond-frame.in .acc-grid .acc-card:nth-child(3){animation-delay:.26s}
+.cond-frame.in .acc-grid .acc-card:nth-child(4){animation-delay:.36s}
 @media (prefers-reduced-motion:reduce){
-  .regfile.in::before,.regfile.in .rf-ico,.regfile.in .tab-panel.is-active .doclist li{animation:none}
-  .regfile.in .tab-panel.is-active .doclist li{opacity:1}
+  .regfile.in::before,.regfile.in .rf-ico,.regfile.in .tab-panel.is-active .doclist li,.cond-frame.in .acc-grid .acc-card{animation:none}
+  .regfile.in .tab-panel.is-active .doclist li,.cond-frame.in .acc-grid .acc-card{opacity:1}
 }
 /* templates download row */
 .regfile-templates{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:20px;padding-top:18px;border-top:1px dashed var(--line)}
