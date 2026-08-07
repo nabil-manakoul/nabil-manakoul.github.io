@@ -1061,3 +1061,42 @@
     if(history.replaceState) history.replaceState(null, '', '#reinscription');
   });
 })();
+
+// ===== Program image panorama (auto-rotating slideshow per program card) =====
+(function progPanorama(){
+  var panos = document.querySelectorAll('[data-pano]');
+  if(!panos.length) return;
+  panos.forEach(function(pano, gi){
+    var slides = pano.querySelectorAll('.pc-slide');
+    if(slides.length < 2) return;
+    // build dot indicators
+    var dots = document.createElement('div');
+    dots.className = 'pc-dots';
+    for(var d=0; d<slides.length; d++){
+      var dot = document.createElement('i');
+      if(d===0) dot.className = 'on';
+      dots.appendChild(dot);
+    }
+    pano.appendChild(dots);
+    var dotEls = dots.querySelectorAll('i');
+    var i = 0;
+    function go(n){
+      slides[i].classList.remove('is-active');
+      dotEls[i].classList.remove('on');
+      i = (n + slides.length) % slides.length;
+      slides[i].classList.add('is-active');
+      dotEls[i].classList.add('on');
+    }
+    var DUR = 4500;
+    var timer = null;
+    function start(){ if(!timer) timer = setInterval(function(){ go(i+1); }, DUR); }
+    function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+    // stagger the start so cards don't all flip in unison
+    setTimeout(start, gi * 900);
+    // pause on hover, resume on leave
+    pano.addEventListener('mouseenter', stop);
+    pano.addEventListener('mouseleave', start);
+    // pause when the page/tab is hidden
+    document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+  });
+})();
