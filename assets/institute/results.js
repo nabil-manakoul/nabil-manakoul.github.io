@@ -43,11 +43,11 @@ window.ISTA_RESULTS = {
     program:     "تسيير المقاولات",
     level:       "تقني متخصص",
     note:        "الانتقاء حسب نقط الباكالوريا ووفق الخريطة التكوينية — لائحة رسمية للمقبولين ولوائح الانتظار حسب عدد المترشّحين المستوفين للشروط.",
-    status:      "waiting",
-    resultDate:  "",   // تاريخ إصدار النتائج، مثال: "02 شتنبر 2026"
-    deadline:    "",   // آخر أجل لتأكيد التسجيل، مثال: "09 شتنبر 2026"
-    deadlineISO: "",   // للعدّاد العكسي، مثال: "2026-09-09T23:59:59"
-    url:         "",   // اللائحة الرسمية للمقبولين
+    status:      "published",
+    resultDate:  "31 يوليوز 2026",       // تاريخ إصدار النتائج
+    deadline:    "07 غشت 2026",          // آخر أجل لتأكيد التسجيل
+    deadlineISO: "2026-08-07T23:59:59",  // للعدّاد العكسي (نهاية أجل الأسبوع)
+    url:         "",   // اللائحة الرسمية للمقبولين (رابط الملف عند توفّره)
     url2:        ""    // لوائح الانتظار (اختياري)
   },
 
@@ -252,12 +252,13 @@ window.ISTA_RESULTS = {
     if (selTimer) { clearInterval(selTimer); selTimer = null; }
     var s = ROOT.selection;
     if (!s) { selBox.innerHTML = ""; return; }
-    var pub = s.status === "published" && s.url;
-    var cls = "rsel-card " + (pub ? "is-pub" : "is-wait");
+    var announced = s.status === "published";   // selection results are out
+    var hasList   = announced && s.url;          // official list document link available
+    var cls = "rsel-card " + (announced ? "is-pub" : "is-wait");
 
     // ----- timeline phase (drives step-1 countdown & step-2 waitlist message) -----
     var target = s.deadlineISO ? new Date(s.deadlineISO).getTime() : NaN;
-    var hasTarget = pub && !isNaN(target);
+    var hasTarget = announced && !isNaN(target);
     var counting = hasTarget && Date.now() < target;   // week still running
     var passed   = hasTarget && Date.now() >= target;  // confirmation week ended
 
@@ -285,18 +286,27 @@ window.ISTA_RESULTS = {
       : '<span>بعد انتهاء أجل الأسبوع، تُستدعى لوائح الانتظار تِباعًا لملء المقاعد الشاغرة.</span>';
 
     var status, actions, extra = "";
-    if (pub) {
-      status = '<span class="rsel-status pub">✓ متاحة الآن</span>';
-      actions =
-        '<a class="rc-btn go" href="' + esc(s.url) + '" target="_blank" rel="noopener">' +
-          '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>' +
-          '<span>اللائحة الرسمية للمقبولين</span>' +
-        '</a>' +
-        (s.url2 ?
-          '<a class="rc-btn go2" href="' + esc(s.url2) + '" target="_blank" rel="noopener">' +
-            '<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>' +
-            '<span>لوائح الانتظار</span>' +
-          '</a>' : "");
+    if (announced) {
+      status = '<span class="rsel-status pub">📢 النتائج معلنة</span>';
+      if (hasList) {
+        actions =
+          '<a class="rc-btn go" href="' + esc(s.url) + '" target="_blank" rel="noopener">' +
+            '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>' +
+            '<span>اللائحة الرسمية للمقبولين</span>' +
+          '</a>' +
+          (s.url2 ?
+            '<a class="rc-btn go2" href="' + esc(s.url2) + '" target="_blank" rel="noopener">' +
+              '<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>' +
+              '<span>لوائح الانتظار</span>' +
+            '</a>' : "");
+      } else {
+        actions =
+          '<a class="rc-btn go2" href="https://www.myway.ac.ma/fr" target="_blank" rel="noopener">' +
+            '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>' +
+            '<span>الاطّلاع عبر MyWay</span>' +
+          '</a>' +
+          '<span class="rc-hint">اللوائح الرسمية معلّقة بالمعهد ومتاحة عبر بوابة MyWay.</span>';
+      }
 
       // date pills: results-issue date + registration-confirmation deadline
       var pills = "";
