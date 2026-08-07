@@ -228,9 +228,9 @@ window.ISTA_RESULTS = {
     function tick() {
       var diff = target - Date.now();
       if (diff <= 0) {
-        el.classList.add("ended");
-        el.innerHTML = '<span class="rsc-ended">⛔ انتهى أجل تأكيد التسجيل</span>';
         if (selTimer) { clearInterval(selTimer); selTimer = null; }
+        // week ended: re-render so step 1 closes and step 2 shows the waitlist call
+        renderSelection();
         return;
       }
       var t = Math.floor(diff / 1000);
@@ -255,6 +255,35 @@ window.ISTA_RESULTS = {
     var pub = s.status === "published" && s.url;
     var cls = "rsel-card " + (pub ? "is-pub" : "is-wait");
 
+    // ----- timeline phase (drives step-1 countdown & step-2 waitlist message) -----
+    var target = s.deadlineISO ? new Date(s.deadlineISO).getTime() : NaN;
+    var hasTarget = pub && !isNaN(target);
+    var counting = hasTarget && Date.now() < target;   // week still running
+    var passed   = hasTarget && Date.now() >= target;  // confirmation week ended
+
+    var step1Html;
+    if (counting) {
+      step1Html =
+        '<div class="rsf-cd" data-deadline="' + esc(s.deadlineISO) + '">' +
+          '<span class="rsf-cd-lbl">⏳ ينتهي أجل تأكيد التسجيل خلال</span>' +
+          '<span class="rsf-cd-units">' +
+            '<span class="rsf-cd-u"><b data-d>00</b><i>يوم</i></span>' +
+            '<span class="rsf-cd-u"><b data-h>00</b><i>ساعة</i></span>' +
+            '<span class="rsf-cd-u"><b data-m>00</b><i>دقيقة</i></span>' +
+            '<span class="rsf-cd-u"><b data-s>00</b><i>ثانية</i></span>' +
+          '</span>' +
+        '</div>';
+    } else if (passed) {
+      step1Html = '<span class="rsf-msg done">✅ انتهى أجل تأكيد التسجيل للمقبولين في اللائحة الرسمية.</span>';
+    } else {
+      step1Html = '<span>أجل تأكيد التسجيل عادةً <b>أسبوع</b> من تاريخ الإعلان (أداء الواجبات وإيداع ملف التسجيل).</span>';
+    }
+
+    var step2Badge = passed ? '<span class="rsf-live">🔔 جارٍ الاستدعاء</span>' : '';
+    var step2Html = passed
+      ? '<span class="rsf-msg live">📣 بدأ استدعاء المترشّحين من لوائح الانتظار حسب ترتيبهم لملء المقاعد الشاغرة — يُرجى من المعنيين متابعة إعلانات المعهد واتصالات الإدارة.</span>'
+      : '<span>بعد انتهاء أجل الأسبوع، تُستدعى لوائح الانتظار تِباعًا لملء المقاعد الشاغرة.</span>';
+
     var status, actions, extra = "";
     if (pub) {
       status = '<span class="rsel-status pub">✓ متاحة الآن</span>';
@@ -274,20 +303,6 @@ window.ISTA_RESULTS = {
       if (s.resultDate) pills += '<span class="rsel-dpill"><i>📅</i> إصدار النتائج: <b>' + esc(s.resultDate) + '</b></span>';
       if (s.deadline)   pills += '<span class="rsel-dpill warn"><i>⏰</i> آخر أجل لتأكيد التسجيل: <b>' + esc(s.deadline) + '</b></span>';
       if (pills) extra += '<div class="rsel-dates">' + pills + '</div>';
-
-      // live countdown to the deadline
-      if (s.deadlineISO) {
-        extra +=
-          '<div class="rsel-count" data-deadline="' + esc(s.deadlineISO) + '">' +
-            '<span class="rsc-label">⏳ المتبقّي على نهاية تأكيد التسجيل</span>' +
-            '<div class="rsc-units">' +
-              '<div class="rsc-u"><b data-d>00</b><span>يوم</span></div>' +
-              '<div class="rsc-u"><b data-h>00</b><span>ساعة</span></div>' +
-              '<div class="rsc-u"><b data-m>00</b><span>دقيقة</span></div>' +
-              '<div class="rsc-u"><b data-s>00</b><span>ثانية</span></div>' +
-            '</div>' +
-          '</div>';
-      }
     } else {
       status = '<span class="rsel-status wait">قيد الانتظار</span>';
       actions =
@@ -319,17 +334,15 @@ window.ISTA_RESULTS = {
           '<h3 class="rsel-title">لائحة المقبولين في الانتقاء</h3>' +
           '<p class="rsel-desc">' + esc(s.note) + '</p>' +
           '<div class="rsel-meta">🎓 الشعبة: <b>' + esc(s.program) + '</b></div>' +
-          '<div class="rsel-flow">' +
-            '<div class="rsel-step">' +
+          '<div class="rsel-flow' + (counting ? ' ph-cd' : (passed ? ' ph-wl' : '')) + '">' +
+            '<div class="rsel-step step1' + (counting ? ' active' : (passed ? ' done' : '')) + '">' +
               '<span class="rsf-n">1</span>' +
-              '<div class="rsf-t"><b>📋 اللائحة الرسمية للمقبولين</b>' +
-                '<span>أجل تأكيد التسجيل عادةً <b>أسبوع</b> من تاريخ الإعلان (أداء الواجبات وإيداع ملف التسجيل).</span></div>' +
+              '<div class="rsf-t"><b>📋 اللائحة الرسمية للمقبولين</b>' + step1Html + '</div>' +
             '</div>' +
             '<span class="rsel-flow-arrow" aria-hidden="true">←</span>' +
-            '<div class="rsel-step">' +
+            '<div class="rsel-step step2' + (passed ? ' active' : '') + '">' +
               '<span class="rsf-n">2</span>' +
-              '<div class="rsf-t"><b>🕒 لوائح الانتظار</b>' +
-                '<span>بعد انتهاء أجل الأسبوع، تُستدعى لوائح الانتظار تِباعًا لملء المقاعد الشاغرة.</span></div>' +
+              '<div class="rsf-t"><b>🕒 لوائح الانتظار' + step2Badge + '</b>' + step2Html + '</div>' +
             '</div>' +
           '</div>' +
           extra +
@@ -338,7 +351,7 @@ window.ISTA_RESULTS = {
       '</div>' +
       '</div>';
     wireNotify(selBox);
-    var cd = selBox.querySelector(".rsel-count");
+    var cd = selBox.querySelector(".rsf-cd");
     if (cd) startCountdown(cd);
   }
 

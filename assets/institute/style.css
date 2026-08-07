@@ -1041,6 +1041,26 @@ body.nmodal-lock{overflow:hidden}
 .rsf-t>span b{color:var(--accent);font-weight:900}
 .rsel-flow-arrow{align-self:center;flex:none;font-size:1.4rem;font-weight:900;color:var(--accent-2);line-height:1}
 @media (max-width:560px){.rsel-flow-arrow{transform:rotate(-90deg);align-self:center;width:100%;text-align:center}}
+/* phase highlighting */
+.rsel-step.active{border-color:var(--accent);box-shadow:0 6px 18px rgba(201,106,84,.16);background:#fff6ea}
+.rsel-step.done{opacity:.72}
+.rsel-step.step2.active{border-color:var(--green);background:#f2fbf5;box-shadow:0 6px 18px rgba(47,125,73,.16)}
+.rsel-step.step2.active .rsf-n{background:linear-gradient(140deg,var(--green),#3fae6a);box-shadow:0 3px 8px rgba(47,125,73,.28)}
+.rsel-step.step2.active .rsf-t>b{color:#1e5c37}
+/* step-1 inline countdown */
+.rsf-cd{margin-top:6px;background:linear-gradient(120deg,#8a4b1e,var(--accent));border-radius:11px;padding:9px 11px;color:#fff;box-shadow:0 6px 16px rgba(201,106,84,.28)}
+.rsf-cd-lbl{display:block;font-size:.76rem;font-weight:800;margin-bottom:6px;opacity:.95}
+.rsf-cd-units{display:flex;gap:6px}
+.rsf-cd-u{flex:1;min-width:0;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);border-radius:8px;padding:4px 2px;text-align:center;line-height:1.15}
+.rsf-cd-u b{display:block;font-size:1.1rem;font-weight:900;font-variant-numeric:tabular-nums}
+.rsf-cd-u i{font-style:normal;font-size:.6rem;opacity:.85}
+/* step messages */
+.rsf-msg{display:block;font-size:.84rem;line-height:1.6;font-weight:700;border-radius:9px;padding:8px 11px;margin-top:4px}
+.rsf-msg.done{color:#6b7f72;background:#f1f5f2;border:1px solid #dfe8e2}
+.rsf-msg.live{color:#1e5c37;background:#eafaf0;border:1px solid #bfe3cc}
+.rsf-live{display:inline-flex;align-items:center;gap:4px;margin-inline-start:8px;font-size:.68rem;font-weight:900;color:#fff;background:var(--green);padding:3px 9px;border-radius:999px;vertical-align:middle;animation:rsfLivePulse 1.6s ease-in-out infinite}
+@keyframes rsfLivePulse{0%,100%{box-shadow:0 0 0 0 rgba(47,125,73,.5)}50%{box-shadow:0 0 0 6px rgba(47,125,73,0)}}
+@media (prefers-reduced-motion:reduce){.rsf-live{animation:none}}
 /* selection date pills + countdown */
 .rsel-dates{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .rsel-dpill{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--brand-dark);background:#eef5f8;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
