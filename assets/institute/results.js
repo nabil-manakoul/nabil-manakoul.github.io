@@ -299,7 +299,17 @@ window.ISTA_RESULTS = {
     }
 
     selBox.innerHTML =
-      '<div class="rsel-head"><span class="rsel-line"></span><span class="rsel-htxt">للمترشّحين الجدد</span><span class="rsel-line"></span></div>' +
+      '<div class="rsel-frame">' +
+      '<div class="rsel-topbar">' +
+        '<span class="rsel-topbar-ico" aria-hidden="true">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 10v6"/></svg>' +
+        '</span>' +
+        '<div class="rsel-topbar-txt">' +
+          '<h2>المترشّحون الجدد</h2>' +
+          '<p>الملتحقون لأوّل مرّة بالمعهد — نتائج الانتقاء حسب نقط الباكالوريا (خاصّ بمستوى التقني المتخصص).</p>' +
+        '</div>' +
+        '<span class="rsel-topbar-badge">✨ التحاق جديد</span>' +
+      '</div>' +
       '<div class="' + cls + '">' +
         '<div class="rsel-ico" aria-hidden="true">' +
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12A10 10 0 1112 2"/><path d="M22 4L12 14.01l-3-3"/></svg>' +
@@ -312,6 +322,7 @@ window.ISTA_RESULTS = {
           extra +
         '</div>' +
         '<div class="rsel-actions">' + actions + '</div>' +
+      '</div>' +
       '</div>';
     wireNotify(selBox);
     var cd = selBox.querySelector(".rsel-count");
