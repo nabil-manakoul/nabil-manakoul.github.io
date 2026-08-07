@@ -1031,6 +1031,16 @@ body.nmodal-lock{overflow:hidden}
   .rsel.in .rsel-topbar-ico,.rsel.in .rsel-card{animation:none;opacity:1}
 }
 
+/* selection two-step timeline (official list → waiting lists) */
+.rsel-flow{display:flex;align-items:stretch;gap:10px;margin-top:14px;flex-wrap:wrap}
+.rsel-step{flex:1;min-width:210px;display:flex;align-items:flex-start;gap:11px;background:#fffaf1;border:1px solid #f2e0c2;border-radius:12px;padding:12px 14px}
+.rsf-n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:.85rem;font-weight:900;color:#fff;background:linear-gradient(140deg,var(--accent-2),var(--accent));box-shadow:0 3px 8px rgba(201,106,84,.28)}
+.rsf-t{display:flex;flex-direction:column;gap:2px;min-width:0}
+.rsf-t>b{font-size:.9rem;font-weight:900;color:#8a4b1e}
+.rsf-t>span{font-size:.82rem;line-height:1.6;color:#9a6a3a}
+.rsf-t>span b{color:var(--accent);font-weight:900}
+.rsel-flow-arrow{align-self:center;flex:none;font-size:1.4rem;font-weight:900;color:var(--accent-2);line-height:1}
+@media (max-width:560px){.rsel-flow-arrow{transform:rotate(-90deg);align-self:center;width:100%;text-align:center}}
 /* selection date pills + countdown */
 .rsel-dates{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .rsel-dpill{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--brand-dark);background:#eef5f8;border:1px solid var(--line);padding:6px 12px;border-radius:999px}

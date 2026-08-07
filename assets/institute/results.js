@@ -319,6 +319,19 @@ window.ISTA_RESULTS = {
           '<h3 class="rsel-title">لائحة المقبولين في الانتقاء</h3>' +
           '<p class="rsel-desc">' + esc(s.note) + '</p>' +
           '<div class="rsel-meta">🎓 الشعبة: <b>' + esc(s.program) + '</b></div>' +
+          '<div class="rsel-flow">' +
+            '<div class="rsel-step">' +
+              '<span class="rsf-n">1</span>' +
+              '<div class="rsf-t"><b>📋 اللائحة الرسمية للمقبولين</b>' +
+                '<span>أجل تأكيد التسجيل عادةً <b>أسبوع</b> من تاريخ الإعلان (أداء الواجبات وإيداع ملف التسجيل).</span></div>' +
+            '</div>' +
+            '<span class="rsel-flow-arrow" aria-hidden="true">←</span>' +
+            '<div class="rsel-step">' +
+              '<span class="rsf-n">2</span>' +
+              '<div class="rsf-t"><b>🕒 لوائح الانتظار</b>' +
+                '<span>بعد انتهاء أجل الأسبوع، تُستدعى لوائح الانتظار تِباعًا لملء المقاعد الشاغرة.</span></div>' +
+            '</div>' +
+          '</div>' +
           extra +
         '</div>' +
         '<div class="rsel-actions">' + actions + '</div>' +
