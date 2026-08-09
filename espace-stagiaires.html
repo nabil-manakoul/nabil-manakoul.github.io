@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/institute/style.css?v=20260806y">
+  <link rel="stylesheet" href="assets/institute/style.css?v=20260806z">
   <link rel="icon" href="assets/institute/img/logo-emblem.svg">
   <style>body{font-family:"Noto Kufi Arabic","Segoe UI",Tahoma,sans-serif}</style>
 </head>
@@ -79,32 +79,68 @@
 
       <div class="space-banner">
         <span class="sb-ico">🔒</span>
-        <div><b>واجهة قيد التفعيل.</b> يعمل هذا الفضاء حاليًا في وضع المعاينة ببيانات نموذجية لعرض الشكل النهائي. عند نشر الموقع على استضافة المعهد، سيُربط بقاعدة معطيات النتائج الرسمية ويصبح الدخول بالرمز الوطني والرمز السري الحقيقيين. <em>(للمعاينة: أدخل أي رمز في الخانتين.)</em></div>
+        <div><b>واجهة قيد التفعيل.</b> الاطّلاع على النتائج يتمّ عبر <b>رقم التسجيل + رمز تحقّق (OTP)</b> يُرسَل إلى هاتفك المسجَّل لدى الإدارة، لضمان سرّية نتائجك. تعمل الواجهة الآن في <b>وضع المعاينة</b>؛ عند نشر الموقع على استضافة المعهد يُرسَل الرمز فعليًا عبر SMS. <em>(للمعاينة: استعمل الرمز <b dir="ltr">123456</b>.)</em></div>
       </div>
 
-      <!-- Login -->
+      <!-- Secure OTP results access (3-step wizard) -->
       <div class="auth-wrap">
-        <form class="auth-card a-stag" id="authForm" autocomplete="off">
-          <div class="auth-ico">
-            <svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 00-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+        <div class="otp-wizard" id="otpWizard">
+
+          <div class="otp-steps" aria-hidden="true">
+            <div class="otp-step is-active" data-s="1"><span class="os-n">1</span><span class="os-t">التعريف</span></div>
+            <span class="os-line"></span>
+            <div class="otp-step" data-s="2"><span class="os-n">2</span><span class="os-t">رمز التحقّق</span></div>
+            <span class="os-line"></span>
+            <div class="otp-step" data-s="3"><span class="os-n">3</span><span class="os-t">النتائج</span></div>
           </div>
-          <h2>دخول المتدرّب</h2>
-          <p class="auth-sub">أدخل رمزك الوطني والرمز السري الخاص بك</p>
-          <div class="auth-err" id="authErr"></div>
-          <div class="auth-field">
-            <label for="fId">الرمز الوطني للمتدرّب (CIN / CNE)</label>
-            <input type="text" id="fId" name="id" dir="ltr" placeholder="مثال: EE123456" inputmode="text">
-          </div>
-          <div class="auth-field">
-            <label for="fSecret">الرمز السري</label>
-            <input type="password" id="fSecret" name="secret" dir="ltr" placeholder="••••••••">
-          </div>
-          <button type="submit" class="btn btn-primary">دخول</button>
-          <div class="auth-help">
-            <b>كيف أحصل على الرمز السري؟</b><br>
-            يُسلَّم الرمز السري من طرف إدارة المعهد عند تأكيد تسجيلك. في حال نسيانه أو فقدانه، يُرجى الاتصال بمصلحة شؤون المتدربين بالمعهد.
-          </div>
-        </form>
+
+          <div class="auth-err" id="otpErr"></div>
+
+          <!-- Step 1: identity -->
+          <form class="otp-pane is-active a-stag" id="otpStep1" autocomplete="off">
+            <div class="auth-ico">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <h2>الاطّلاع على نتائجي</h2>
+            <p class="auth-sub">أدخل رقم تسجيلك ورقم بطاقتك الوطنية، وسنرسل رمز تحقّق إلى هاتفك المسجَّل.</p>
+            <div class="auth-field">
+              <label for="oReg">رقم التسجيل</label>
+              <input type="text" id="oReg" dir="ltr" inputmode="numeric" placeholder="مثال: 2026xxxxx">
+            </div>
+            <div class="auth-field">
+              <label for="oCin">رقم البطاقة الوطنية (CIN)</label>
+              <input type="text" id="oCin" dir="ltr" placeholder="مثال: JA123456">
+            </div>
+            <button type="submit" class="btn btn-primary">📩 إرسال رمز التحقّق</button>
+            <div class="auth-help">
+              🔒 حمايةً لسرّية نتائجك، يُرسَل الرمز <b>فقط</b> إلى رقم الهاتف المسجَّل لدى الإدارة. إن تغيّر رقمك، اتصل بمصلحة شؤون المتدربين.
+            </div>
+          </form>
+
+          <!-- Step 2: OTP verification -->
+          <form class="otp-pane a-stag" id="otpStep2" autocomplete="off">
+            <div class="auth-ico">
+              <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 5h2"/><path d="M9 18h6"/></svg>
+            </div>
+            <h2>أدخل رمز التحقّق</h2>
+            <p class="auth-sub">أرسلنا رمزًا من 6 أرقام إلى الهاتف <b class="otp-phone" id="otpPhone" dir="ltr">06••••••</b></p>
+            <div class="otp-inputs" id="otpInputs" dir="ltr">
+              <input class="otp-d" type="text" inputmode="numeric" maxlength="1" aria-label="رقم 1">
+              <input class="otp-d" type="text" inputmode="numeric" maxlength="1" aria-label="رقم 2">
+              <input class="otp-d" type="text" inputmode="numeric" maxlength="1" aria-label="رقم 3">
+              <input class="otp-d" type="text" inputmode="numeric" maxlength="1" aria-label="رقم 4">
+              <input class="otp-d" type="text" inputmode="numeric" maxlength="1" aria-label="رقم 5">
+              <input class="otp-d" type="text" inputmode="numeric" maxlength="1" aria-label="رقم 6">
+            </div>
+            <div class="otp-timer" id="otpTimer">⏳ صلاحية الرمز: <b id="otpCount">02:00</b></div>
+            <button type="submit" class="btn btn-primary">🔓 تحقّق واطّلع على النتائج</button>
+            <div class="otp-row">
+              <button type="button" class="otp-link" id="otpResend" disabled>إعادة الإرسال <span id="otpResendIn">(00:30)</span></button>
+              <button type="button" class="otp-link" id="otpBack">◀ تغيير المعطيات</button>
+            </div>
+          </form>
+
+        </div>
       </div>
 
       <!-- App (after login) -->
@@ -223,7 +259,7 @@
 
   <button id="toTop" class="to-top" aria-label="العودة إلى الأعلى">↑</button>
 
-  <script src="assets/institute/main.js?v=20260806y"></script>
-  <script src="assets/institute/spaces.js?v=20260806y"></script>
+  <script src="assets/institute/main.js?v=20260806z"></script>
+  <script src="assets/institute/spaces.js?v=20260806z"></script>
 </body>
 </html>
