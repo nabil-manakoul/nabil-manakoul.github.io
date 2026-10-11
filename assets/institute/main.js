@@ -1100,3 +1100,48 @@
     document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
   });
 })();
+
+// ===== Scroll progress indicator (thin top bar) =====
+(function scrollProgress(){
+  if(!document.body) return;
+  var bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  bar.setAttribute('aria-hidden','true');
+  document.body.appendChild(bar);
+  var ticking = false;
+  function update(){
+    var h = document.documentElement;
+    var sc = h.scrollTop || window.pageYOffset || 0;
+    var max = (h.scrollHeight - h.clientHeight) || 1;
+    var p = sc / max;
+    // snap to full at the physical bottom (guards against lazy-load height drift)
+    if(sc + h.clientHeight >= h.scrollHeight - 2) p = 1;
+    bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, p)) + ')';
+    ticking = false;
+  }
+  function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
+  update();
+  window.addEventListener('scroll', onScroll, { passive:true });
+  window.addEventListener('resize', onScroll);
+})();
+
+// ===== Smooth in-page anchor navigation (with sticky-header offset) =====
+(function smoothAnchors(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) return;
+  var OFFSET = 118; // matches section scroll-margin-top
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if(!a) return;
+    if(a.classList.contains('reinsc-callout')) return; // has its own centered-scroll handler
+    var id = a.getAttribute('href');
+    if(!id || id === '#' || id.length < 2) return;
+    var t;
+    try { t = document.querySelector(id); } catch(_){ return; }
+    if(!t) return;
+    e.preventDefault();
+    var y = t.getBoundingClientRect().top + window.pageYOffset - OFFSET;
+    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    if(history.replaceState) history.replaceState(null, '', id);
+  });
+})();
