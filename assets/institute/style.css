@@ -1454,7 +1454,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .stats2-title b{color:var(--brand);font-weight:900}
 .stats2-title span{color:#9db2bd;font-weight:700}
 .stats2-sub{margin:0 auto;color:var(--muted);font-size:.98rem;line-height:1.7;max-width:760px}
-.stats2-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.stats2-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:900px;margin:0 auto}
 .stat2{text-align:center;padding:18px 10px;border-radius:18px;background:transparent;transition:transform .22s,background .22s,box-shadow .22s}
 .stat2:hover{transform:translateY(-5px);background:#fff;box-shadow:0 14px 34px rgba(31,111,139,.12)}
 .stat2-ico{display:grid;place-items:center;width:70px;height:70px;margin:0 auto 12px;border-radius:18px;background:linear-gradient(140deg,#fff6e6,#fdeccc);box-shadow:inset 0 0 0 1px #f3ddb3}
