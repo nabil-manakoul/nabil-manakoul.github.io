@@ -108,14 +108,16 @@
     var headEl = box.querySelector('.tk-head');
     var segsWrap = box.querySelector('.trot-segs');
     if(!el || !headEl || !segsWrap) return;
-    var items = [
+    // live announcements (from announcements.js) lead; evergreen info follows
+    var annItems = (typeof window.ISTA_tickerItems === 'function') ? window.ISTA_tickerItems() : [];
+    var items = annItems.concat([
       {ico:'📝', cat:'التسجيل',     t:'انتهت آجال التسجيل الأولي لموسم 2026/2027 — بعض الشعب قد تُفتح عبر دراسة الملفات', href:'#dates'},
       {ico:'🌐', cat:'بوابة MyWay', t:'التسجيل الأولي يتم إلكترونيًا عبر بوابة MyWay — myway.ac.ma', href:'#registration'},
       {ico:'📄', cat:'النتائج',      t:'نتائج الانتقاء ونهاية السنة التكوينية تُنشر بالمعهد وعبر الموقع', href:'#results'},
       {ico:'🖥️', cat:'جديد',        t:'فضاء المتدربين متاح للاطلاع على نتائجك بالرمز الوطني والرمز السري', href:'#spaces'},
       {ico:'📚', cat:'المكتبة',      t:'حمّل النظام الداخلي للمعهد من المكتبة الرقمية', href:'#library'},
       {ico:'🏠', cat:'الإيواء',      t:'الداخلية والمطعم متوفّران للمتدربين القادمين من مناطق بعيدة', href:'#facilities'}
-    ];
+    ]);
     var i = 0, timer;
     items.forEach(function(_, n){
       var b = document.createElement('button');

@@ -1397,3 +1397,52 @@ body.nmodal-lock{overflow:hidden}
 /* keyboard focus visibility (does not affect mouse users) */
 a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible,.tab:focus-visible,.prog-more:focus-visible{outline:3px solid var(--brand-2);outline-offset:3px;border-radius:8px}
 .cta:focus-visible,.btn:focus-visible{outline-color:var(--accent-2)}
+
+/* ===== Announcements: top bar + "مستجدّات هامّة" section ===== */
+/* top announcement bar */
+.ann-bar{position:relative;z-index:50;color:#fff;font-size:.92rem;animation:annBarIn .5s ease}
+.ann-bar[hidden]{display:none}
+@keyframes annBarIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.ann-bar-in{display:flex;align-items:center;gap:12px;padding:11px 0}
+.ann-bar-ico{flex:none;font-size:1.25rem;line-height:1}
+.ann-bar-tag{flex:none;font-size:.72rem;font-weight:900;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);padding:3px 11px;border-radius:999px;white-space:nowrap}
+.ann-bar-txt{flex:1;min-width:0;font-weight:700;line-height:1.5}
+.ann-bar-link{flex:none;color:#fff;font-weight:800;font-size:.85rem;text-decoration:none;white-space:nowrap;border-bottom:2px solid rgba(255,255,255,.6)}
+.ann-bar-link:hover{border-bottom-color:#fff}
+.ann-bar-x{flex:none;background:rgba(255,255,255,.18);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.8rem;line-height:1;transition:.2s}
+.ann-bar-x:hover{background:rgba(255,255,255,.32);transform:rotate(90deg)}
+/* bar colour by type */
+.ann-bar.t-ext{background:linear-gradient(100deg,#b3791a,var(--accent-2))}
+.ann-bar.t-sch{background:linear-gradient(100deg,var(--brand-dark),var(--brand))}
+.ann-bar.t-evt{background:linear-gradient(100deg,#1e5c37,var(--green))}
+.ann-bar.t-gen{background:linear-gradient(100deg,var(--brand),var(--brand-2))}
+.ann-bar.t-urg{background:linear-gradient(100deg,#9c2b22,#c0392b)}
+@media (max-width:640px){.ann-bar-in{flex-wrap:wrap;gap:8px 10px}.ann-bar-txt{flex:1 1 100%;order:3}.ann-bar-link{order:4}}
+
+/* announcements section */
+.ann-section[hidden]{display:none}
+.ann-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:28px}
+.ann-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column;transition:transform .22s,box-shadow .22s}
+.ann-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.ann-card::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:5px}
+.ann-card.t-ext::before{background:var(--accent-2)}
+.ann-card.t-sch::before{background:var(--brand)}
+.ann-card.t-evt::before{background:var(--green)}
+.ann-card.t-gen::before{background:var(--brand-2)}
+.ann-card.t-urg::before{background:#c0392b}
+.ann-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.ann-chip{font-size:.74rem;font-weight:900;padding:4px 11px;border-radius:999px;white-space:nowrap}
+.ann-card.t-ext .ann-chip{color:#8a4b1e;background:#fdf3df}
+.ann-card.t-sch .ann-chip{color:var(--brand-dark);background:#eaf3f7}
+.ann-card.t-evt .ann-chip{color:#1e5c37;background:#eafaf0}
+.ann-card.t-gen .ann-chip{color:var(--brand-dark);background:#eaf3f7}
+.ann-card.t-urg .ann-chip{color:#9c2b22;background:#fdecea}
+.ann-new{font-size:.68rem;font-weight:900;color:#fff;background:var(--accent);padding:3px 9px;border-radius:999px;animation:annNewPulse 1.6s ease-in-out infinite}
+@keyframes annNewPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,106,84,.5)}50%{box-shadow:0 0 0 6px rgba(201,106,84,0)}}
+.ann-card-title{margin:0 0 6px;font-size:1.08rem;font-weight:900;color:var(--brand-dark);line-height:1.5}
+.ann-card-body{margin:0 0 14px;font-size:.9rem;line-height:1.7;color:var(--muted);flex:1}
+.ann-card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:12px;border-top:1px dashed var(--line)}
+.ann-date{font-size:.8rem;color:var(--muted);font-weight:700}
+.ann-more{font-size:.84rem;font-weight:800;color:var(--brand);text-decoration:none;white-space:nowrap}
+.ann-more:hover{text-decoration:underline}
+@media (prefers-reduced-motion:reduce){.ann-bar,.ann-new{animation:none}}
