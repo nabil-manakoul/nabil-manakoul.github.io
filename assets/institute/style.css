@@ -1463,3 +1463,24 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .stat2-lab{display:block;margin-top:10px;color:#52707c;font-size:.95rem;font-weight:800;line-height:1.45}
 @media (max-width:900px){.stats2-grid{grid-template-columns:repeat(3,1fr);gap:14px}.stats2-title{font-size:1.8rem}}
 @media (max-width:540px){.stats2-grid{grid-template-columns:repeat(2,1fr)}.stat2-num{font-size:2.3rem}}
+
+/* ===== "عرضنا التكويني" — filière photo carousel ===== */
+.offer-head{text-align:center;margin-bottom:30px}
+.offer-sub{margin:10px auto 0;color:var(--muted);font-size:.98rem;line-height:1.7;max-width:760px}
+.offer-carousel .car-track{direction:ltr}
+.offer-card{flex:0 0 33.333%;box-sizing:border-box;padding:8px;text-decoration:none;display:block}
+.oc-media{position:relative;border-radius:18px;overflow:hidden;box-shadow:var(--shadow-sm);aspect-ratio:3/4;transition:transform .3s,box-shadow .3s}
+.offer-card:hover .oc-media{transform:translateY(-6px);box-shadow:var(--shadow)}
+.oc-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease}
+.offer-card:hover .oc-media img{transform:scale(1.07)}
+.oc-ico{position:absolute;top:12px;inset-inline-end:12px;width:44px;height:44px;border-radius:13px;display:grid;place-items:center;font-size:1.35rem;background:rgba(255,255,255,.93);box-shadow:0 4px 12px rgba(0,0,0,.22);z-index:2}
+.oc-overlay{position:absolute;inset:auto 0 0 0;display:flex;flex-direction:column;gap:3px;padding:44px 16px 18px;color:#fff;text-align:center;z-index:1}
+.oc-overlay b{font-size:1.14rem;font-weight:900;line-height:1.3;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.oc-overlay small{font-size:.82rem;font-weight:800;opacity:.95}
+.oc-ts .oc-overlay{background:linear-gradient(0deg,rgba(31,111,139,.96),rgba(31,111,139,.15) 72%,transparent)}
+.oc-tc .oc-overlay{background:linear-gradient(0deg,rgba(43,143,179,.96),rgba(43,143,179,.15) 72%,transparent)}
+.oc-el .oc-overlay{background:linear-gradient(0deg,rgba(201,138,30,.96),rgba(201,138,30,.15) 72%,transparent)}
+.oc-qa .oc-overlay{background:linear-gradient(0deg,rgba(176,72,58,.96),rgba(176,72,58,.15) 72%,transparent)}
+.oc-sp .oc-overlay{background:linear-gradient(0deg,rgba(47,125,73,.96),rgba(47,125,73,.15) 72%,transparent)}
+@media (max-width:880px){.offer-card{flex-basis:50%}}
+@media (max-width:560px){.offer-card{flex-basis:82%}}
