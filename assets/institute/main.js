@@ -495,8 +495,8 @@
       var box = modal.querySelector('.pm-box'); if(box) box.scrollTop = 0;
     }
     function close(){ modal.classList.remove('open'); document.body.classList.remove('pm-active'); document.body.style.overflow = ''; }
-    document.querySelectorAll('.prog-more').forEach(function(b){
-      b.addEventListener('click', function(){ open(b.getAttribute('data-prog')); });
+    document.querySelectorAll('[data-prog]').forEach(function(b){
+      b.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); open(b.getAttribute('data-prog')); });
     });
     modal.querySelector('.pm-close').addEventListener('click', close);
     modal.addEventListener('click', function(e){ if(e.target === modal) close(); });
