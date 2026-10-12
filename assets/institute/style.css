@@ -1446,3 +1446,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .ann-more{font-size:.84rem;font-weight:800;color:var(--brand);text-decoration:none;white-space:nowrap}
 .ann-more:hover{text-decoration:underline}
 @media (prefers-reduced-motion:reduce){.ann-bar,.ann-new{animation:none}}
+
+/* ===== "المعهد في أرقام" — icon stat tiles ===== */
+.stats2-section{background:linear-gradient(180deg,#f5fafc 0%,#edf5f8 100%)}
+.stats2-head{text-align:center;margin-bottom:38px}
+.stats2-title{margin:0 0 8px;font-size:2.1rem;line-height:1.15;letter-spacing:-.5px}
+.stats2-title b{color:var(--brand);font-weight:900}
+.stats2-title span{color:#9db2bd;font-weight:700}
+.stats2-sub{margin:0 auto;color:var(--muted);font-size:.98rem;line-height:1.7;max-width:760px}
+.stats2-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.stat2{text-align:center;padding:18px 10px;border-radius:18px;background:transparent;transition:transform .22s,background .22s,box-shadow .22s}
+.stat2:hover{transform:translateY(-5px);background:#fff;box-shadow:0 14px 34px rgba(31,111,139,.12)}
+.stat2-ico{display:grid;place-items:center;width:70px;height:70px;margin:0 auto 12px;border-radius:18px;background:linear-gradient(140deg,#fff6e6,#fdeccc);box-shadow:inset 0 0 0 1px #f3ddb3}
+.stat2-ico svg{width:40px;height:40px;stroke:var(--accent-2);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.stat2-num{display:block;font-size:2.8rem;font-weight:900;color:var(--brand);line-height:1;font-variant-numeric:tabular-nums}
+.stat2-lab{display:block;margin-top:10px;color:#52707c;font-size:.95rem;font-weight:800;line-height:1.45}
+@media (max-width:900px){.stats2-grid{grid-template-columns:repeat(3,1fr);gap:14px}.stats2-title{font-size:1.8rem}}
+@media (max-width:540px){.stats2-grid{grid-template-columns:repeat(2,1fr)}.stat2-num{font-size:2.3rem}}
