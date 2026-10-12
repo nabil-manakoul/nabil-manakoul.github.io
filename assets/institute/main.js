@@ -160,6 +160,13 @@
     function armActive(){ var af = segs[i] && segs[i].querySelector('i'); if(af){ af.classList.remove('run'); void af.offsetWidth; af.classList.add('run'); } }
     box.querySelector('.trot-next').addEventListener('click', function(){ next(); reset(); });
     box.querySelector('.trot-prev').addEventListener('click', function(){ prev(); reset(); });
+    // clicking an announcement opens its details modal (evergreen items still navigate)
+    el.addEventListener('click', function(e){
+      var it = items[i];
+      if(it && it.annId && typeof window.ISTA_openAnnouncement === 'function'){
+        e.preventDefault(); window.ISTA_openAnnouncement(it.annId);
+      }
+    });
     box.addEventListener('mouseenter', function(){ clearInterval(timer); });
     box.addEventListener('mouseleave', function(){ start(); armActive(); });
     render(); paintSegs();
